@@ -1,6 +1,8 @@
+
 import static org.junit.Assert.*;
 
-import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -39,52 +41,145 @@ public class FileCsvTest {
 
 	@Test
 	public void testReadForCsv() {
-		
-		
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		try {
+			if(f.readForCsv("wiglewifi")==0){}
+			else
+			 fail("there is problem with the method readForCsv");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testFindId() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		String id=f.FindId("display=ONEPLUS A3003_28_171012");
+		if(!id.endsWith("ONEPLUS A3003_28_171012" ))
+		 fail("there is problem with the method findId");
 	}
 
 	@Test
 	public void testSotrByScan() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		ArrayList<AllData>num=new ArrayList<AllData>();
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","34.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  13:07:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		try {
+			if(f.sotrByScan(num)==0){}
+			else
+			 fail("there is problem with the method sotrByScan");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} 
+	
+	@Test
+	public void testWritecsv() {
+		FileCsv f = new  FileCsv();
+		ArrayList<Scan>num=new ArrayList<Scan>();
+		ArrayList<WifiData> t = new ArrayList<WifiData>();
+		Cordinate cor= new Cordinate(32,34,21);
+		Scan temp = new Scan("28/10/2017  20:10:00","ONEPLUS A3003_28_171012",cor,t);
+		num.add( temp);
+		num.add( temp);
+		num.add( temp);
+		num.add( temp);
+		num.add( temp);
+		try {
+			if(f.writecsv(num,"Table.csv")==0){}
+			else
+			 fail("there is problem with the method testWritecsv");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testSortAndWrite() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		ArrayList<Scan>num2=new ArrayList<Scan>();
+		ArrayList<AllData>num=new ArrayList<AllData>();
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","34.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  13:07:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		
+			if(f.SortAndWrite(0, 4, num, num2)==0){}
+			else
+			 fail("there is problem with the method SortAndWrite");
 	}
 
 	@Test
 	public void testWriteWifiData() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		int[] index=new int[11];
+		index[10]=4;
+		index[0]=0;
+		index[1]=1;
+		index[2]=2;
+		index[3]=3;
+		ArrayList<AllData>num=new ArrayList<AllData>();
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","34.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  13:07:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		ArrayList<WifiData>temp =f.WriteWifiData(num,index);
+		if(temp.size()!=4)
+		 fail("there is problem with the method WriteWifiData");
 	}
 
 	@Test
 	public void testChanneltoFrequncy() {
-		FileCsv fe =new FileCsv();
-		String fre=""+ 2412;
-	if(!fe.ChanneltoFrequncy("1").equals(fre))
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		if(!f.ChanneltoFrequncy("11").equals("2462"))
+		fail("there is problem with the method ChanneltoFrequncy");
 	}
 
 	@Test
 	public void testIndexOfMaxRSSIWifi() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		ArrayList<AllData>num=new ArrayList<AllData>();
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","34.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  13:07:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		int[] index1=f.IndexOfMaxRSSIWifi(0, 12, num);
+		ArrayList<AllData>num2=new ArrayList<AllData>();
+		num2.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","34.20499025","688.1184747","16","WIFI"));
+		num2.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:09:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
+		num2.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
+		int[] index2=f.IndexOfMaxRSSIWifi(0, 2, num2);
+		if(index1[10]!=10||index2[10]!=3)
+		 fail("there is problem with the method IndexOfMaxRSSIWifi");
 	}
 
 	@Test
 	public void testContains() {
-		fail("Not yet implemented");
+		FileCsv f = new  FileCsv();
+		int max[]={1,2,3,4,5,80,46,14,0,100};
+		if(!f.contains(max, 80)||f.contains(max, 22))
+		 fail("there is problem with the method contains");
 	}
 
-	@Test
-	public void testWritecsv() {
-		fail("Not yet implemented");
-	}
+
 
 }

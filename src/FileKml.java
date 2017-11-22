@@ -91,7 +91,7 @@ public class FileKml {
 	 * @param path
 	 * @throws IOException
 	 */
-	public void readFromCsvToKml(String path) throws IOException {
+	public int readFromCsvToKml(String path) throws IOException {
 		ArrayList<Scan> arrayOfscan = new ArrayList<Scan>();
 		File f = new File(path);
 		FileInputStream fi = new FileInputStream(f);
@@ -112,7 +112,7 @@ public class FileKml {
 				}
 				Cordinate cord = new Cordinate(Double.parseDouble(data[2]), Double.parseDouble(data[3]),
 						Double.parseDouble(data[4]));
-				Scan temp = new Scan(data[0], data[1], cord, data[5], dataw);
+				Scan temp = new Scan(data[0], data[1], cord,  dataw);
 				arrayOfscan.add(temp);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -123,6 +123,7 @@ public class FileKml {
 		fi.close();
 		Filter fe = new Filter();
 		fe.ChekFilterForKml(arrayOfscan);
+		return 0;
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class FileKml {
 	 * @param path
 	 * @throws IOException
 	 */
-	public void TurnToKML(ArrayList<Scan> arrayOfscan, String name) {
+	public int TurnToKML(ArrayList<Scan> arrayOfscan, String name) {
 		final Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
 		for (int i = 0; i < arrayOfscan.size(); i++) {
@@ -156,6 +157,7 @@ public class FileKml {
 			System.out.println("error mar");
 		}
 		System.out.println("the Kml file was created");
+		return 0;
 	}
 
 	/**

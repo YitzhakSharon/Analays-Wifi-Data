@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import org.junit.experimental.max.MaxCore;
@@ -20,8 +21,7 @@ public class Filter extends FileKml {
 	 * @param arryOfscan
 	 * @throws IOException
 	 */
-
-	public static void ChekFilterForKml(ArrayList<Scan> arryOfscan) throws IOException {
+	public static int ChekFilterForKml(ArrayList<Scan> arryOfscan) throws IOException {
 		FileKml fe = new FileKml();
 		System.out.println("Enter 1 to select by time, 2 to select by place or 3 to select by id");
 		Scanner sc = new Scanner(System.in);
@@ -100,6 +100,7 @@ public class Filter extends FileKml {
 		}
 
 		sc.close();
+		return 0;
 	}
 
 	/**
@@ -284,28 +285,39 @@ public class Filter extends FileKml {
 		}
 		return false;
 	}
-	
-//	public static ArrayList<String> oneMac (Collection<? extends String> scan){
-//		ArrayList<String> mac = new ArrayList<String>();
-//		mac.addAll(scan);
-//		for (int i = 0; i < scan.size(); i++) {
-//			for (int j = i+1; j < scan.size()-2; j++) {
-//				for (int k = 0; k < scan.get(i).getWifi().size(); k++) {
-//					if(scan.get(i).getWifi().get(k).getMAC().equals(scan.get(j).getWifi().get(k).getMAC())){
-//					mac.remove(j);
-//					String mac= ""+i+","+j+""+
-//					
+
+//	public static ArrayList<String> oneMac (ArrayList <Scan> filter){
+//		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+//		for (int i = 0; i < filter.size(); i++) {
+//			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
+//				String mac= filter.get(i).getWifi().get(j).getMAC();
+//				if(!hmap.containsValue(mac)) {
+//					hmap.put(i, mac);
 //				}
-//				
+//				else {
+//					String key= hmap.get(mac);
+//					System.out.println("key= "+key);
+//					for (int k = 0; k < filter.get(i).getWifi().size(); k++) {
+//						if(filter.get(i).getWifi().get(k).getMAC().equals(mac) ) {
+//								
+//
+//
+//						}
+//
+//
+//					}
+//
+//
+//				}
 //			}
-			
-		//}
-		
-		
-		
-		
-	//}
-}	
+//		}
+//	}
+}
+
+
+
+
+
 
 
 
