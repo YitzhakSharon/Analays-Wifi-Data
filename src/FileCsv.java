@@ -79,9 +79,10 @@ public class FileCsv {
 	 * https://stackoverflow.com/questions/5694385/getting-the-filenames-of-all-files-in-a-folder
 	 * 
 	 * @param path
+	 * @throws  
 	 * @throws IOException
 	 */
-	public int readForCsv(String path) throws IOException {
+	public int readForCsv(String path)   {
 		ArrayList<AllData> table = new ArrayList<AllData>();
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
@@ -89,7 +90,13 @@ public class FileCsv {
 			if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("csv")) {
 				System.out.println("File " + listOfFiles[i].getName() + " was read");
 				File f = new File(listOfFiles[i].getPath());
-				BufferedReader reader = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
+				BufferedReader reader=null;
+				try {
+					reader = new BufferedReader(new FileReader(listOfFiles[i].getPath()));
+				} catch (FileNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				int lines = 0;
 				try {
 					while (reader.readLine() != null) {
@@ -100,7 +107,13 @@ public class FileCsv {
 					// TODO: handle exception
 					System.out.println("there is a problme with the line: " + lines);
 				}
-				FileInputStream fi = new FileInputStream(f);
+				FileInputStream fi=null;
+				try {
+					fi = new FileInputStream(f);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				Scanner sc = new Scanner(fi);
 				String str = sc.nextLine();
 				String[] data1 = str.split(",");
@@ -124,11 +137,17 @@ public class FileCsv {
 
 				}
 				sc.close();
-				fi.close();
+				try {
+					fi.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		}
-		sotrByScan(table);
+		
+			sotrByScan(table);
 return 0;
 	}
 
@@ -154,7 +173,7 @@ return 0;
 	 * @param table
 	 * @throws IOException
 	 */
-	public int sotrByScan(ArrayList<AllData> table) throws IOException {
+	public int sotrByScan(ArrayList<AllData> table)  {
 		ArrayList<Scan> write = new ArrayList<Scan>();
 		String time = table.get(0).getTime();
 		String lon = table.get(0).getLon();
@@ -178,7 +197,12 @@ return 0;
 		}
 		end = table.size() - 1;
 		SortAndWrite(start, end, table, write);
-		writecsv(write, "Table.csv");
+		try {
+			writecsv(write, "Table.csv");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 return 0;
 	}
 

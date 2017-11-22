@@ -32,12 +32,6 @@ public class FilterTest {
 		}
 	}
 
-	@Test
-	public void testDistance() {
-		Filter f = new Filter();
-		if (f.distance(3.4, 5, 8.4, 9) != Math.sqrt(41))
-			fail("There is a broblem with the method Distance");
-	}
 
 	@Test
 	public void testCheckinput() {
@@ -56,7 +50,7 @@ public class FilterTest {
 		if (!s.equals("2017-07-10 12:30:00") || !l.equals("2017-07-10 12:30:00"))
 			fail("There is a broblem with the method CheckTime");
 	}
-	
+
 
 	@Test
 	public void testSelectByPlace() {
@@ -72,7 +66,7 @@ public class FilterTest {
 		num.add(temp);
 		ArrayList<Scan>temp1=f.SelectByPlace(num, 4, 32, 34);
 		if(temp1.size()!=5)
-		fail("There is a broblem with the method SelectByPlace");
+			fail("There is a broblem with the method SelectByPlace");
 	}
 
 	@Test
@@ -89,7 +83,7 @@ public class FilterTest {
 		num.add(temp);
 		ArrayList<Scan>temp1=f.SelectById(num,"ONEPLUS A3003_28_171012");
 		if(temp1.size()!=5)
-		fail("There is a broblem with the method SelectById");
+			fail("There is a broblem with the method SelectById");
 	}
 
 	@Test
@@ -104,11 +98,11 @@ public class FilterTest {
 		num.add(temp);
 		num.add(temp);
 		num.add(temp);
-	Date minTime=f.stringToDate("28/10/2017 20:09:00");
-	Date maxTime=f.stringToDate("28/10/2017 20:11:00");
+		Date minTime=f.stringToDate("28/10/2017 20:09:00");
+		Date maxTime=f.stringToDate("28/10/2017 20:11:00");
 		ArrayList<Scan>temp1=f.SelectByTime(num,minTime,maxTime);
 		if(temp1.size()!=5)
-		fail("There is a broblem with the method SelectByTime");
+			fail("There is a broblem with the method SelectByTime");
 	}
 
 

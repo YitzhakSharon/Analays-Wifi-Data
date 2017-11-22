@@ -80,5 +80,13 @@ public class CordinateTest {
 		if(!cord.equal(cord, core))
 			fail("Not yet implemented");
 	}
+	@Test
+	public void testDistance() {
+		Cordinate	a= new Cordinate(3.4,5,9)	;
+		Cordinate	b= new Cordinate(8.4,9,9)	;
+		if (a.distance(a,b) != Math.sqrt(41))
+			fail("There is a broblem with the method Distance");
+	}
+
 
 }

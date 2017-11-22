@@ -22,10 +22,10 @@ public class Filter extends FileKml {
 	 * @param arryOfscan
 	 * @throws IOException
 	 */
-	public static int ChekFilterForKml(ArrayList<Scan> arryOfscan) throws IOException {
+	public static int ChekFilterForKml(ArrayList<Scan> arryOfscan)  {
 		FileKml fe = new FileKml();
 		ScanPredecate pe= new ScanPredecate();
-		//Predicate< Scan> t = new Predicate<Scan>() ;
+		Filter t = new Filter();
 		System.out.println("Enter 1 to select by time, 2 to select by place or 3 to select by id");
 		Scanner sc = new Scanner(System.in);
 		int select = sc.nextInt();
@@ -82,8 +82,7 @@ public class Filter extends FileKml {
 			// String s2 = "28/10/2017 21:32:17";
 			// min = stringToDate(s1);
 			// max = stringToDate(s2);
-			fe.TurnToKML(pe.filters(arryOfscan,pe.SelectByTime(min, max)), "KmlByTime.kml");
-
+			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByTime(min, max))), "KmlByTimeWithTimeLine.kml");
 		}
 		if (select == 2) {
 			System.out.println("Enter Radus, CenterLon and CenterLat");
@@ -93,14 +92,14 @@ public class Filter extends FileKml {
 			Cordinate cord=new Cordinate();
 			cord.setLon(centerLon);
 			cord.setLat(centerLat);
-			fe.TurnToKML(pe.filters(arryOfscan,pe.SelectByPlace(radus, cord)),
-					"C:\\Users\\yitzhak\\eclipse-workspace\\OOP\\KmlByPlace1.kml");
+			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByPlace(radus, cord))),
+					"C:\\Users\\yitzhak\\eclipse-workspace\\OOP\\KmlByPlaceWithTimeLine.kml");
 
 		}
 		if (select == 3) {
 			System.out.println("Enter Id");
 			String id = sc.next();
-			fe.TurnToKML(pe.filters(arryOfscan, pe.SelectById(id)), "KmlById.kml");
+			fe.TurnToKML(oneMac(pe.filters(arryOfscan, pe.SelectById(id))), "KmlByIdWithTimeLine.kml");
 
 		}
 
@@ -196,35 +195,44 @@ public class Filter extends FileKml {
 		}
 		return false;
 	}
+/**
+ * the complexity of the function is O(n^2).
+ * the method delete duplication of mac
 
-	public static void oneMac (ArrayList <Scan> filter){
-		ArrayList <WifiData> mac = new ArrayList <WifiData>();
+ * @param filter
+ * @return
+ */
+	public static ArrayList <Scan> oneMac (ArrayList <Scan> filter){
 		for (int i = 0; i < filter.size(); i++) {
-			mac.addAll(filter.get(i).getWifi());
+			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
+				String mac =filter.get(i).getWifi().get(j).getMAC();
+				int max=Integer.parseInt(filter.get(i).getWifi().get(j).getSignal());
+				for (int k = i+1; k < filter.size()-2; k++) {
+					for (int k2 = 0; k2 < filter.get(k).getWifi().size(); k2++) {
+						if(filter.get(k).getWifi().get(k2).getMAC().equals(mac)) {
+							if(Integer.parseInt(filter.get(i).getWifi().get(j).getSignal())<
+									Integer.parseInt(filter.get(k).getWifi().get(k2).getSignal())){
+					if(filter.get(i).getWifi().size()>1) {
+								filter.get(i).getWifi().remove(j);
+							if(j!=0)
+								j--;
+							}
+							}
+							else {
+								if(filter.get(k).getWifi().size()>1) {
+
+								filter.get(k).getWifi().remove(k2);
+								if(k2!=0)
+								k2--;
+								}
+							}
+						}
+					}
+				}
+
+			}
 		}
-		System.out.println(mac.toString());
-		//		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
-		//		for (int i = 0; i < filter.size(); i++) {
-		//			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
-		//				String mac= filter.get(i).getWifi().get(j).getMAC();
-		//				if(!hmap.containsValue(mac)) {
-		//					hmap.put(i, mac);
-		//				}
-		//				else {
-		//					String key= hmap.get(mac);
-		//					System.out.println("key= "+key);
-		//					for (int k = 0; k < filter.get(i).getWifi().size(); k++) {
-		//						if(filter.get(i).getWifi().get(k).getMAC().equals(mac) ) {
-		//							if(Integer.parseInt(filter.get(i).getWifi().get(k).getSignal())>
-		//							Integer.parseInt(filter.get(i).getWifi().get(j).getSignal())) {
-		//							}
-		//						}
-		//
-		//
-		//					}
-		//				}
-		//			}
-		//}
+		return filter;
 	}
 }
 
