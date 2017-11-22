@@ -82,7 +82,7 @@ public class Filter extends FileKml {
 			// String s2 = "28/10/2017 21:32:17";
 			// min = stringToDate(s1);
 			// max = stringToDate(s2);
-			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByTime(min, max))), "KmlByTimeWithTimeLine.kml");
+			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByTime(min, max))), "KmlByTime1WithTimeLine.kml");
 		}
 		if (select == 2) {
 			System.out.println("Enter Radus, CenterLon and CenterLat");
