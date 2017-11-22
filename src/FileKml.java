@@ -225,5 +225,17 @@ public class FileKml {
 			time += Date[2] + "-" + Date[1] + "-" + Date[0] + " " + Time[1];
 		return time;
 	}
+	public static boolean checkinput(String input, String format) {
+		if (format.equals("dd/mm/yyyy")) {
+			if ((input.length() == 10) && (input.charAt(2) == '/') && (input.charAt(5) == '/'))
+				return true;
+		}
+
+		if (format.equals("hh:mm:ss")) {
+			if ((input.length() == 8) && (input.charAt(2) == ':') && (input.charAt(5) == ':'))
+				return true;
+		}
+		return false;
+	}
 
 }

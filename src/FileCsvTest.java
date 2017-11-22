@@ -93,7 +93,7 @@ public class FileCsvTest {
 		num.add( temp);
 		num.add( temp);
 		try {
-			if(f.writecsv(num,"Table.csv")==0){}
+			if(f.writecsv(num,"Table.csv")==0) {}
 			else
 			 fail("there is problem with the method testWritecsv");
 		} catch (IOException e) {

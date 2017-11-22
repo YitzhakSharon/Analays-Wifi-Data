@@ -83,4 +83,11 @@ public boolean equal (Cordinate a, Cordinate b) {
 	else return false;
 	
 }
+public  double distance(Cordinate x, Cordinate y) {
+	double lon = Math.pow( x.getLon()- y.getLon(), 2);
+	double lat = Math.pow(x.getLat()-y.getLat(), 2);
+	double dis = Math.sqrt(lon+lat);
+	return dis;
+}
+
 }

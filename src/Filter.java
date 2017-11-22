@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import org.junit.experimental.max.MaxCore;
 
@@ -23,6 +24,8 @@ public class Filter extends FileKml {
 	 */
 	public static int ChekFilterForKml(ArrayList<Scan> arryOfscan) throws IOException {
 		FileKml fe = new FileKml();
+		ScanPredecate pe= new ScanPredecate();
+		//Predicate< Scan> t = new Predicate<Scan>() ;
 		System.out.println("Enter 1 to select by time, 2 to select by place or 3 to select by id");
 		Scanner sc = new Scanner(System.in);
 		int select = sc.nextInt();
@@ -79,23 +82,25 @@ public class Filter extends FileKml {
 			// String s2 = "28/10/2017 21:32:17";
 			// min = stringToDate(s1);
 			// max = stringToDate(s2);
-			fe.TurnToKML(SelectByTime(arryOfscan, min, max), "KmlByTime.kml");
+			fe.TurnToKML(pe.filters(arryOfscan,pe.SelectByTime(min, max)), "KmlByTime.kml");
 
 		}
 		if (select == 2) {
 			System.out.println("Enter Radus, CenterLon and CenterLat");
-			double Radus = sc.nextDouble();
-			double CenterLon = sc.nextDouble();
-			double CenterLat = sc.nextDouble();
-
-			fe.TurnToKML(SelectByPlace(arryOfscan, Radus, CenterLon, CenterLat),
+			double radus = sc.nextDouble();
+			double centerLon = sc.nextDouble();
+			double centerLat = sc.nextDouble();
+			Cordinate cord=new Cordinate();
+			cord.setLon(centerLon);
+			cord.setLat(centerLat);
+			fe.TurnToKML(pe.filters(arryOfscan,pe.SelectByPlace(radus, cord)),
 					"C:\\Users\\yitzhak\\eclipse-workspace\\OOP\\KmlByPlace1.kml");
 
 		}
 		if (select == 3) {
 			System.out.println("Enter Id");
-			String Id = sc.next();
-			fe.TurnToKML(SelectById(arryOfscan, Id), "KmlById.kml");
+			String id = sc.next();
+			fe.TurnToKML(pe.filters(arryOfscan, pe.SelectById(id)), "KmlById.kml");
 
 		}
 
@@ -103,103 +108,6 @@ public class Filter extends FileKml {
 		return 0;
 	}
 
-	/**
-	 * this method filter the data by place
-	 * 
-	 * @param arrayOfscan
-	 * @param Radus
-	 * @param CenterLon
-	 * @param CenterLat
-	 * @return
-	 */
-
-	public static ArrayList<Scan> SelectByPlace(ArrayList<Scan> arrayOfscan, double Radus, double CenterLon,
-			double CenterLat) {
-		ArrayList<Scan> arrayOfplace = new ArrayList<Scan>();
-
-		int indexPlace = 0;
-
-		for (int i = 0; i < arrayOfscan.size(); i++) {
-
-			if (distance(CenterLat, CenterLon, arrayOfscan.get(i).getCore().getLat(),
-					arrayOfscan.get(i).getCore().getLon()) <= Radus) {
-				arrayOfplace.add(arrayOfscan.get(i));
-
-				indexPlace++;
-			}
-		}
-
-		return arrayOfplace;
-	}
-
-	/**
-	 * this method calculate the distance
-	 * 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @return
-	 */
-	public static double distance(double x1, double y1, double x2, double y2) {
-		double x = Math.pow(x1 - x2, 2);
-		double y = Math.pow(y1 - y2, 2);
-		double dis = Math.sqrt(x + y);
-		return dis;
-	}
-
-	/**
-	 * this method filter the data by id
-	 * 
-	 * @param arrayOfscan
-	 * @param Id
-	 * @return
-	 */
-
-	public static ArrayList<Scan> SelectById(ArrayList<Scan> arrayOfscan, String Id) {
-
-		ArrayList<Scan> arrayOfId = new ArrayList<Scan>();
-
-		for (int i = 0; i < arrayOfscan.size(); i++) {
-			if (Id.equals(arrayOfscan.get(i).getId())) {
-				arrayOfId.add(arrayOfscan.get(i));
-			}
-
-		}
-		System.out.println(arrayOfId);
-		return arrayOfId;
-	}
-
-	/**
-	 * this method filter the data by time
-	 * 
-	 * @param arrayOfscan
-	 * @param MinTime
-	 * @param MaxT1ime
-	 * @return
-	 * @throws ParseException
-	 */
-
-	public static ArrayList<Scan> SelectByTime(ArrayList<Scan> arrayOfscan, Date minTime, Date maxTime) {
-		ArrayList<Scan> arrayOftime = new ArrayList<Scan>();
-
-		for (int i = 0; i < arrayOfscan.size(); i++) {
-			Date d = stringToDate(arrayOfscan.get(i).getTime());
-			if (d.after(minTime) && d.before(maxTime)) {
-				arrayOftime.add(arrayOfscan.get(i));
-			}
-		}
-		return arrayOftime;
-	}
-
-	/**
-	 * convert String to Date
-	 * https://www.mkyong.com/java/java-date-and-calendar-examples/
-	 * 
-	 * @param time
-	 * @return
-	 * @throws ParseException
-	 */
 	public static Date stringToDate(String time) {
 
 		time = time.replace("-", "/");
@@ -265,6 +173,8 @@ public class Filter extends FileKml {
 		return time;
 	}
 
+
+
 	/**
 	 * check if the input is in the same format of the String-format
 	 * 
@@ -272,6 +182,7 @@ public class Filter extends FileKml {
 	 * @param format
 	 * @return
 	 */
+
 
 	public static boolean checkinput(String input, String format) {
 		if (format.equals("dd/mm/yyyy")) {
@@ -286,32 +197,35 @@ public class Filter extends FileKml {
 		return false;
 	}
 
-//	public static ArrayList<String> oneMac (ArrayList <Scan> filter){
-//		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
-//		for (int i = 0; i < filter.size(); i++) {
-//			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
-//				String mac= filter.get(i).getWifi().get(j).getMAC();
-//				if(!hmap.containsValue(mac)) {
-//					hmap.put(i, mac);
-//				}
-//				else {
-//					String key= hmap.get(mac);
-//					System.out.println("key= "+key);
-//					for (int k = 0; k < filter.get(i).getWifi().size(); k++) {
-//						if(filter.get(i).getWifi().get(k).getMAC().equals(mac) ) {
-//								
-//
-//
-//						}
-//
-//
-//					}
-//
-//
-//				}
-//			}
-//		}
-//	}
+	public static void oneMac (ArrayList <Scan> filter){
+		ArrayList <WifiData> mac = new ArrayList <WifiData>();
+		for (int i = 0; i < filter.size(); i++) {
+			mac.addAll(filter.get(i).getWifi());
+		}
+		System.out.println(mac.toString());
+		//		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+		//		for (int i = 0; i < filter.size(); i++) {
+		//			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
+		//				String mac= filter.get(i).getWifi().get(j).getMAC();
+		//				if(!hmap.containsValue(mac)) {
+		//					hmap.put(i, mac);
+		//				}
+		//				else {
+		//					String key= hmap.get(mac);
+		//					System.out.println("key= "+key);
+		//					for (int k = 0; k < filter.get(i).getWifi().size(); k++) {
+		//						if(filter.get(i).getWifi().get(k).getMAC().equals(mac) ) {
+		//							if(Integer.parseInt(filter.get(i).getWifi().get(k).getSignal())>
+		//							Integer.parseInt(filter.get(i).getWifi().get(j).getSignal())) {
+		//							}
+		//						}
+		//
+		//
+		//					}
+		//				}
+		//			}
+		//}
+	}
 }
 
 

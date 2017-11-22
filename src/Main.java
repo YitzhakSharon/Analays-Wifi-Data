@@ -10,9 +10,9 @@ public class Main {
 		// TODO Auto-generated method stub
 		FileCsv fe = new FileCsv();
 		 fe.readForCsv("wiglewifi");
-		
-		// FileKml fl = new FileKml();
-		// fl.readFromCsvToKml("Table.csv");
+		Filter k = new Filter();
+		 FileKml fl = new FileKml();
+		fl.readFromCsvToKml("Table.csv");
 		// String k ="2017-10-28 20:19";
 		// System.out.println(k.length());
 		// fl.turnTime("08/11/2017 19:31:43");
