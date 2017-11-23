@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,7 +19,9 @@ public class Filter extends FileKml {
 
 	/**
 	 * the method give the user to decide how to filter the data
-	 * 
+	 * (by Time range, or by Coordinate and  radius, or by Id )
+
+ 
 	 * @param arryOfscan
 	 * @throws IOException
 	 */
@@ -31,13 +34,13 @@ public class Filter extends FileKml {
 		int select = sc.nextInt();
 		if (select == 1) {
 			int legalinput = 0;
-			System.out.println("Enter MinDate dd/mm/yyyy");
+			System.out.println("Enter MinDate yyyy/mm/dd");
 			String MinTime = sc.next();
 			while (legalinput == 0) {
-				if (checkinput(MinTime, "dd/mm/yyyy"))
+				if (checkinput(MinTime,"yyyy/mm/dd"))
 					legalinput = 1;
 				else {
-					System.out.println("The format is wrong Enter MinDate dd/mm/yyyy");
+					System.out.println("The format is wrong Enter MinDate yyyy/mm/dd");
 					MinTime = sc.next();
 				}
 			}
@@ -51,10 +54,10 @@ public class Filter extends FileKml {
 					MinClock = sc.next();
 				}
 			}
-			System.out.println("Enter MaxDate dd/mm/yyyy");
+			System.out.println("Enter MaxDate yyyy/mm/dd");
 			String MaxTime = sc.next();
 			while (legalinput == 0) {
-				if (checkinput(MaxTime, "dd/mm/yyyy"))
+				if (checkinput(MaxTime, "yyyy/mm/dd"))
 					legalinput = 1;
 				else {
 					System.out.println("The format is wrong Enter MaxTime dd/mm/yyyy");
@@ -73,15 +76,9 @@ public class Filter extends FileKml {
 			}
 			Date min = new Date();
 			Date max = new Date();
-			min = stringToDate(MinTime + " " + MinClock);
-			max = stringToDate(MaxTime + " " + MaxClock);
-			// // TODO Auto-generated catch block
-			// Date min = new Date();
-			// Date max = new Date();
-			// String s1 = "28/10/2017 20:11:00";
-			// String s2 = "28/10/2017 21:32:17";
-			// min = stringToDate(s1);
-			// max = stringToDate(s2);
+			min = stringToDate(MinTime+" "+MinClock);
+			max = stringToDate(MaxTime+" "+MaxClock);
+			System.out.println(min.toString());
 			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByTime(min, max))), "KmlByTime1WithTimeLine.kml");
 		}
 		if (select == 2) {
@@ -106,49 +103,49 @@ public class Filter extends FileKml {
 		sc.close();
 		return 0;
 	}
-
-	public static Date stringToDate(String time) {
-
-		time = time.replace("-", "/");
-		// time = CheckTime(time);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy  hh:mm:ss");
-		Date date = null;
-		try {
-			date = sdf.parse(time);
-			// System.out.println(date.toString());
-			return date;
-		} catch (ParseException e) {
+	public static String changeforamt(String date)
+	{
+		date = date.replaceAll("/", "-");
+		if(date.split(" ")[0].split("-")[0].length() == 2)
+		{
+			String str = date.split(" ")[0].split("-")[2]+"-"+date.split(" ")[0].split("-")[1]+"-"+date.split(" ")[0].split("-")[0]+" "+date.split(" ")[1];
+			date = str;
 		}
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/mm/yyyy hh:mm");
-		try {
-			date = sdf2.parse(time);
-			// System.out.println(date.toString());
-			return date;
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss");
-		try {
-			date = sdf3.parse(time);
-			// System.out.println(date.toString());
-			return date;
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy/mm/dd hh:mm");
-		try {
-			date = sdf4.parse(time);
-			// System.out.println(date.toString());
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
+		if(date.split(" ")[1].split(":").length == 2)
+			date = date+":00";
 		return date;
+	}
 
+/**
+ *  the method convert String to Date Object
+ * @param time
+ * @return
+ */
+	@SuppressWarnings("deprecation")
+	public static Date stringToDate(String time)  {
+		time = CheckTime(time);
+		System.out.println(time);
+		time=time.replace("-", "/");
+		String day = "" + time.charAt(8) + time.charAt(9);
+		String year = "" + time.charAt(0) + time.charAt(1) + time.charAt(2) + time.charAt(3);
+		String month = "" + time.charAt(5) + time.charAt(6);
+		String hour, minute, second;
+		hour = "" + time.charAt(11) + time.charAt(12);
+		minute = "" + time.charAt(14) + time.charAt(15);
+		if (time.length() <= 16)
+			second = "00";
+		else
+			second = "" + time.charAt(17) + time.charAt(18);
+
+		Date date=new Date();
+		date.setYear(Integer.parseInt(year));
+		date.setMonth(Integer.parseInt(month));
+		date.setDate(Integer.parseInt(day));
+		date.setHours(Integer.parseInt(hour));
+		date.setMinutes(Integer.parseInt(minute));
+		date.setSeconds(Integer.parseInt(second));
+		System.out.println(date.toString());
+		return date;
 	}
 
 	/**
@@ -160,6 +157,7 @@ public class Filter extends FileKml {
 
 	public static String CheckTime(String time1) {
 		String[] Time = time1.split(" ");
+		System.out.println(Time.length);
 		String time = "";
 		String[] Date = Time[0].split("/");
 		if (Date[0].length() == 4) {
@@ -184,8 +182,8 @@ public class Filter extends FileKml {
 
 
 	public static boolean checkinput(String input, String format) {
-		if (format.equals("dd/mm/yyyy")) {
-			if ((input.length() == 10) && (input.charAt(2) == '/') && (input.charAt(5) == '/'))
+		if (format.equals("yyyy/mm/dd")) {
+			if ((input.length() == 10) && (input.charAt(4) == '/') && (input.charAt(7) == '/'))
 				return true;
 		}
 
@@ -195,13 +193,13 @@ public class Filter extends FileKml {
 		}
 		return false;
 	}
-/**
- * the complexity of the function is O(n^2).
- * the method delete duplication of mac
+	/**
+	 * the complexity of the function is O(n^2).
+	 * the method delete duplication of mac address, after the filter
 
- * @param filter
- * @return
- */
+	 * @param filter
+	 * @return
+	 */
 	public static ArrayList <Scan> oneMac (ArrayList <Scan> filter){
 		for (int i = 0; i < filter.size(); i++) {
 			for (int j = 0; j < filter.get(i).getWifi().size(); j++) {
@@ -212,18 +210,18 @@ public class Filter extends FileKml {
 						if(filter.get(k).getWifi().get(k2).getMAC().equals(mac)) {
 							if(Integer.parseInt(filter.get(i).getWifi().get(j).getSignal())<
 									Integer.parseInt(filter.get(k).getWifi().get(k2).getSignal())){
-					if(filter.get(i).getWifi().size()>1) {
-								filter.get(i).getWifi().remove(j);
-							if(j!=0)
-								j--;
-							}
+								if(filter.get(i).getWifi().size()>1) {
+									filter.get(i).getWifi().remove(j);
+									if(j!=0)
+										j--;
+								}
 							}
 							else {
 								if(filter.get(k).getWifi().size()>1) {
 
-								filter.get(k).getWifi().remove(k2);
-								if(k2!=0)
-								k2--;
+									filter.get(k).getWifi().remove(k2);
+									if(k2!=0)
+										k2--;
 								}
 							}
 						}

@@ -117,7 +117,7 @@ public class FileCsv {
 				Scanner sc = new Scanner(fi);
 				String str = sc.nextLine();
 				String[] data1 = str.split(",");
-				String Id = FindId(data1[5]);
+				String Id = FindId(data1[4]);
 				if (data1[0].contains("WigleWifi") && lines > 2) {
 					str = sc.nextLine();
 					String[] data2 = str.split(",");
@@ -134,7 +134,6 @@ public class FileCsv {
 							System.out.println("there is a problem with the line: " + str);
 						}
 					}
-
 				}
 				sc.close();
 				try {
@@ -143,12 +142,10 @@ public class FileCsv {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
-		
-			sotrByScan(table);
-return 0;
+		sotrByScan(table);
+		return 0;
 	}
 
 	/**
@@ -159,7 +156,7 @@ return 0;
 	 */
 	public static String FindId(String Id) {
 		String temp = "";
-		for (int j = 8; j < Id.length(); j++) {
+		for (int j = 7; j < Id.length(); j++) {
 			temp = temp + Id.charAt(j);
 		}
 		return temp;
@@ -203,7 +200,7 @@ return 0;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-return 0;
+		return 0;
 	}
 
 	/**
@@ -234,7 +231,7 @@ return 0;
 			}
 			write.add(temp);
 		}
-return 0;
+		return 0;
 	}
 
 	/**
@@ -360,116 +357,65 @@ return 0;
 		return title;
 	}
 
-	private static final Object [] header= headers();
-	private static final String new_line="\n";
-//	public void writecsv (ArrayList<Scan> write, String path)   {
-//		Reader in=null;
-//		try {
-//			in = new FileReader(path);
-//		} catch (FileNotFoundException e2) {
-//			// TODO Auto-generated catch block
-//			e2.printStackTrace();
-//		}
-//		FileWriter writer = null;
-//		CSVPrinter csv = null; 
-//		CSVFormat format =CSVFormat.DEFAULT.withRecordSeparator(new_line);
-//		Iterable<CSVRecord> records=null;
-//		try {
-//			 records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//
-//		try {
-//			writer=new FileWriter(path);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			csv=new CSVPrinter(writer, format);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			format.printRecord(writer, header);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		for (int i = 0; i < write.size(); i++) {
-//			List <String> ApiCsv =new ArrayList<String>();
-//			
-//
-//
-//		}
-//
-//
-//	}
-//
-//	/**
-//	 * the method write the data from the ArrayList write to a csv file
-//	 * 
-//	 * @param write
-//	 * @param path
-//	 * @throws IOException
-//	 */
-//
-		public void writecsv(ArrayList<Scan> write, String path) throws IOException {
-			String[] title = new String[46];
-			// הכנסת כותרות למטריצה
-			title[0] = "Time";
-			title[1] = "ID";
-			title[2] = "Lat";
-			title[3] = "Lon";
-			title[4] = "Alt";
-			title[5] = "WiFi Networks";
+		/**
+		 * the method write the data from the ArrayList write to a csv file
+		 * 
+	     * @param write
+		 * @param path
+		 * @throws IOException
+		 */
 	
-			int wifinum = 1;
-			for (int j = 6; j < 46; j = j + 4) {
-				title[j] = "SSID" + wifinum;
-				title[j + 1] = "MAC" + wifinum;
-				title[j + 2] = "Frequncy" + wifinum;
-				title[j + 3] = "Signal" + wifinum;
-				wifinum++;
-	
-			}
-	
-			FileWriter writer = new FileWriter(path);
-			
-			//CSVPrinter csv = null; 
-			PrintWriter outs = new PrintWriter(writer);
-	
-			for (int k = 0; k < title.length; k++) {
-				writer.append(title[k]);
-				writer.append(",");
+	public void writecsv(ArrayList<Scan> write, String path) throws IOException {
+		String[] title = new String[46];
+		// הכנסת כותרות למטריצה
+		title[0] = "Time";
+		title[1] = "ID";
+		title[2] = "Lat";
+		title[3] = "Lon";
+		title[4] = "Alt";
+		title[5] = "WiFi Networks";
+
+		int wifinum = 1;
+		for (int j = 6; j < 46; j = j + 4) {
+			title[j] = "SSID" + wifinum;
+			title[j + 1] = "MAC" + wifinum;
+			title[j + 2] = "Frequncy" + wifinum;
+			title[j + 3] = "Signal" + wifinum;
+			wifinum++;
+
+		}
+
+		FileWriter writer = new FileWriter(path);
+		PrintWriter outs = new PrintWriter(writer);
+
+		for (int k = 0; k < title.length; k++) {
+			writer.append(title[k]);
+			writer.append(",");
+		}
+		outs.println();
+		for (int i = 0; i < write.size(); i++) {
+			writer.append(write.get(i).getTime() + "," + write.get(i).getId() + "," + ""
+					+ write.get(i).getCore().getLat() + "," + "" + write.get(i).getCore().getLon() + "," + ""
+					+ write.get(i).getCore().getAlt() + "," + write.get(i).getWifiNetWork() + ",");
+			ArrayList<WifiData> temp = write.get(i).getWifi();
+			for (int j = 0; j < temp.size(); j++) {
+				writer.append(temp.get(j).getSSID() + "," + temp.get(j).getMAC() + "," + temp.get(j).getFrequncy() + ","
+						+ temp.get(j).getSignal() + ",");
+
 			}
 			outs.println();
-			for (int i = 0; i < write.size(); i++) {
-				writer.append(write.get(i).getTime() + "," + write.get(i).getId() + "," + ""
-						+ write.get(i).getCore().getLat() + "," + "" + write.get(i).getCore().getLon() + "," + ""
-						+ write.get(i).getCore().getAlt() + "," + write.get(i).getWifiNetWork() + ",");
-				ArrayList<WifiData> temp = write.get(i).getWifi();
-				for (int j = 0; j < temp.size(); j++) {
-					writer.append(temp.get(j).getSSID() + "," + temp.get(j).getMAC() + "," + temp.get(j).getFrequncy() + ","
-							+ temp.get(j).getSignal() + ",");
-	
-				}
-				outs.println();
-			}
-	
-			writer.close();
-			System.out.println("csv create complete,please chek file.");
-	
 		}
+
+		writer.close();
+		System.out.println("csv create complete,please chek file.");
+
+	}
 	/**
 	 * The method find the minimal signal
 	 * @param start
 	 * @param end
 	 * @param table
-	 * @return
+	 * @return the index of the min Signal
 	 */
 
 	public static int findmin(int start, int end, ArrayList<AllData> table) {

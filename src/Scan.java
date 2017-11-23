@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Scan {
 	private String time;
@@ -31,7 +34,6 @@ public class Scan {
 		this.wifi.clear();
 		;
 	}
-
 	/**
 	 * @return the time
 	 */
@@ -110,5 +112,7 @@ public class Scan {
 		return "Scan [time=" + time + ", id=" + id + ", core=" + core + ", wifiNetWork=" + wifiNetWork + ", wifi="
 				+ wifi + "]";
 	}
+
+
 
 }

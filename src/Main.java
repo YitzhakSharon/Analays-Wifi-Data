@@ -1,19 +1,20 @@
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
-		//FileCsv fe = new FileCsv();
-		//fe.readForCsv("wiglewifi");
-		Filter k = new Filter();
-		 FileKml fl = new FileKml();
-		fl.readFromCsvToKml("Table.csv");
-		// String k ="2017-10-28 20:19";
-		// System.out.println(k.length())
+		// call the methods that make the csv file
+		FileCsv fe = new FileCsv();
+		fe.readForCsv("wiglewifi");
+		// call the methods that make the kml file by filter
+		FileKml fl = new FileKml();
+		fl.readFromCsvToKml("Table.csv");String dateStr = "06/27/2007";
 	}
 }

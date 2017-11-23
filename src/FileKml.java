@@ -118,7 +118,7 @@ public class FileKml {
 				}
 				Cordinate cord = new Cordinate(Double.parseDouble(data[2]), Double.parseDouble(data[3]),
 						Double.parseDouble(data[4]));
-				Scan temp = new Scan(data[0], data[1], cord,  dataw);
+				Scan temp = new Scan(data[0], data[1], cord,  dataw);// he get a Date and not a String
 				arrayOfscan.add(temp);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -133,8 +133,8 @@ public class FileKml {
 			e.printStackTrace();
 		}
 		Filter fe = new Filter();
-		
-			fe.ChekFilterForKml(arrayOfscan);
+
+		fe.ChekFilterForKml(arrayOfscan);
 		return 0;
 	}
 
@@ -217,9 +217,7 @@ public class FileKml {
 			second = "" + time.charAt(17) + time.charAt(18);
 		TimeStamp t = new TimeStamp();
 		String turntime = "" + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "Z";
-
 		t.setWhen(turntime);
-
 		return t;
 	}
 
