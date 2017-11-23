@@ -11,10 +11,10 @@ public class Main {
 	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
 		// call the methods that make the csv file
-		FileCsv fe = new FileCsv();
-		fe.readForCsv("wiglewifi");
+		//FileCsv fe = new FileCsv();
+		//fe.readForCsv("wiglewifi");
 		// call the methods that make the kml file by filter
 		FileKml fl = new FileKml();
-		fl.readFromCsvToKml("Table.csv");String dateStr = "06/27/2007";
+		fl.readFromCsvToKml("Table.csv");
 	}
 }

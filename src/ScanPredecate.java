@@ -91,7 +91,6 @@ public class ScanPredecate {
 	public static String CheckTime(String time1) {
 		String[] Time = time1.split(" ");
 		String time = "";
-		System.out.println(time1+"   123");
 		String[] Date = Time[0].split("/");
 		if (Date[0].length() == 4) {
 			time += Date[0] + "/" + Date[1] + "/" + Date[2] + " " + Time[1];

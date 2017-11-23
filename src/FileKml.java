@@ -91,7 +91,7 @@ public class FileKml {
 	 * @param path
 	 * @throws IOException
 	 */
-	public int readFromCsvToKml(String path)  {
+	public ArrayList<Scan> readFromCsvToKml(String path)  {
 		ArrayList<Scan> arrayOfscan = new ArrayList<Scan>();
 		File f = new File(path);
 		FileInputStream fi=null;
@@ -135,7 +135,7 @@ public class FileKml {
 		Filter fe = new Filter();
 
 		fe.ChekFilterForKml(arrayOfscan);
-		return 0;
+		return arrayOfscan;
 	}
 
 	/**

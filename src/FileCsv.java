@@ -10,6 +10,8 @@ import java.io.Reader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -82,7 +84,7 @@ public class FileCsv {
 	 * @throws  
 	 * @throws IOException
 	 */
-	public int readForCsv(String path)   {
+	public ArrayList<AllData> readForCsv(String path)   {
 		ArrayList<AllData> table = new ArrayList<AllData>();
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
@@ -145,7 +147,7 @@ public class FileCsv {
 			}
 		}
 		sotrByScan(table);
-		return 0;
+		return table;
 	}
 
 	/**
@@ -170,7 +172,7 @@ public class FileCsv {
 	 * @param table
 	 * @throws IOException
 	 */
-	public int sotrByScan(ArrayList<AllData> table)  {
+	public ArrayList<Scan> sotrByScan(ArrayList<AllData> table)  {
 		ArrayList<Scan> write = new ArrayList<Scan>();
 		String time = table.get(0).getTime();
 		String lon = table.get(0).getLon();
@@ -200,7 +202,7 @@ public class FileCsv {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return write;
 	}
 
 	/**
@@ -211,13 +213,14 @@ public class FileCsv {
 	 * @param table
 	 * @param write
 	 */
-	public static int SortAndWrite(int start, int end, ArrayList<AllData> table, ArrayList<Scan> write) {
+	public static ArrayList<Scan> SortAndWrite(int start, int end, ArrayList<AllData> table, ArrayList<Scan> write) {
 		int[] index = IndexOfMaxRSSIWifi(start, end, table);
 		if (index[10] != 0) {
 			Scan temp = new Scan();
 			Cordinate cord = new Cordinate();
 			for (int i = 0; i < index[10]; i++) {
 				ArrayList<WifiData> wifi = WriteWifiData(table, index);
+				Collections.sort(wifi,WifiData.getCompBySignal());
 				try {
 					cord = new Cordinate(Double.parseDouble(table.get(index[0]).getLon()),
 							Double.parseDouble(table.get(index[0]).getLat()),
@@ -231,7 +234,7 @@ public class FileCsv {
 			}
 			write.add(temp);
 		}
-		return 0;
+		return write;
 	}
 
 	/**
@@ -357,14 +360,14 @@ public class FileCsv {
 		return title;
 	}
 
-		/**
-		 * the method write the data from the ArrayList write to a csv file
-		 * 
-	     * @param write
-		 * @param path
-		 * @throws IOException
-		 */
-	
+	/**
+	 * the method write the data from the ArrayList write to a csv file
+	 * 
+	 * @param write
+	 * @param path
+	 * @throws IOException
+	 */
+
 	public void writecsv(ArrayList<Scan> write, String path) throws IOException {
 		String[] title = new String[46];
 		// הכנסת כותרות למטריצה

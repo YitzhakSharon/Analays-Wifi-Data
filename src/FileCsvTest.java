@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -41,15 +40,14 @@ public class FileCsvTest {
 
 	@Test
 	public void testReadForCsv() {
-		FileCsv f = new  FileCsv();
-		try {
-			if(f.readForCsv("wiglewifi")==0){}
+		FileCsv f = new FileCsv();
+	
+			if(f.readForCsv("wiglewifi").size()>0){}
 			else
 			 fail("there is problem with the method readForCsv");
-		} catch (IOException e) {
+
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 	@Test
@@ -70,37 +68,12 @@ public class FileCsvTest {
 		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  13:07:00","11","-56","32.10432895","35.20499025","688.1184747","16","WIFI"));
 		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
 		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
-		try {
-			if(f.sotrByScan(num)==0){}
+			if(f.sotrByScan(num).size()>0){}
 			else
 			 fail("there is problem with the method sotrByScan");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	} 
+
 	
-	@Test
-	public void testWritecsv() {
-		FileCsv f = new  FileCsv();
-		ArrayList<Scan>num=new ArrayList<Scan>();
-		ArrayList<WifiData> t = new ArrayList<WifiData>();
-		Cordinate cor= new Cordinate(32,34,21);
-		Scan temp = new Scan("28/10/2017  20:10:00","ONEPLUS A3003_28_171012",cor,t);
-		num.add( temp);
-		num.add( temp);
-		num.add( temp);
-		num.add( temp);
-		num.add( temp);
-		try {
-			if(f.writecsv(num,"Table.csv")==0) {}
-			else
-			 fail("there is problem with the method testWritecsv");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	} 
 
 	@Test
 	public void testSortAndWrite() {
@@ -114,7 +87,7 @@ public class FileCsvTest {
 		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
 		num.add( new AllData("NRD90M.G920FXXU5EQD3","24:c9:a1:33:34:68","Ariel_University","[ESS]", "26/10/2017  14:07:00","11","-56","32.10432895","8.20499025","688.1184747","16","WIFI"));
 		
-			if(f.SortAndWrite(0, 4, num, num2)==0){}
+			if(f.SortAndWrite(0, 4, num, num2).size()>0){}
 			else
 			 fail("there is problem with the method SortAndWrite");
 	}

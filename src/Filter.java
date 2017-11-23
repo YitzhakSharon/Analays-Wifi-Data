@@ -103,18 +103,6 @@ public class Filter extends FileKml {
 		sc.close();
 		return 0;
 	}
-	public static String changeforamt(String date)
-	{
-		date = date.replaceAll("/", "-");
-		if(date.split(" ")[0].split("-")[0].length() == 2)
-		{
-			String str = date.split(" ")[0].split("-")[2]+"-"+date.split(" ")[0].split("-")[1]+"-"+date.split(" ")[0].split("-")[0]+" "+date.split(" ")[1];
-			date = str;
-		}
-		if(date.split(" ")[1].split(":").length == 2)
-			date = date+":00";
-		return date;
-	}
 
 /**
  *  the method convert String to Date Object
@@ -124,7 +112,6 @@ public class Filter extends FileKml {
 	@SuppressWarnings("deprecation")
 	public static Date stringToDate(String time)  {
 		time = CheckTime(time);
-		System.out.println(time);
 		time=time.replace("-", "/");
 		String day = "" + time.charAt(8) + time.charAt(9);
 		String year = "" + time.charAt(0) + time.charAt(1) + time.charAt(2) + time.charAt(3);

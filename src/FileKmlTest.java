@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -41,14 +40,11 @@ public class FileKmlTest {
 	@Test
 	public void testReadFromCsvToKml() {
 		FileKml f = new FileKml();
-		try {
-			if (f.readFromCsvToKml("Table.csv") == 0) {
+		
+			if (f.readFromCsvToKml("Table.csv").size()>0) {
 			} else
 				fail("there is problem with the method ReadFromCsvToKml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 
 	@Test
