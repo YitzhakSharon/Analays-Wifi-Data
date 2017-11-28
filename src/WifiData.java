@@ -108,7 +108,14 @@ public class WifiData implements Comparator<WifiData>  {
 			}
 	 };
 	 return comp;
-	}  
+	}
+	@Override
+	public int compare(WifiData arg0, WifiData arg1) {
+		if(Integer.parseInt(arg0.Signal)>Integer.parseInt(arg1.Signal))
+		// TODO Auto-generated method stub
+		return 1;
+		else return 0;
+			}  
 
 	
 

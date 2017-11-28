@@ -38,10 +38,10 @@ public class FileKmlTest {
 	}
 
 	@Test
-	public void testReadFromCsvToKml() {
+	public void testReadFromCsv() {
 		FileKml f = new FileKml();
 		
-			if (f.readFromCsvToKml("Table.csv").size()>0) {
+			if (f.readFromCsv("Table.csv").size()>0) {
 			} else
 				fail("there is problem with the method ReadFromCsvToKml");
 	
