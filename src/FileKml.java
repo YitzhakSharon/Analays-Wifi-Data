@@ -145,6 +145,7 @@ public class FileKml {
 	 * @throws IOException
 	 */
 	public int TurnToKML(ArrayList<Scan> arrayOfscan, String name) {
+		Collections.sort(arrayOfscan,Scan.getCompByTime());
 		final Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
 		for (int i = 0; i < arrayOfscan.size(); i++) {

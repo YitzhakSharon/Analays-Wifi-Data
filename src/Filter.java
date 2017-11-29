@@ -82,7 +82,7 @@ public class Filter extends FileKml {
 			fe.TurnToKML(oneMac(pe.filters(arryOfscan,pe.SelectByTime(min, max))), "KmlByTime1WithTimeLine.kml");
 		}
 		if (select == 2) {
-			System.out.println("Enter Radus, CenterLon and CenterLat");
+			System.out.println("Enter Radus, CenterLat and CenterLon");
 			double radus = sc.nextDouble();
 			double centerLon = sc.nextDouble();
 			double centerLat = sc.nextDouble();

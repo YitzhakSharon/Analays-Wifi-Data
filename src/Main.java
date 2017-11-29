@@ -15,8 +15,8 @@ public class Main {
 		ArrayList <Scan>arrayOfscan =fl.readFromCsv("Table.csv");
 		System.out.println();
 		// call the method to creat kml by filter
-	Filter ff = new Filter();
-	ff.ChekFilterForKml(arrayOfscan);
+		Filter ff = new Filter();
+		ff.ChekFilterForKml(arrayOfscan);
 
 		
 	}

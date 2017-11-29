@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import de.micromata.opengis.kml.v_2_2_0.Kml;
+
 public class FileCsvTest {
 
 	@Test
@@ -153,6 +155,32 @@ public class FileCsvTest {
 		 fail("there is problem with the method contains");
 	}
 
+	@Test
+	public void writecsv() {
+	FileCsv e= new FileCsv();
+	FileKml l = new FileKml();
+		ArrayList<Scan> num = new ArrayList<Scan>();
+		ArrayList<WifiData> t = new ArrayList<WifiData>();
+		Cordinate cor = new Cordinate(32, 34, 21);
+		Scan temp = new Scan("28/10/2017  20:10:00", "ONEPLUS A3003_28_171012", cor,  t);
+		num.add(temp);
+		num.add(temp);
+		num.add(temp);
+		num.add(temp);
+		num.add(temp);
+		e.writecsv(num, "C:\\Users\\yitzhak\\Desktop\\Simple_1\\test.csv");
+		ArrayList<Scan> km=l.readFromCsv("C:\\Users\\yitzhak\\Desktop\\Simple_1\\test.csv");
+		for (int i = 0; i < km.size(); i++) {
+			if(num.get(i).equals(km.get(i))!=1) {
+				 fail("there is problem with the method writecsv");
+
+			}
+				
+		}
+			
+		}
+	}
+ {
 
 
 }

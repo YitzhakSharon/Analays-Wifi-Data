@@ -337,26 +337,6 @@ public class FileCsv {
 		return false;
 
 	}
-	private static  Object[] headers() {
-		Object[] title = new String[46];
-		title[0] = "Time";
-		title[1] = "ID";
-		title[2] = "Lat";
-		title[3] = "Lon";
-		title[4] = "Alt";
-		title[5] = "WiFi Networks";
-
-		int wifinum = 1;
-		for (int j = 6; j < 46; j = j + 4) {
-			title[j] = "SSID" + wifinum;
-			title[j + 1] = "MAC" + wifinum;
-			title[j + 2] = "Frequncy" + wifinum;
-			title[j + 3] = "Signal" + wifinum;
-			wifinum++;
-
-		}
-		return title;
-	}
 
 	/**
 	 * the method write the data from the ArrayList write to a csv file
@@ -368,7 +348,6 @@ public class FileCsv {
 
 	public void writecsv(ArrayList<Scan> write, String path) throws IOException {
 		String[] title = new String[46];
-		// הכנסת כותרות למטריצה
 		title[0] = "Time";
 		title[1] = "ID";
 		title[2] = "Lat";
