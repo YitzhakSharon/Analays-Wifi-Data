@@ -10,6 +10,7 @@ public class Cordinate {
 		this.lat = 0;
 		this.alt = 0;
 	}
+	//hello
 
 	public Cordinate(double lon, double lat, double alt) {
 		this.lon = lon;
