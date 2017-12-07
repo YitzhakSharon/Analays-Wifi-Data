@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Scan implements Comparator<Scan> {
+public class Scan {//implements Comparator<Scan> {
 	private String time;
 	private String id;
 	private Cordinate core;
@@ -31,7 +31,7 @@ public class Scan implements Comparator<Scan> {
 		this.id = null;
 		this.wifiNetWork = 0;
 		this.wifi.clear();
-		;
+		
 	}
 	/**
 	 * @return the time
@@ -113,7 +113,7 @@ public class Scan implements Comparator<Scan> {
 	}
 
 	public static Comparator<Scan> getCompByTime(){   
-		Comparator com = new Comparator<Scan>(){
+		Comparator<Scan> com = new Comparator<Scan>(){
 			@Override
 			public int compare(Scan a, Scan b) {
 				// TODO Auto-generated method stub
@@ -178,7 +178,9 @@ public class Scan implements Comparator<Scan> {
 		else return 0;
 
 	}
-}
 
 
 }
+
+
+

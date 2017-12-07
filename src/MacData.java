@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class MacData extends Cordinate implements Comparator<MacData> {
+public class MacData extends Cordinate{ //implements Comparator<MacData> {
 
 	private Cordinate core;
 	private int signal;

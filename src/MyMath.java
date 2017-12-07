@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-public class MyMath impl{
+public class MyMath {
 
-	
-	
-	
 }
