@@ -1,8 +1,7 @@
 import java.util.Comparator;
 import java.util.Date;
 
-public class Pi {
-	private MacData macdata;
+public class Pi extends Cordinate  {
 	private double pi;
 	/*
 	 * tostring
@@ -10,49 +9,30 @@ public class Pi {
 	 * @see java.lang.Object#toString()
 	 */
 
-	public Pi(MacData macdata, double pi) {
-		this.macdata = macdata;
+	public Pi( Cordinate core ,double pi) {
+		super(core);
 		this.pi = pi;
 	}
 
 	public Pi() {
-		this.macdata = null;
+		super();
 		this.pi = 0;
 	}
 
 	public Pi(Pi other) {
-		this.macdata = other.macdata;
+		super(other.getLon(), other.getLat(),other.getAlt() );
 		this.pi = other.pi;
+	
 	}
 
-	/*
-	 * (non-Javadoc)
+	/* (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Pi [macdata=" + macdata + ", pi=" + pi + "]";
+		return "Pi [pi=" + pi + ", toString()=" + super.toString() + "]";
 	}
 
-	/**
-	 * @return the macdata
-	 */
-	public MacData getMacdata() {
-		return macdata;
-	}
-
-	/**
-	 * @param macdata
-	 *            the macdata to set
-	 */
-	public void setMacdata(MacData macdata) {
-		this.macdata = macdata;
-	}
-
-	/**
-	 * @return the pi
-	 */
 	public double getPi() {
 		return pi;
 	}
@@ -65,18 +45,15 @@ public class Pi {
 		this.pi = pi;
 	}
 
-	public static Comparator<Pi> getCompByPi() {
-		Comparator<Pi> com = new Comparator<Pi>() {
-			@Override
-			public int compare(Pi a, Pi b) {
-				// TODO Auto-generated method stub
-				if (a.getPi() < b.getPi())
-					return 1;
-				else
-					return 0;
-			}
-		};
-		return com;
-	}
+
+    public static Comparator<Pi> sortbyPi = new Comparator<Pi>() {
+
+	public int compare(Pi s1, Pi s2) {
+	   String s1Pi =""+ s1.getPi();
+	   String s2Pi = ""+s2.getPi();
+
+	   return s1Pi.compareTo(s2Pi);
+
+    }};
 
 }

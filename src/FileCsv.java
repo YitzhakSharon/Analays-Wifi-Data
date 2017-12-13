@@ -129,6 +129,7 @@ public class FileCsv {
 							AllData temp = new AllData(Id, data[0], data[1], data[2], data[3], data[4], data[5],
 									data[6], data[7], data[8], data[9], data[10]);
 							table.add(temp);
+							
 						} catch (Exception e) {
 							// TODO: handle exception
 							System.out.println("there is a problem with the line: " + str);
@@ -218,10 +219,10 @@ public class FileCsv {
 			Cordinate cord = new Cordinate();
 			for (int i = 0; i < index[10]; i++) {
 				ArrayList<WifiData> wifi = WriteWifiData(table, index);
-				Collections.sort(wifi,WifiData.getCompBySignal());
+				Collections.sort(wifi,WifiData.getCompBySignal);
 				try {
-					cord = new Cordinate(Double.parseDouble(table.get(index[0]).getLon()),
-							Double.parseDouble(table.get(index[0]).getLat()),
+					cord = new Cordinate(Double.parseDouble(table.get(index[0]).getLat()),
+							Double.parseDouble(table.get(index[0]).getLon()),
 							Double.parseDouble(table.get(index[0]).getAlt()));
 					temp = new Scan(table.get(index[0]).getTime(), table.get(index[0]).getId(), cord,
 							wifi);

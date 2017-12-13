@@ -25,8 +25,6 @@ public class ScanPredecate {
 	public static Predicate <Scan> SelectById(String id){
 		return p -> p.getId().equals(id);
 	}
-	
-		
 
 	/**
 	 * filter by radus and point

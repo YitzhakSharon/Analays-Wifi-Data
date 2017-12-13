@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class WifiData   {
+public class WifiData  {
 	/**
 	 * this object contain data of one wifi network.
 	 */
@@ -96,21 +96,12 @@ public class WifiData   {
 	public String toString() {
 		return "WifiData [SSID=" + SSID + ", MAC=" + MAC + ", Frequncy=" + Frequncy + ", Signal=" + Signal + "]";
 	}
-	public static Comparator<WifiData> getCompBySignal()
-	{   
-	 Comparator comp = new Comparator<WifiData>(){
-			@Override
-			public int compare(WifiData o1, WifiData o2) {
-				if(Integer.parseInt(o1.Signal)>Integer.parseInt(o2.Signal))
-				// TODO Auto-generated method stub
-				return 1;
-				else return 0;
-			}
-	 };
-	 return comp;
-	}
-
 	
+    public static Comparator<WifiData> getCompBySignal = new Comparator<WifiData>() {
+	public int compare(WifiData o1, WifiData o2) {
+	   return o1.getSignal().compareTo(o2.getSignal());
+
+    }};
 
 
 }

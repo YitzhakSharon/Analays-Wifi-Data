@@ -116,8 +116,12 @@ public class FileKml {
 					dataw.add(temp);
 
 				}
-				Cordinate cord = new Cordinate(Double.parseDouble(data[2]), Double.parseDouble(data[3]),
-						Double.parseDouble(data[4]));
+				Cordinate cord = new Cordinate();
+
+				if(!data[3].equals("?"))
+				 cord = new Cordinate(Double.parseDouble(data[2]), Double.parseDouble(data[3]),Double.parseDouble(data[4]));
+				else
+				 cord=new Cordinate(-1,-1,-1);
 				Scan temp = new Scan(data[0], data[1], cord,  dataw);// he get a Date and not a String
 				arrayOfscan.add(temp);
 			} catch (Exception e) {
@@ -145,7 +149,7 @@ public class FileKml {
 	 * @throws IOException
 	 */
 	public int TurnToKML(ArrayList<Scan> arrayOfscan, String name) {
-		Collections.sort(arrayOfscan,Scan.getCompByTime());
+		Collections.sort(arrayOfscan,Scan.getCompByTime);
 		final Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
 		for (int i = 0; i < arrayOfscan.size(); i++) {

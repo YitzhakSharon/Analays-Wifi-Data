@@ -111,21 +111,18 @@ public class Scan {//implements Comparator<Scan> {
 		return "Scan [time=" + time + ", id=" + id + ", core=" + core + ", wifiNetWork=" + wifiNetWork + ", wifi="
 				+ wifi + "]";
 	}
+	
+    public static Comparator<Scan> getCompByTime = new Comparator<Scan>() {
 
-	public static Comparator<Scan> getCompByTime(){   
-		Comparator<Scan> com = new Comparator<Scan>(){
-			@Override
-			public int compare(Scan a, Scan b) {
-				// TODO Auto-generated method stub
-				Date a1= stringToDate(a.getTime());
-				Date b1= stringToDate(b.getTime());
-				if(a1.before(b1))
-					return 1;
-				else return 0;
-			}
-		};
-		return com;
-	}
+		public int compare(Scan a, Scan b) {
+			Date a1= stringToDate(a.getTime());
+			Date b1= stringToDate(b.getTime());
+		if(	a1.before(b1))	  
+			return 1;
+		else
+			return 0;
+
+    }};
 
 	public static Date stringToDate(String time)  {
 		time=time.replace("-", "/");

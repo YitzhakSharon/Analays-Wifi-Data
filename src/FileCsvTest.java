@@ -44,7 +44,7 @@ public class FileCsvTest {
 	public void testReadForCsv() {
 		FileCsv f = new FileCsv();
 	
-			if(f.readForCsv("wiglewifi").size()>0){}
+			if(f.readForCsv("C:\\Users\\yitzhak\\Desktop\\Simple_1").size()>0){}
 			else
 			 fail("there is problem with the method readForCsv");
 
@@ -156,7 +156,7 @@ public class FileCsvTest {
 	}
 
 	@Test
-	public void writecsv() {
+	public void writecsv() throws IOException {
 	FileCsv e= new FileCsv();
 	FileKml l = new FileKml();
 		ArrayList<Scan> num = new ArrayList<Scan>();
@@ -179,8 +179,8 @@ public class FileCsvTest {
 		}
 			
 		}
-	}
- {
+	
+ 
 
 
 }

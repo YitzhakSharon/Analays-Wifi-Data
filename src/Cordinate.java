@@ -1,20 +1,19 @@
 
-public class Cordinate {
-
-	private double lon;
+public class Cordinate  {
 	private double lat;
+	private double lon;
 	private double alt;
 
 	public Cordinate() {
-		this.lon = 0;
-		this.lat = 0;
-		this.alt = 0;
+		this.lat = -1;
+		this.lon =-1;
+		this.alt = -1;
 	}
 
 
-	public Cordinate(double lon, double lat, double alt) {
-		this.lon = lon;
+	public Cordinate(double lat, double lon, double alt) {
 		this.lat = lat;
+		this.lon = lon;
 		this.alt = alt;
 	}
 
@@ -24,15 +23,16 @@ public class Cordinate {
 		this.lon = other.lon;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Cordinate [lon=" + lon + ", lat=" + lat + ", alt=" + alt + "]";
+		return "Cordinate [lat=" + lat + ", lon=" + lon + ", alt=" + alt + "]";
 	}
+
 
 	/**
 	 * @return the lon
