@@ -16,7 +16,9 @@ The program reads a csv file (that we write in part 1) and filter the data by ti
 **Place:** The program take the Scan which it location is in the given radius.<br />
 **Id:** The program take the Scanwith the given id.<br />
 The program take the filtered data and exports a kml file. <br />
-
+ ### part 3: <br /> 
+ The third part contains two algorithm which get as input Scans and revaluate the location of every Scan by some Data we get.<br />
+ The program exports a csv file with the scan and the revaluated location. <br />
 # Links:
 <a href=https://labs.micromata.de/projects/jak/kml-in-the-java-world.html>API for KML</a> <br />
 <a href=https://wigle.net/>Infomation about Wigle Wifi </a> <br />
