@@ -1,6 +1,6 @@
-# Object Oriented Priject
+# Object Oriented Project
 
-#Overview:
+# Overview:
 This project develops geographic data collection system. The system interpret the data and present the information with graphic tools.
 
 part 1: The program reads files from the aplication 'wiglewifi',analyze the data and create a csv file with the wanted information.
