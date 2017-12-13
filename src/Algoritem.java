@@ -12,6 +12,8 @@ import java.util.Map;
 public class Algoritem {
 
 	private final static int num = 4;
+	private final static double no_signal = -120.0;
+
 /**
  * that method turn ArrayList of Scan to hash for algo1
  * @param scan
@@ -211,7 +213,7 @@ public class Algoritem {
 		for (int i = 0; i < macs.size(); i++) {
 			double pi = 1;
 			for (int k = 0; k < sample.getWifi().size(); k++) {
-				String signal = "" + -120;
+				String signal = "" + no_signal;
 				for (int j = 0; j < macs.get(i).getWifi().size(); j++) {
 					if (macs.get(i).getWifi().get(j).getMAC().equals(approximation[0][k]))
 
