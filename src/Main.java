@@ -6,12 +6,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		long a =System.currentTimeMillis();
 		FileCsv fe = new FileCsv();
-		fe.readForCsv("C:\\Users\\yitzhak\\Desktop\\database");
+		fe.readForCsv("C:\\Users\\yitzhak\\Desktop\\boaz1");
 
 		FileKml fl = new FileKml();
 
 		ArrayList<Scan> scan = fl.readFromCsv("Table.csv");
-		ArrayList<Scan> sample = fl.readFromCsv("C:\\Users\\yitzhak\\Desktop\\Ex2\\ts1.csv");
+		ArrayList<Scan> sample = fl.readFromCsv("C:\\Users\\yitzhak\\Desktop\\_comb_no_gps_ts2_.csv");
 		// Filter k = new Filter();
 		// k.ChekFilterForKml(arrayOfscan);
 		Algoritem temp1 = new Algoritem();
