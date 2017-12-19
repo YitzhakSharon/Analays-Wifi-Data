@@ -1,3 +1,5 @@
+package Algoritem;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +10,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import object.*;
+import Files.*;
+
 
 public class Algoritem {
 /**
@@ -67,16 +72,8 @@ public class Algoritem {
 			}
 
 		}
-		writetocsv(write, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_algo1_BM123_map.csv");
+		writetocsv(write, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_algo1_Table.csv");
 	}
-	/**
-	 * that function find the the approximation coordination to one mac, 
-	 * (the method get from the HashMap all the similar macs and find the approximation coordination)
-	 * @param find
-	 * @param mac
-	 * @return
-	 */
-
 	public Cordinate algo1(Map<String, ArrayList<MacData>> find, String mac) {
 		ArrayList<MacData> one = find.get(mac);
 		Collections.sort(one, MacData.getCompBySignal);
@@ -84,6 +81,17 @@ public class Algoritem {
 		for (int i = one.size() - num; i < one.size(); i++) {
 			if (i >= 0)
 				onemac.add(one.get(i));
+		}
+		Cordinate cord = Calculate.cor1(onemac);
+		return cord;
+	}
+
+	/**
+	 * that function find the the approximation coordination to one mac, 
+	 * (the method get from the HashMap all the similar macs and find the approximation coordination)
+	 * @param find
+	 * @param mac
+	 * @returnemac.add(one.get(i));
 		}
 		Cordinate cord = Calculate.cor1(onemac);
 		return cord;
@@ -103,7 +111,7 @@ public class Algoritem {
 			for (int i = 0; i < write.size(); i++) {
 				writer.append(i + "," + write.get(i).getMAC() + "," + write.get(i).getSSID() + ","
 						+ write.get(i).getFrequncy() + "," + write.get(i).getSignal() + ","
-						+ write.get(i).getCore().getLon() + "," + write.get(i).getCore().getLat() + ","
+						+ write.get(i).getCore().getLat() + "," + write.get(i).getCore().getLon() + ","
 						+ write.get(i).getCore().getAlt() + "," + write.get(i).getTime());
 				outs.println();
 			}
@@ -152,7 +160,7 @@ public class Algoritem {
 		}
 		FileCsv fe = new FileCsv();
 		try {
-			fe.writecsv(sample, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_for_algo_2_ts2_solik.csv");
+			fe.writecsv(sample, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_for_algo_2_ts2_Table.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -241,3 +249,4 @@ public class Algoritem {
 	}
 
 }
+

@@ -1,3 +1,4 @@
+package object;
 import java.util.Comparator;
 
 public class WifiData  {

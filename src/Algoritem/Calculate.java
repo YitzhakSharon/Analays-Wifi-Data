@@ -1,4 +1,9 @@
+package Algoritem;
+
 import java.util.ArrayList;
+
+import object.*;
+
 
 public class Calculate extends Algoritem {
 	/**
@@ -25,7 +30,6 @@ public class Calculate extends Algoritem {
 		double weight[] = new double[one.size()];
 
 		for (int i = 0; i < one.size(); i++) {
-
 			weight[i] = findWeight(Double.parseDouble(one.get(i).getSignal()));
 			wlon[i] = weightcore(weight[i], one.get(i).getCore().getLon());
 			wlat[i] = weightcore(weight[i], one.get(i).getCore().getLat());

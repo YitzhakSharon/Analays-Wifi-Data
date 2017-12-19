@@ -1,3 +1,4 @@
+package object;
 //אובייקט שמכיל כל שורה בקובץ שמתקבל מהאפליקציה
 public class AllData {
 	/**

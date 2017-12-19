@@ -1,3 +1,4 @@
+package Files;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,6 +27,9 @@ import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
+import object.Cordinate;
+import object.Scan;
+import object.WifiData;
 
 import java.util.*;
 

@@ -1,8 +1,13 @@
+package Filter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import object.Cordinate;
+import object.Scan;
+
 
 public class ScanPredecate {
 /**

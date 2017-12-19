@@ -1,3 +1,4 @@
+package Filter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,7 +10,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-import org.junit.experimental.max.MaxCore;
+import Files.FileKml;
+import object.Cordinate;
+import object.Scan;
+
+
 
 public class Filter extends FileKml {
 	/*
