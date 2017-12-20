@@ -1,3 +1,5 @@
+package test;
+
 
 import static org.junit.Assert.*;
 
@@ -6,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
+
+import Filter.Filter;
+import object.Cordinate;
+import object.Scan;
+import object.WifiData;
 
 public class FilterTest {
 

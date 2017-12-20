@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import Files.FileKml;
+
 public class FileKmlTest {
 
 	@Test
