@@ -1,10 +1,14 @@
-package oop;
+package GUI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class GUI {
+public class gui {
 
 	private JFrame frame;
 
@@ -15,7 +19,7 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI window = new GUI();
+					gui window = new gui();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +31,7 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
+	public gui() {
 		initialize();
 	}
 
@@ -38,6 +42,14 @@ public class GUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		frame.getContentPane().add(btnNewButton, BorderLayout.WEST);
 	}
 
 }

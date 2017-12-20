@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import object.Cordinate;
+import object.MacData;
+
 public class AlgoritemTest {
 
 
