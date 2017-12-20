@@ -1,7 +1,8 @@
 package object;
+
 import java.util.Comparator;
 import java.util.Date;
-
+ 
 public class MacData  extends WifiData { //implements Comparator<MacData> {
 	private Date time;
 	private Cordinate core;
@@ -39,7 +40,6 @@ public class MacData  extends WifiData { //implements Comparator<MacData> {
 	public MacData (MacData other) {
 		super();
 		this.time=other.time;
-		this.core=other.core;
 	}
 	/**
 	 * @return the time

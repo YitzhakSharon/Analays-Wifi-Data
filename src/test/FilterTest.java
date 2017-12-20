@@ -1,6 +1,3 @@
-package test;
-import object.*;
-import Files.*;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
-import Filter.*;
+
 public class FilterTest {
 
 	@Test

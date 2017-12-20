@@ -1,12 +1,9 @@
-package test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Test;
-import object.*;
-import Files.*;
 
 public class FileKmlTest {
 

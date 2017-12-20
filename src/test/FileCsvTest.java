@@ -1,4 +1,3 @@
-package test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -7,8 +6,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import de.micromata.opengis.kml.v_2_2_0.Kml;
-import object.*;
-import Files.*;
+
 public class FileCsvTest {
 
 	@Test

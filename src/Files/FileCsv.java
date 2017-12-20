@@ -23,6 +23,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import object.AllData;
 import object.Cordinate;
+import object.Database;
 import object.Scan;
 import object.WifiData;
 
@@ -87,7 +88,7 @@ public class FileCsv {
 	 * @throws  
 	 * @throws IOException
 	 */
-	public ArrayList<AllData> readForCsv(String path)   {
+	public Database readForCsv(String path)   {
 		ArrayList<AllData> table = new ArrayList<AllData>();
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
@@ -150,8 +151,11 @@ public class FileCsv {
 				}
 			}
 		}
-		sotrByScan(table);
-		return table;
+		Database t = new Database();
+
+		t=sotrByScan(table);
+		Database data = new Database(t);
+		return  data;
 	}
 
 	/**
@@ -176,8 +180,9 @@ public class FileCsv {
 	 * @param table
 	 * @throws IOException
 	 */
-	public ArrayList<Scan> sotrByScan(ArrayList<AllData> table)  {
-		ArrayList<Scan> write = new ArrayList<Scan>();
+	public Database sotrByScan(ArrayList<AllData> table)  {
+		Database write = new Database();
+		//ArrayList<Scan> write = new ArrayList<Scan>();
 		String time = table.get(0).getTime();
 		String lon = table.get(0).getLon();
 		String lat = table.get(0).getLat();
@@ -200,12 +205,12 @@ public class FileCsv {
 		}
 		end = table.size() - 1;
 		SortAndWrite(start, end, table, write);
-		try {
-			writecsv(write, "Table.csv");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			writecsv(write.getDatabase(), "Table.csv");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return write;
 	}
 
@@ -217,7 +222,7 @@ public class FileCsv {
 	 * @param table
 	 * @param write
 	 */
-	public static ArrayList<Scan> SortAndWrite(int start, int end, ArrayList<AllData> table, ArrayList<Scan> write) {
+	public static Database SortAndWrite(int start, int end, ArrayList<AllData> table, Database write) {
 		int[] index = IndexOfMaxRSSIWifi(start, end, table);
 		if (index[10] != 0) {
 			Scan temp = new Scan();
@@ -236,7 +241,7 @@ public class FileCsv {
 					// TODO: handle exception
 				}
 			}
-			write.add(temp);
+			write.getDatabase().add(temp);
 		}
 		return write;
 	}

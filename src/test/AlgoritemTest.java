@@ -1,9 +1,4 @@
-package test;
-import Algoritem.*;
-import object.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +7,9 @@ import java.util.Map;
 import org.junit.Test;
 
 import Algoritem.Algoritem;
+import object.Cordinate;
+import object.MacData;
+import object.WifiData;
 
 public class AlgoritemTest {
 

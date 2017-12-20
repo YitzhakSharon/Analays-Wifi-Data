@@ -1,4 +1,3 @@
-package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -7,9 +6,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import Algoritem.Calculate;
-import object.*;
-import Algoritem.*;
 public class CalculateTest {
 
 	@Test

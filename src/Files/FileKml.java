@@ -28,6 +28,7 @@ import de.micromata.opengis.kml.v_2_2_0.Placemark;
 import de.micromata.opengis.kml.v_2_2_0.Point;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
 import object.Cordinate;
+import object.Database;
 import object.Scan;
 import object.WifiData;
 
