@@ -123,29 +123,8 @@ public class Algoritem {
 			e.printStackTrace();
 		}
 
-	}
-//	
-//	/**
-//	 * that method turn ArrayList of Scan to hashMap for algo2
-//	 * @param scan
-//	 * @return
-//	 */
-//
-//	public Map<String, ArrayList<Scan>> hashalgo2(ArrayList<Scan> scan) {
-//		Map<String, ArrayList<Scan>> find = new HashMap<String, ArrayList<Scan>>();
-//		for (int i = 0; i < scan.size(); i++) {
-//			for (int j = 0; j < scan.get(i).getWifi().size(); j++) {
-//				if (find.containsKey(scan.get(i).getWifi().get(j).getMAC()))
-//					find.get(scan.get(i).getWifi().get(j).getMAC()).add(scan.get(i));
-//				else {
-//					ArrayList<Scan> temp = new ArrayList<Scan>();
-//					temp.add(scan.get(i));
-//					find.put(scan.get(i).getWifi().get(j).getMAC(), temp);
-//				}
-//			}
-//		}
-//		return find;
-//	}
+	}	
+
 	/**
 	 *  the method get data and ArrayList of Scan with missing details, it complete them and write all to csv file.
 	 * @param scan
