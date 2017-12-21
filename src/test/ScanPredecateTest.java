@@ -1,4 +1,4 @@
-package Filter;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import org.junit.Test;
 
 import Files.FileKml;
+import Filter.ScanPredecate;
 import object.Cordinate;
 import object.Database;
 import object.Scan;
