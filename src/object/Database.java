@@ -3,15 +3,19 @@ package object;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Database {
 
 	private ArrayList<Scan>  database;
+	private Map<String, ArrayList<Scan>> hash_map;
 	/**
 	 * empty contractor 
 	 */
 	public Database() {
 		this.database=new ArrayList<Scan>();
+		this.hash_map=new HashMap<String, ArrayList<Scan>>();
 	}
 	/**
 	 * contractor
@@ -19,6 +23,16 @@ public class Database {
 	 */
 	public Database(Scan other) {
 		this.database=new ArrayList<Scan>();
+		for (int i = 0; i < other.getWifiNetWork(); i++) {
+			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC()))
+				this.hash_map.get(other.getWifi().get(i).getMAC()).add(other);
+			else {
+				ArrayList<Scan> temp = new ArrayList<Scan>();
+				temp.add(other);
+				this.hash_map.put(other.getWifi().get(i).getMAC(), temp);
+			}
+
+		}
 		this.database.add(other);
 	}
 	/**
@@ -29,6 +43,7 @@ public class Database {
 		this.database=new ArrayList<Scan>();
 		this.database.clear();
 		this.database.addAll(other.database);
+		this.hash_map=hashmap();
 	}
 	/**
 	 * add ArrayList to the database
@@ -36,14 +51,20 @@ public class Database {
 	 */
 	public void addArrayList (ArrayList<Scan> other) {
 		this.database.addAll(other);
-		// we need to check douplicate
+		douplicate();
+		
+		//we need to update the hash map and check douplicat in the hash map
+		
 	}
 	/**
 	 * add one Scan
 	 * @param other
 	 */
 	public void addScan (Scan other) {
+		if(!this.database.contains(other))
 		this.database.add(other);
+		//we need to update the hash map and check douplicat in the hash map
+
 	}
 
 	/**
@@ -85,9 +106,9 @@ public class Database {
 	/**
 	 * toString 
 	 */
-public String toString(){
-	return this.database.toString();
-}
+	public String toString(){
+		return this.database.toString();
+	}
 	/**
 	 * @return the database
 	 */
@@ -100,5 +121,11 @@ public String toString(){
 	public void setDatabase(ArrayList<Scan> database) {
 		this.database = database;
 	}
-
+	public void douplicate() {
+		Set <Scan> data =new TreeSet<Scan>();
+		data.addAll(this.database);
+		System.out.println(data.size());
+		this.database.addAll(data);
+		System.out.println(this.database.size());	
+	}
 }
