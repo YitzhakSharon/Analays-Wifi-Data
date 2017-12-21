@@ -34,6 +34,7 @@ public class FileCsv {
 	 * the class input is :the folder of Wiglewifi files. output: csv file that
 	 * contians the wanted information.
 	 */
+	private final static int ten=10;
 	/**
 	 * the path is the path for the folder of the wiglewifi files
 	 */
@@ -224,10 +225,10 @@ public class FileCsv {
 	 */
 	public static Database SortAndWrite(int start, int end, ArrayList<AllData> table, Database write) {
 		int[] index = IndexOfMaxRSSIWifi(start, end, table);
-		if (index[10] != 0) {
+		if (index[ten] != 0) {
 			Scan temp = new Scan();
 			Cordinate cord = new Cordinate();
-			for (int i = 0; i < index[10]; i++) {
+			for (int i = 0; i < index[ten]; i++) {
 				ArrayList<WifiData> wifi = WriteWifiData(table, index);
 				Collections.sort(wifi,WifiData.getCompBySignal);
 				try {
@@ -241,7 +242,7 @@ public class FileCsv {
 					// TODO: handle exception
 				}
 			}
-			write.getDatabase().add(temp);
+			write.addScan(temp);;
 		}
 		return write;
 	}
@@ -256,7 +257,7 @@ public class FileCsv {
 	 */
 	public static ArrayList<WifiData> WriteWifiData(ArrayList<AllData> table, int[] index) {
 		ArrayList<WifiData> wifi = new ArrayList<WifiData>();
-		for (int i = 0; i < index[10]; i++) {
+		for (int i = 0; i < index[ten]; i++) {
 			WifiData tempWifi = new WifiData(table.get(index[i]).getSsid(), table.get(index[i]).getMac(),
 					ChanneltoFrequncy(table.get(index[i]).getChannel()), table.get(index[i]).getSignal());
 			wifi.add(tempWifi);
@@ -296,9 +297,9 @@ public class FileCsv {
 	 * @return
 	 */
 	public static int[] IndexOfMaxRSSIWifi(int start, int end, ArrayList<AllData> table) {
-		int max[] = new int[11];
+		int max[] = new int[ten+1];
 		// int palceOfRSSI = PlaceOf(table, "RSSI");
-		if (end - start + 1 < 10) {
+		if (end - start + 1 < ten) {
 			int counter = 0, j = 0;
 			for (int i = start; i <= end; i++) {
 				if (table.get(i).getType().equals("WIFI")) {
@@ -307,7 +308,7 @@ public class FileCsv {
 					counter++;
 				}
 			}
-			max[10] = counter;
+			max[ten] = counter;
 			return max;
 		} else {
 			int min = findmin(start, end, table);
@@ -327,7 +328,7 @@ public class FileCsv {
 				Max = min;
 				counter++;
 			}
-			max[10] = counter;
+			max[ten] = counter;
 			return max;
 		}
 	}
