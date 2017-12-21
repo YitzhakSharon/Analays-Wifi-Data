@@ -72,7 +72,7 @@ public class Algoritem {
 			}
 
 		}
-		writetocsv(write, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_algo1_Table.csv");
+		writetocsv(write, "C:\\Users\\yitzhak\\Desktop\\test_algo1_Table_final.csv");
 	}
 
 	/**
@@ -123,29 +123,8 @@ public class Algoritem {
 			e.printStackTrace();
 		}
 
-	}
-//	
-//	/**
-//	 * that method turn ArrayList of Scan to hashMap for algo2
-//	 * @param scan
-//	 * @return
-//	 */
-//
-//	public Map<String, ArrayList<Scan>> hashalgo2(ArrayList<Scan> scan) {
-//		Map<String, ArrayList<Scan>> find = new HashMap<String, ArrayList<Scan>>();
-//		for (int i = 0; i < scan.size(); i++) {
-//			for (int j = 0; j < scan.get(i).getWifi().size(); j++) {
-//				if (find.containsKey(scan.get(i).getWifi().get(j).getMAC()))
-//					find.get(scan.get(i).getWifi().get(j).getMAC()).add(scan.get(i));
-//				else {
-//					ArrayList<Scan> temp = new ArrayList<Scan>();
-//					temp.add(scan.get(i));
-//					find.put(scan.get(i).getWifi().get(j).getMAC(), temp);
-//				}
-//			}
-//		}
-//		return find;
-//	}
+	}	
+
 	/**
 	 *  the method get data and ArrayList of Scan with missing details, it complete them and write all to csv file.
 	 * @param scan
@@ -161,7 +140,7 @@ public class Algoritem {
 		}
 		FileCsv fe = new FileCsv();
 		try {
-			fe.writecsv(sample, "C:\\Users\\yitzhak\\Desktop\\boaz\\test_for_algo_2_ts2_Table.csv");
+			fe.writecsv(sample, "C:\\Users\\yitzhak\\Desktop\\test_for_algo_2_ts1_Table_final.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
