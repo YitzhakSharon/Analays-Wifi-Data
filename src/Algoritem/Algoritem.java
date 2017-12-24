@@ -8,8 +8,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import object.*;
 import Files.*;
 
@@ -123,7 +126,22 @@ public class Algoritem {
 			e.printStackTrace();
 		}
 
-	}	
+	}
+	public Cordinate algo2fromUser (Database d, String mac1, String mac2, String mac3, String signal_1, String signal_2, String signal_3) {
+		WifiData data1 = new WifiData(" ", mac1, " ",signal_1);
+		WifiData data2 = new WifiData (" ",mac2, " ", signal_2);
+		WifiData data3 = new WifiData(" ",mac3, " ",signal_3);
+		Set<WifiData> set =  new HashSet<WifiData>();
+		set.add(data1);
+		set.add(data2);
+		set.add(data3);
+		ArrayList<WifiData> wifi = new ArrayList<WifiData>();
+		wifi.addAll(set);
+		Cordinate cor = new Cordinate();
+		Scan data = new Scan (" ", " ",cor,wifi);
+		cor = algo2(d.getHash_map(),data);
+		return cor;
+	}
 
 	/**
 	 *  the method get data and ArrayList of Scan with missing details, it complete them and write all to csv file.

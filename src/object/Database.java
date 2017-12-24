@@ -2,6 +2,7 @@ package object;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,14 +18,24 @@ public class Database {
 		this.database=new ArrayList<Scan>();
 		this.hash_map=new HashMap<String, ArrayList<Scan>>();
 	}
+	public Database(ArrayList<Scan > scan) {
+		this.database=new ArrayList<Scan>();
+		 this.database.addAll(scan);
+		this.hash_map=new HashMap<String, ArrayList<Scan>>();
+		for (int i = 0; i <scan.size(); i++) {
+			insertHash(scan.get(i));
+		}
+	}
+
 	/**
 	 * contractor
 	 * @param other
 	 */
-	public Database(Scan other) {
-		this.database=new ArrayList<Scan>();
+	public void  insertHash (Scan other) {
+	//	this.database=new ArrayList<Scan>();
 		for (int i = 0; i < other.getWifiNetWork(); i++) {
 			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC()))
+				if(!this.hash_map.get(other.getWifi().get(i).getMAC()).contains(other))
 				this.hash_map.get(other.getWifi().get(i).getMAC()).add(other);
 			else {
 				ArrayList<Scan> temp = new ArrayList<Scan>();
@@ -51,8 +62,10 @@ public class Database {
 	 */
 	public void addArrayList (ArrayList<Scan> other) {
 		this.database.addAll(other);
-		douplicate();
-		
+		//douplicate();
+		for (int i = 0; i <other.size(); i++) {
+			insertHash(other.get(i));
+		}
 		//we need to update the hash map and check douplicat in the hash map
 		
 	}
@@ -116,19 +129,22 @@ public class Database {
 		return database;
 	}
 	/**
+	 * @return the hash_map
+	 */
+	public Map<String, ArrayList<Scan>> getHash_map() {
+		return hash_map;
+	}
+	/**
 	 * @param database the database to set
 	 */
 	public void setDatabase(ArrayList<Scan> database) {
 		this.database = database;
 	}
 	public void douplicate() {
-		Set <Scan> data =new TreeSet<Scan>();
+		Set <Scan> data =new HashSet<Scan>();
 		data.addAll(this.database);
 		System.out.println(data.size());
 		this.database.addAll(data);
 		System.out.println(this.database.size());	
-	}
-	public Map<String, ArrayList<Scan>> gethashmap() {
-	return this.hash_map;
 	}
 }

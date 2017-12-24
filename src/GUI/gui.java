@@ -38,20 +38,26 @@ public class gui {
 
 	protected static final String Connect = null;
 	private JFrame frame;
-	private JTextField txtEnterId_1;
 	private JTextField txtEnterRadius;
-	private JTextField txtEnterLat;
-	private JTextField txtEnterLon;
-	private JTextField txtEnterMinTime;
 	private JTextField txtEnterMaxTime;
 	private JTextField txtEnterPathTo;
-	private JTextField txtEnterMac;
-	private JTextField txtEnterMac_2;
-	private JTextField txtEnterMac_1;
-	private JTextField txtEnterSignal;
 	private JTextField txtEnterSignal_2;
 	private JTextField txtEnterSignal_1;
 	private JTextField txtEnterMac_3;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
 
 	/**
 	 * Launch the application.
@@ -75,19 +81,7 @@ public class gui {
 	public gui() {
 		initialize();
 	}
-	/*
-	 * 	btnAlgorithms.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Connect con=new Connect();
-				String path=txtEnterPathTo.getText();
-				String mac=txtEnterMac_3.getText();
-				con.algoritem1(mac);
-			    con.algoritem2path(path);
-
-			}
-		});
-	 */
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -100,17 +94,9 @@ public class gui {
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 		
-		JButton btnFilters = new JButton("Filters");
-		springLayout.putConstraint(SpringLayout.NORTH, btnFilters, 104, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnFilters, 440, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnFilters, -416, SpringLayout.EAST, frame.getContentPane());
-		btnFilters.setBackground(UIManager.getColor("Button.background"));
-		btnFilters.setFont(new Font("Tahoma", Font.BOLD, 15));
-		frame.getContentPane().add(btnFilters);
-		
 		JTextPane txtpnTime = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, txtpnTime, 172, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnTime, -264, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, txtpnTime, 387, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnTime, -363, SpringLayout.SOUTH, frame.getContentPane());
 		txtpnTime.setForeground(new Color(128, 0, 0));
 		txtpnTime.setBackground(new Color(255, 250, 250));
 		txtpnTime.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -118,9 +104,8 @@ public class gui {
 		frame.getContentPane().add(txtpnTime);
 		
 		JTextPane txtpnId = new JTextPane();
-		springLayout.putConstraint(SpringLayout.SOUTH, btnFilters, -36, SpringLayout.NORTH, txtpnId);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnId, 0, SpringLayout.SOUTH, txtpnTime);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnId, -430, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, txtpnId, 480, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtpnId, -433, SpringLayout.EAST, frame.getContentPane());
 		txtpnId.setText("     ID");
 		txtpnId.setForeground(new Color(128, 0, 0));
 		txtpnId.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -128,258 +113,455 @@ public class gui {
 		frame.getContentPane().add(txtpnId);
 		
 		JTextPane txtpnPlace = new JTextPane();
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnPlace, 0, SpringLayout.SOUTH, txtpnTime);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnPlace, -306, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, txtpnPlace, 549, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtpnTime, -91, SpringLayout.WEST, txtpnPlace);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnPlace, 0, SpringLayout.NORTH, txtpnTime);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnPlace, -364, SpringLayout.EAST, frame.getContentPane());
 		txtpnPlace.setText("  Place");
 		txtpnPlace.setForeground(new Color(128, 0, 0));
 		txtpnPlace.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtpnPlace.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnPlace);
 		
-		JCheckBox checkBox = new JCheckBox("");
-		springLayout.putConstraint(SpringLayout.WEST, txtpnTime, 6, SpringLayout.EAST, checkBox);
-		springLayout.putConstraint(SpringLayout.NORTH, checkBox, 172, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, checkBox, -632, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(checkBox);
-		
-		JCheckBox checkBox_1 = new JCheckBox("");
-		springLayout.putConstraint(SpringLayout.WEST, txtpnId, 6, SpringLayout.EAST, checkBox_1);
-		springLayout.putConstraint(SpringLayout.EAST, checkBox_1, -507, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, txtpnTime, -27, SpringLayout.WEST, checkBox_1);
-		springLayout.putConstraint(SpringLayout.NORTH, checkBox_1, 0, SpringLayout.NORTH, txtpnTime);
-		frame.getContentPane().add(checkBox_1);
-		
-		JCheckBox checkBox_2 = new JCheckBox("");
-		springLayout.putConstraint(SpringLayout.EAST, checkBox_2, -383, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, txtpnPlace, 6, SpringLayout.EAST, checkBox_2);
-		springLayout.putConstraint(SpringLayout.NORTH, checkBox_2, 0, SpringLayout.NORTH, txtpnTime);
-		frame.getContentPane().add(checkBox_2);
-		
-		txtEnterId_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterId_1, 17, SpringLayout.SOUTH, txtpnId);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterId_1, 0, SpringLayout.WEST, checkBox_1);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterId_1, -14, SpringLayout.EAST, btnFilters);
-		txtEnterId_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterId_1.setText("     Enter ID");
-		txtEnterId_1.setColumns(10);
-		frame.getContentPane().add(txtEnterId_1);
-		
 		txtEnterRadius = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterRadius, 0, SpringLayout.NORTH, txtEnterId_1);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterRadius, 0, SpringLayout.WEST, checkBox_2);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterRadius, -306, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, txtEnterRadius, 6, SpringLayout.SOUTH, txtpnPlace);
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterRadius, 593, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterRadius, -350, SpringLayout.EAST, frame.getContentPane());
 		txtEnterRadius.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterRadius.setText("  Enter Radius");
 		txtEnterRadius.setColumns(10);
 		frame.getContentPane().add(txtEnterRadius);
 		
-		txtEnterLat = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterLat, 6, SpringLayout.SOUTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterLat, 0, SpringLayout.WEST, checkBox_2);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterLat, -306, SpringLayout.EAST, frame.getContentPane());
-		txtEnterLat.setText("      Enter Lat");
-		txtEnterLat.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterLat.setColumns(10);
-		frame.getContentPane().add(txtEnterLat);
-		
-		txtEnterLon = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterLon, 6, SpringLayout.SOUTH, txtEnterLat);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterLon, 0, SpringLayout.WEST, checkBox_2);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterLon, -306, SpringLayout.EAST, frame.getContentPane());
-		txtEnterLon.setText("      Enter Lon");
-		txtEnterLon.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterLon.setColumns(10);
-		frame.getContentPane().add(txtEnterLon);
-		
-		txtEnterMinTime = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMinTime, -1, SpringLayout.NORTH, txtEnterLon);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMinTime, 0, SpringLayout.WEST, checkBox);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMinTime, -555, SpringLayout.EAST, frame.getContentPane());
-		txtEnterMinTime.setText("   hh:mm:ss");
-		txtEnterMinTime.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtEnterMinTime.setColumns(10);
-		frame.getContentPane().add(txtEnterMinTime);
-		
 		txtEnterMaxTime = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMaxTime, 359, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMaxTime, 331, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMaxTime, 0, SpringLayout.EAST, txtpnTime);
-		txtEnterMaxTime.setText("   hh:mm:ss");
+		txtEnterMaxTime.setText(" hh:mm:ss");
 		txtEnterMaxTime.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtEnterMaxTime.setColumns(10);
 		frame.getContentPane().add(txtEnterMaxTime);
 		
 		JButton btnCancelFilters = new JButton("Cancel filters");
-		springLayout.putConstraint(SpringLayout.NORTH, btnCancelFilters, -73, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnCancelFilters, 440, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelFilters, -48, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnCancelFilters, 0, SpringLayout.EAST, btnFilters);
+		springLayout.putConstraint(SpringLayout.NORTH, btnCancelFilters, -56, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelFilters, -31, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnCancelFilters, -320, SpringLayout.EAST, frame.getContentPane());
 		btnCancelFilters.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnCancelFilters.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnCancelFilters);
 		
 		JTextPane txtpnAlgo = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, txtpnAlgo, 0, SpringLayout.NORTH, txtpnTime);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgo, 95, SpringLayout.EAST, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnAlgo, -166, SpringLayout.EAST, frame.getContentPane());
 		txtpnAlgo.setText("     Algo 1");
 		txtpnAlgo.setForeground(new Color(128, 0, 0));
 		txtpnAlgo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtpnAlgo.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnAlgo);
 		
-
-		JCheckBox checkBox_3 = new JCheckBox("");
-		springLayout.putConstraint(SpringLayout.EAST, txtpnAlgo, 95, SpringLayout.EAST, checkBox_3);
-		springLayout.putConstraint(SpringLayout.EAST, checkBox_3, -173, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgo, 6, SpringLayout.EAST, checkBox_3);
-		springLayout.putConstraint(SpringLayout.NORTH, checkBox_3, 0, SpringLayout.NORTH, txtpnTime);
-		frame.getContentPane().add(checkBox_3);
-
-		
-		JButton btnAlgorithms = new JButton("Algorithms");
-		springLayout.putConstraint(SpringLayout.NORTH, btnAlgorithms, 0, SpringLayout.NORTH, btnFilters);
-		springLayout.putConstraint(SpringLayout.WEST, btnAlgorithms, -211, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnAlgorithms, 0, SpringLayout.SOUTH, btnFilters);
-		springLayout.putConstraint(SpringLayout.EAST, btnAlgorithms, -89, SpringLayout.EAST, frame.getContentPane());
-		btnAlgorithms.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAlgorithms.setBackground(UIManager.getColor("Button.background"));
-		frame.getContentPane().add(btnAlgorithms);
-		
-		
-		JCheckBox checkBox_4 = new JCheckBox("");
-		springLayout.putConstraint(SpringLayout.SOUTH, checkBox_4, 0, SpringLayout.SOUTH, txtEnterLat);
-		springLayout.putConstraint(SpringLayout.EAST, checkBox_4, 0, SpringLayout.EAST, checkBox_3);
-		frame.getContentPane().add(checkBox_4);
-		
 		JTextPane txtpnAlgo_1 = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgo_1, 0, SpringLayout.WEST, txtpnAlgo);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgo_1, 0, SpringLayout.SOUTH, txtEnterLat);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnAlgo_1, 0, SpringLayout.EAST, txtpnAlgo);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnAlgo_1, -156, SpringLayout.EAST, frame.getContentPane());
 		txtpnAlgo_1.setText("     Algo 2");
 		txtpnAlgo_1.setForeground(new Color(128, 0, 0));
 		txtpnAlgo_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtpnAlgo_1.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnAlgo_1);
 		
-		JButton btnDatabase = new JButton("DataBase");
-		springLayout.putConstraint(SpringLayout.EAST, btnDatabase, 195, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, btnDatabase, 0, SpringLayout.NORTH, btnFilters);
-		springLayout.putConstraint(SpringLayout.WEST, btnDatabase, 67, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnDatabase, 0, SpringLayout.SOUTH, btnFilters);
-		btnDatabase.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnDatabase.setBackground(UIManager.getColor("Button.background"));
-		frame.getContentPane().add(btnDatabase);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, checkBox);
-		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser, 0, SpringLayout.SOUTH, txtEnterLat);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, txtpnTime);
-		frame.getContentPane().add(dateChooser);
-		
 		JDateChooser dateChooser_1 = new JDateChooser();
-		springLayout.putConstraint(SpringLayout.WEST, dateChooser_1, 0, SpringLayout.WEST, checkBox);
-		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser_1, -6, SpringLayout.NORTH, txtEnterMaxTime);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, 0, SpringLayout.EAST, txtpnTime);
+		springLayout.putConstraint(SpringLayout.NORTH, dateChooser_1, 6, SpringLayout.SOUTH, txtEnterMaxTime);
 		frame.getContentPane().add(dateChooser_1);
 		
 		JTextPane txtpnMin = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, txtpnMin, -25, SpringLayout.SOUTH, txtEnterId_1);
-		springLayout.putConstraint(SpringLayout.WEST, txtpnMin, 0, SpringLayout.WEST, txtpnTime);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMin, 0, SpringLayout.SOUTH, txtEnterId_1);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnMin, -70, SpringLayout.WEST, txtEnterId_1);
-		txtpnMin.setText("Min");
+		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMaxTime, 6, SpringLayout.SOUTH, txtpnMin);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnMin, 2, SpringLayout.SOUTH, txtpnTime);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnMin, 397, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMin, 0, SpringLayout.SOUTH, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnMin, -10, SpringLayout.EAST, txtpnTime);
+		txtpnMin.setText("  Start");
 		txtpnMin.setForeground(new Color(0, 0, 0));
-		txtpnMin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtpnMin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnMin.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnMin);
 		
-		JTextPane txtpnMax = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, txtpnMax, 0, SpringLayout.WEST, txtpnTime);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMax, -6, SpringLayout.NORTH, dateChooser_1);
-		txtpnMax.setText("Max");
-		txtpnMax.setForeground(Color.BLACK);
-		txtpnMax.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtpnMax.setBackground(new Color(255, 250, 250));
-		frame.getContentPane().add(txtpnMax);
-		
 		txtEnterPathTo = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterPathTo, 0, SpringLayout.NORTH, txtEnterLon);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterPathTo, 0, SpringLayout.WEST, btnAlgorithms);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, -37, SpringLayout.EAST, frame.getContentPane());
-		txtEnterPathTo.setText("      Enter Path to CSV File");
+		springLayout.putConstraint(SpringLayout.NORTH, txtEnterPathTo, 6, SpringLayout.SOUTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, -47, SpringLayout.EAST, frame.getContentPane());
+		txtEnterPathTo.setText("Format of CSV File");
 		txtEnterPathTo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterPathTo.setColumns(10);
 		frame.getContentPane().add(txtEnterPathTo);
-		
-		JTextPane txtpnOr = new JTextPane();
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnOr, 0, SpringLayout.SOUTH, txtpnMax);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnOr, -119, SpringLayout.EAST, frame.getContentPane());
-		txtpnOr.setText("OR");
-		txtpnOr.setForeground(Color.BLACK);
-		txtpnOr.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txtpnOr.setBackground(new Color(255, 250, 250));
-		frame.getContentPane().add(txtpnOr);
-		
-		txtEnterMac = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMac, -241, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterMac, 0, SpringLayout.SOUTH, dateChooser_1);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMac, -152, SpringLayout.EAST, frame.getContentPane());
-		txtEnterMac.setText("Enter MAC 1");
-		txtEnterMac.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterMac.setColumns(10);
-		frame.getContentPane().add(txtEnterMac);
-		
-		txtEnterMac_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMac_2, 1, SpringLayout.NORTH, txtEnterMaxTime);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMac_2, 0, SpringLayout.WEST, txtEnterMac);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMac_2, 0, SpringLayout.EAST, txtEnterMac);
-		txtEnterMac_2.setText("Enter MAC 2");
-		txtEnterMac_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterMac_2.setColumns(10);
-		frame.getContentPane().add(txtEnterMac_2);
-		
-		txtEnterMac_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMac_1, 2, SpringLayout.NORTH, btnCancelFilters);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMac_1, 0, SpringLayout.WEST, txtEnterMac);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMac_1, 0, SpringLayout.EAST, txtEnterMac);
-		txtEnterMac_1.setText("Enter MAC 3");
-		txtEnterMac_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterMac_1.setColumns(10);
-		frame.getContentPane().add(txtEnterMac_1);
-		
-		txtEnterSignal = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterSignal, -85, SpringLayout.EAST, txtEnterPathTo);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterSignal, 0, SpringLayout.SOUTH, dateChooser_1);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterSignal, -24, SpringLayout.EAST, frame.getContentPane());
-		txtEnterSignal.setText("Enter SIGNAL 1");
-		txtEnterSignal.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterSignal.setColumns(10);
-		frame.getContentPane().add(txtEnterSignal);
-		
-		txtEnterSignal_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterSignal_2, 1, SpringLayout.NORTH, txtEnterMaxTime);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterSignal_2, 0, SpringLayout.WEST, txtEnterSignal);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterSignal_2, 98, SpringLayout.WEST, txtEnterSignal);
-		txtEnterSignal_2.setText("Enter SIGNAL 2");
-		txtEnterSignal_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterSignal_2.setColumns(10);
-		frame.getContentPane().add(txtEnterSignal_2);
-		
-		txtEnterSignal_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterSignal_1, 0, SpringLayout.NORTH, btnCancelFilters);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterSignal_1, 0, SpringLayout.WEST, txtEnterSignal);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterSignal_1, 0, SpringLayout.EAST, txtEnterSignal);
-		txtEnterSignal_1.setText("Enter SIGNAL 3");
-		txtEnterSignal_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEnterSignal_1.setColumns(10);
-		frame.getContentPane().add(txtEnterSignal_1);
+	
 		
 		txtEnterMac_3 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMac_3, 6, SpringLayout.SOUTH, txtpnAlgo);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterMac_3, 0, SpringLayout.WEST, btnAlgorithms);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterMac_3, -50, SpringLayout.EAST, frame.getContentPane());
-		txtEnterMac_3.setText("            Enter MAC");
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterMac_3, -59, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnAlgo_1, 38, SpringLayout.SOUTH, txtEnterMac_3);
 		txtEnterMac_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterMac_3.setColumns(10);
 		frame.getContentPane().add(txtEnterMac_3);
+		
+		JTextPane txtpnDatabase = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnDatabase, 29, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, txtpnDatabase, 90, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnDatabase, -400, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtpnDatabase, 205, SpringLayout.WEST, frame.getContentPane());
+		txtpnDatabase.setText("   DataBase");
+		txtpnDatabase.setForeground(new Color(0, 0, 0));
+		txtpnDatabase.setFont(new Font("Tahoma", Font.BOLD, 17));
+		txtpnDatabase.setBackground(new Color(255, 255, 255));
+		frame.getContentPane().add(txtpnDatabase);
+		
+		JTextPane txtpnFilters_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnFilters_1, 234, SpringLayout.EAST, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnFilters_1, -349, SpringLayout.WEST, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnTime, 6, SpringLayout.SOUTH, txtpnFilters_1);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnFilters_1, 40, SpringLayout.NORTH, frame.getContentPane());
+		txtpnFilters_1.setText("     Filters");
+		txtpnFilters_1.setForeground(Color.BLACK);
+		txtpnFilters_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		txtpnFilters_1.setBackground(Color.WHITE);
+		frame.getContentPane().add(txtpnFilters_1);
+		
+		JTextPane txtpnAlgorithms = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgorithms, 605, SpringLayout.EAST, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnAlgo, 26, SpringLayout.SOUTH, txtpnAlgorithms);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgorithms, 0, SpringLayout.SOUTH, txtpnDatabase);
+		txtpnAlgorithms.setText("Algorithms");
+		txtpnAlgorithms.setForeground(Color.BLACK);
+		txtpnAlgorithms.setFont(new Font("Tahoma", Font.BOLD, 17));
+		txtpnAlgorithms.setBackground(Color.WHITE);
+		frame.getContentPane().add(txtpnAlgorithms);
+		
+		JButton btnStartFilter = new JButton("Start filter");
+		springLayout.putConstraint(SpringLayout.EAST, btnStartFilter, -496, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnCancelFilters, 48, SpringLayout.EAST, btnStartFilter);
+		springLayout.putConstraint(SpringLayout.NORTH, btnStartFilter, 0, SpringLayout.NORTH, btnCancelFilters);
+		btnStartFilter.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnStartFilter.setBackground(SystemColor.menu);
+		frame.getContentPane().add(btnStartFilter);
+		
+		JTextPane txtpnEnd = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnEnd, 6, SpringLayout.SOUTH, dateChooser_1);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnEnd, 406, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtpnEnd, -537, SpringLayout.EAST, frame.getContentPane());
+		txtpnEnd.setText(" End");
+		txtpnEnd.setForeground(Color.BLACK);
+		txtpnEnd.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnEnd.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnEnd);
+		
+		JButton btnStartAlgo = new JButton("Start algo 2");
+		btnStartAlgo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Connect con=new Connect();
+				String path=txtEnterPathTo.getText();
+				con.algoritem2a(path);
+			}
+		});
+		btnStartAlgo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnStartAlgo.setBackground(SystemColor.menu);
+		frame.getContentPane().add(btnStartAlgo);
+		
+		JButton btnStartAlgo_1 = new JButton("Start algo 1");
+		springLayout.putConstraint(SpringLayout.WEST, btnStartAlgo, 0, SpringLayout.WEST, btnStartAlgo_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnStartAlgo_1, 141, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterMac_3, -6, SpringLayout.NORTH, btnStartAlgo_1);
+		btnStartAlgo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Connect con=new Connect();
+			    String mac=txtEnterMac_3.getText();
+				con.algoritem1(mac);
+			}
+		});
+		btnStartAlgo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnStartAlgo_1.setBackground(SystemColor.menu);
+		frame.getContentPane().add(btnStartAlgo_1);
+		
+	
+		
+		JTextPane txtpnRadius = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnRadius, 0, SpringLayout.SOUTH, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnRadius, -6, SpringLayout.WEST, txtEnterRadius);
+		txtpnRadius.setText("Radius:");
+		txtpnRadius.setForeground(new Color(0, 0, 0));
+		txtpnRadius.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnRadius.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnRadius);
+		
+		textField = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, btnStartAlgo_1, 228, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.NORTH, textField, 7, SpringLayout.SOUTH, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.EAST, textField, 0, SpringLayout.EAST, txtEnterRadius);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField.setColumns(10);
+		frame.getContentPane().add(textField);
+		
+		textField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgo_1, 105, SpringLayout.EAST, textField_1);
+		springLayout.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 10, SpringLayout.SOUTH, textField);
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_1.setColumns(10);
+		frame.getContentPane().add(textField_1);
+		
+		JTextPane txtpnLat = new JTextPane();
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterMaxTime, -46, SpringLayout.WEST, txtpnLat);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnLat, 0, SpringLayout.WEST, txtpnRadius);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnLat, 0, SpringLayout.SOUTH, textField);
+		txtpnLat.setText("Lat:");
+		txtpnLat.setForeground(Color.BLACK);
+		txtpnLat.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnLat.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnLat);
+		
+		JTextPane txtpnLon = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnLon, 9, SpringLayout.SOUTH, txtpnLat);
+		springLayout.putConstraint(SpringLayout.WEST, textField_1, 26, SpringLayout.EAST, txtpnLon);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, -29, SpringLayout.WEST, txtpnLon);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnLon, 0, SpringLayout.WEST, txtpnRadius);
+		txtpnLon.setText("Lon:");
+		txtpnLon.setForeground(Color.BLACK);
+		txtpnLon.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnLon.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnLon);
+		
+		JTextPane txtpnTime_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterMaxTime, 8, SpringLayout.EAST, txtpnTime_1);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnTime_1, 358, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnTime_1, 0, SpringLayout.SOUTH, textField);
+		txtpnTime_1.setText("Time:");
+		txtpnTime_1.setForeground(Color.BLACK);
+		txtpnTime_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnTime_1.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnTime_1);
+		
+		JTextPane txtpnDate = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, dateChooser_1, 6, SpringLayout.EAST, txtpnDate);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnDate, 358, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnDate, 0, SpringLayout.SOUTH, dateChooser_1);
+		txtpnDate.setText("Date:");
+		txtpnDate.setForeground(Color.BLACK);
+		txtpnDate.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnDate.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnDate);
+		
+		JTextPane textPane = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, textPane, 0, SpringLayout.WEST, txtpnTime_1);
+		textPane.setText("Time:");
+		textPane.setForeground(Color.BLACK);
+		textPane.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane);
+		
+		JTextPane textPane_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, btnStartAlgo, 0, SpringLayout.SOUTH, textPane_1);
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_1, 239, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, textPane, 0, SpringLayout.NORTH, textPane_1);
+		springLayout.putConstraint(SpringLayout.EAST, textPane_1, 0, SpringLayout.EAST, txtpnTime_1);
+		textPane_1.setText("Date:");
+		textPane_1.setForeground(Color.BLACK);
+		textPane_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane_1.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane_1);
+		
+		textField_2 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, textField_2, 0, SpringLayout.WEST, txtEnterMaxTime);
+		springLayout.putConstraint(SpringLayout.EAST, textField_2, 0, SpringLayout.EAST, txtEnterMaxTime);
+		textField_2.setText(" hh:mm:ss");
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_2.setColumns(10);
+		frame.getContentPane().add(textField_2);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.SOUTH, textField_2, -2, SpringLayout.NORTH, dateChooser);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnId, 23, SpringLayout.SOUTH, dateChooser);
+		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, txtEnterMaxTime);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser, 0, SpringLayout.SOUTH, textPane_1);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, dateChooser_1);
+		frame.getContentPane().add(dateChooser);
+		
+		JTextPane txtpnId_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnId_1, 6, SpringLayout.SOUTH, txtpnId);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnId_1, 0, SpringLayout.EAST, txtEnterMaxTime);
+		txtpnId_1.setText("ID:");
+		txtpnId_1.setForeground(Color.BLACK);
+		txtpnId_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnId_1.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnId_1);
+		
+		textField_3 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, textField_3, 6, SpringLayout.EAST, txtpnId_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, textField_3, 0, SpringLayout.SOUTH, txtpnId_1);
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_3.setColumns(10);
+		frame.getContentPane().add(textField_3);
+		
+		JTextPane txtpnMac = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnMac, 1, SpringLayout.SOUTH, txtpnAlgo);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnMac, -191, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterMac_3, 17, SpringLayout.EAST, txtpnMac);
+		txtpnMac.setText("Mac:");
+		txtpnMac.setForeground(Color.BLACK);
+		txtpnMac.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnMac.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnMac);
+		
+		JTextPane txtpnPath = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterPathTo, 6, SpringLayout.EAST, txtpnPath);
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnPath, 3, SpringLayout.SOUTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnPath, 10, SpringLayout.WEST, txtpnAlgo_1);
+		txtpnPath.setText("Path:");
+		txtpnPath.setForeground(Color.BLACK);
+		txtpnPath.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnPath.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnPath);
+		
+		JTextPane txtpnOr = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnOr, 6, SpringLayout.SOUTH, btnStartAlgo);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnOr, -112, SpringLayout.EAST, frame.getContentPane());
+		txtpnOr.setText("OR");
+		txtpnOr.setForeground(Color.BLACK);
+		txtpnOr.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnOr.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnOr);
+		
+		JTextPane txtpnMac_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnMac_1, 0, SpringLayout.WEST, txtpnAlgo);
+		txtpnMac_1.setText("Mac 1:");
+		txtpnMac_1.setForeground(Color.BLACK);
+		txtpnMac_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnMac_1.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnMac_1);
+		
+		JTextPane txtpnMac_2 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMac_1, -13, SpringLayout.NORTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnMac_2, 130, SpringLayout.EAST, textField_3);
+		txtpnMac_2.setText("Mac 2:");
+		txtpnMac_2.setForeground(Color.BLACK);
+		txtpnMac_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnMac_2.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnMac_2);
+		
+		JTextPane txtpnMac_3 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnMac_3, 359, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMac_2, -6, SpringLayout.NORTH, txtpnMac_3);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnMac_3, 0, SpringLayout.WEST, txtpnAlgo);
+		txtpnMac_3.setText("Mac 3:");
+		txtpnMac_3.setForeground(Color.BLACK);
+		txtpnMac_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnMac_3.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnMac_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_4.setColumns(10);
+		frame.getContentPane().add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_5.setColumns(10);
+		frame.getContentPane().add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_6.setColumns(10);
+		frame.getContentPane().add(textField_6);
+		
+		textField_7 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, textField_7, 0, SpringLayout.EAST, txtpnMac_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, textField_7, 0, SpringLayout.SOUTH, txtpnMac_1);
+		springLayout.putConstraint(SpringLayout.EAST, textField_7, 61, SpringLayout.EAST, txtpnMac_1);
+		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_7.setColumns(10);
+		frame.getContentPane().add(textField_7);
+		
+		textField_8 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textField_8, 0, SpringLayout.NORTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.WEST, textField_8, 0, SpringLayout.EAST, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.EAST, textField_8, 0, SpringLayout.EAST, textField_7);
+		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_8.setColumns(10);
+		frame.getContentPane().add(textField_8);
+		
+		textField_9 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textField_9, 6, SpringLayout.SOUTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.WEST, textField_9, 0, SpringLayout.EAST, txtpnMac_3);
+		springLayout.putConstraint(SpringLayout.EAST, textField_9, 0, SpringLayout.EAST, textField_7);
+		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_9.setColumns(10);
+		frame.getContentPane().add(textField_9);
+		
+		JTextPane txtpnSig = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnSig, 6, SpringLayout.SOUTH, txtpnOr);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnSig, 0, SpringLayout.WEST, txtpnOr);
+		txtpnSig.setText("Signal 1:");
+		txtpnSig.setForeground(Color.BLACK);
+		txtpnSig.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnSig.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnSig);
+		
+		JTextPane txtpnSignal = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnSignal, 0, SpringLayout.WEST, txtpnOr);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnSignal, 0, SpringLayout.SOUTH, txtpnMac_2);
+		txtpnSignal.setText("Signal 2:");
+		txtpnSignal.setForeground(Color.BLACK);
+		txtpnSignal.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnSignal.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnSignal);
+		
+		JTextPane txtpnSignal_1 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnSignal_1, 0, SpringLayout.WEST, txtpnOr);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnSignal_1, 0, SpringLayout.SOUTH, txtpnMac_3);
+		txtpnSignal_1.setText("Signal 3:");
+		txtpnSignal_1.setForeground(Color.BLACK);
+		txtpnSignal_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtpnSignal_1.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnSignal_1);
+		
+		textField_10 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textField_10, 0, SpringLayout.NORTH, txtpnMac_1);
+		springLayout.putConstraint(SpringLayout.WEST, textField_10, 6, SpringLayout.EAST, txtpnSig);
+		springLayout.putConstraint(SpringLayout.EAST, textField_10, 0, SpringLayout.EAST, btnStartAlgo);
+		textField_10.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_10.setColumns(10);
+		frame.getContentPane().add(textField_10);
+		
+		textField_12 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, textField_12, 6, SpringLayout.EAST, txtpnSignal);
+		springLayout.putConstraint(SpringLayout.SOUTH, textField_12, 0, SpringLayout.SOUTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.EAST, textField_12, 0, SpringLayout.EAST, btnStartAlgo);
+		textField_12.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_12.setColumns(10);
+		frame.getContentPane().add(textField_12);
+		
+		textField_13 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, textField_13, 6, SpringLayout.EAST, txtpnSignal_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, textField_13, 0, SpringLayout.SOUTH, txtpnMac_3);
+		springLayout.putConstraint(SpringLayout.EAST, textField_13, 0, SpringLayout.EAST, btnStartAlgo);
+		textField_13.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_13.setColumns(10);
+		frame.getContentPane().add(textField_13);
+		
+		JButton button = new JButton("Start algo 2");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mac1=null;
+				String mac2=null;
+				String mac3=null;
+				String sig1=null;
+				String sig2=null;
+				String sig3=null;
+				mac1=textField_7.getText();
+				mac2=textField_8.getText();
+				mac3=textField_9.getText();
+				sig1=textField_10.getText();
+				sig2=textField_12.getText();
+				sig3=textField_13.getText();
+				Connect con=new Connect();
+				String path=txtEnterPathTo.getText();
+				con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
+				
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, txtEnterPathTo);
+		springLayout.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, btnCancelFilters);
+		button.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button.setBackground(SystemColor.menu);
+		frame.getContentPane().add(button);
 	}
 }
