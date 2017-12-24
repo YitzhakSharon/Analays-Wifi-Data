@@ -128,4 +128,7 @@ public class Database {
 		this.database.addAll(data);
 		System.out.println(this.database.size());	
 	}
+	public Map<String, ArrayList<Scan>> gethashmap() {
+	return this.hash_map;
+	}
 }

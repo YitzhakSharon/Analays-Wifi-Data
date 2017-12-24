@@ -72,7 +72,7 @@ public class Algoritem {
 			}
 
 		}
-		writetocsv(write, "C:\\Users\\yitzhak\\Desktop\\test_algo1_Table_final.csv");
+		writetocsv(write, "C:\\Users\\merav\\Desktop\\test_algo1_Table_final.csv");
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Algoritem {
 		}
 		FileCsv fe = new FileCsv();
 		try {
-			fe.writecsv(sample, "C:\\Users\\yitzhak\\Desktop\\test_for_algo_2_ts1_Table_final.csv");
+			fe.writecsv(sample, "C:\\Users\\merav\\Desktop\\test_for_algo_2_ts1_Table_final.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
