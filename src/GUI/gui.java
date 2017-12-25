@@ -261,7 +261,8 @@ public class gui {
 			    String mac=txtEnterMac_3.getText();
 			    Cordinate temp=con.algoritem1(mac);
 				JOptionPane.showMessageDialog(null, temp.toString());
-			}
+			    }
+		
 		});
 		btnStartAlgo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnStartAlgo_1.setBackground(SystemColor.menu);
@@ -521,19 +522,19 @@ public class gui {
 		JButton button = new JButton("Start algo 2");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Connect con=new Connect();
 				String mac1=null;
 				String mac2=null;
 				String mac3=null;
 				String sig1=null;
 				String sig2=null;
 				String sig3=null;
-				mac1=textField_7.getText();
+			    mac1=textField_7.getText();
 				mac2=textField_8.getText();
 				mac3=textField_9.getText();
-				sig1=textField_10.getText();
-				sig2=textField_12.getText();
-				sig3=textField_13.getText();
-				Connect con=new Connect();
+			    sig1=textField_10.getText();
+                sig2=textField_12.getText();
+                sig3=textField_13.getText(); 
 				String path=txtEnterPathTo.getText();
 				Cordinate temp=con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
 				JOptionPane.showMessageDialog(null, temp.toString());

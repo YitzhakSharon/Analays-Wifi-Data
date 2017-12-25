@@ -45,15 +45,14 @@ public boolean check_user_macs(String mac) {
 		for (int i = 0; i < checkmac.length; i++) {
 			for (int j = 0; j < checkmac[i].length(); j++) {
 				int ascii = (int)checkmac[i].charAt(j);
-					if(!(ascii >=(int)'a' && ascii<= (int)'z') || !(ascii<=(int)'A' && ascii<=(int) 'Z') || !(ascii <='0' && ascii <= '9'))
+					if(!(ascii >=(int)'a' && ascii<= (int)'z') || !(ascii>=(int)'A' && ascii<=(int) 'Z') || !(ascii >='0' && ascii <= '9'))
 						return false;
 				}
 		}
 		return true;
 	}
 	else
-	return false;
-	
+	return false;	
 }
 
 public boolean check_user_Signal(String sig) {
