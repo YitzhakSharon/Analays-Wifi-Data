@@ -530,7 +530,6 @@ public class gui {
 				String sig3=null;
 				mac1=textField_7.getText();
 				mac2=textField_8.getText();
-				System.out.println(mac2);
 				mac3=textField_9.getText();
 				sig1=textField_10.getText();
 				sig2=textField_12.getText();
