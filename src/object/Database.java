@@ -54,7 +54,7 @@ public class Database {
 		this.database=new ArrayList<Scan>();
 		this.database.clear();
 		this.database.addAll(other.database);
-		this.hash_map=hashmap();
+		hashmap();
 	}
 	/**
 	 * add ArrayList to the database
@@ -93,28 +93,26 @@ public class Database {
 	 * @return
 	 */
 
-	public Map<String, ArrayList<Scan>> hashmap() {
-		Map<String, ArrayList<Scan>> find = new HashMap<String, ArrayList<Scan>>();
+	public void hashmap() {
+		this.hash_map = new HashMap<String, ArrayList<Scan>>();
 		for (int i = 0; i < this.database.size(); i++) {
 			for (int j = 0; j < this.database.get(i).getWifi().size(); j++) {
-				if (find.containsKey(this.database.get(i).getWifi().get(j).getMAC()))
-					find.get(this.database.get(i).getWifi().get(j).getMAC()).add(this.database.get(i));
+				if (this.hash_map.containsKey(this.database.get(i).getWifi().get(j).getMAC()))
+					this.hash_map.get(this.database.get(i).getWifi().get(j).getMAC()).add(this.database.get(i));
 				else {
 					ArrayList<Scan> temp = new ArrayList<Scan>();
 					temp.add(this.database.get(i));
-					find.put(this.database.get(i).getWifi().get(j).getMAC(), temp);
+					this.hash_map.put(this.database.get(i).getWifi().get(j).getMAC(), temp);
 				}
 			}
 		}
-		return find;
 	}
 
 	public int numOfScan() {
 		return this.database.size();
 	}
 	public int numOfmacs() {
-		Map<String, ArrayList<Scan>> find= hashmap();
-		return find.size();
+		return this.hash_map.size();
 	}
 	/**
 	 * toString 

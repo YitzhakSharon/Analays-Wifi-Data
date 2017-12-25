@@ -128,13 +128,25 @@ public class Algoritem {
 
 	}
 	public Cordinate algo2fromUser (Database d, String mac1, String mac2, String mac3, String signal_1, String signal_2, String signal_3) {
+		Set<WifiData> set =  new HashSet<WifiData>();
 		WifiData data1 = new WifiData(" ", mac1, " ",signal_1);
 		WifiData data2 = new WifiData (" ",mac2, " ", signal_2);
 		WifiData data3 = new WifiData(" ",mac3, " ",signal_3);
-		Set<WifiData> set =  new HashSet<WifiData>();
+		System.out.println(mac1+" "+mac2+" "+mac3+" "+signal_1+" "+signal_2+" "+signal_3);
+		if(mac1!=null&&!mac1.isEmpty()&&signal_1!=null&&!signal_1.isEmpty()){
+			System.out.println("mmm1111");
 		set.add(data1);
+		}
+		if(mac2!=null&&!mac2.isEmpty()&&signal_2!=null&&!signal_2.isEmpty())
+		{
+			System.out.println("mmm22222");
 		set.add(data2);
+		}
+		if(mac3!=null&&!mac3.isEmpty()&&signal_3!=null&&!signal_3.isEmpty())
+		{
+			System.out.println("mmm33333");
 		set.add(data3);
+		}
 		ArrayList<WifiData> wifi = new ArrayList<WifiData>();
 		wifi.addAll(set);
 		Cordinate cor = new Cordinate();
@@ -150,7 +162,7 @@ public class Algoritem {
 	 */
 
 	public void algo2tocsv(Database scan, ArrayList<Scan> sample) {
-		Map<String, ArrayList<Scan>> find =scan.hashmap();
+		Map<String, ArrayList<Scan>> find =scan.getHash_map();
 		Cordinate cor = new Cordinate();
 		for (int i = 0; i < sample.size(); i++) {
 			cor = algo2(find, sample.get(i));

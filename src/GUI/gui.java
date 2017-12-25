@@ -48,9 +48,6 @@ public class gui {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
@@ -447,21 +444,6 @@ public class gui {
 		txtpnMac_3.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnMac_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_4.setColumns(10);
-		frame.getContentPane().add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_5.setColumns(10);
-		frame.getContentPane().add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		frame.getContentPane().add(textField_6);
-		
 		textField_7 = new JTextField();
 		springLayout.putConstraint(SpringLayout.WEST, textField_7, 0, SpringLayout.EAST, txtpnMac_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, textField_7, 0, SpringLayout.SOUTH, txtpnMac_1);
@@ -548,6 +530,7 @@ public class gui {
 				String sig3=null;
 				mac1=textField_7.getText();
 				mac2=textField_8.getText();
+				System.out.println(mac2);
 				mac3=textField_9.getText();
 				sig1=textField_10.getText();
 				sig2=textField_12.getText();

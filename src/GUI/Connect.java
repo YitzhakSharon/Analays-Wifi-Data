@@ -19,6 +19,7 @@ public class Connect {
 		 FileKml s=new FileKml();
 		 this.data= new Database();
 		 this.data.addArrayList(s.readFromCsv("Table.csv"));
+		 this.data.hashmap();
 	}
 	public void algoritem1(String mac){
 	Algoritem  l=new Algoritem();
@@ -33,7 +34,7 @@ public class Connect {
 	}
 	public void algoritem2b(String mac1,String mac2,String mac3,String sig1,String sig2,String sig3){
 	   Algoritem  l=new Algoritem();
-	   Cordinate cor=new Cordinate( l.algo2fromUser(this.data,mac1,mac2,mac3,sig1,sig2,sig2));
+	   Cordinate cor=new Cordinate( l.algo2fromUser(this.data,mac1,mac2,mac3,sig1,sig2,sig3));
 		 System.out.println(cor.toString());
 		}
 }
