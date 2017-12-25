@@ -28,11 +28,19 @@ import Algoritem.Algoritem;
 import Files.FileCsv;
 import Files.FileKml;
 import Filter.Filter;
+import object.Cordinate;
 import object.Database;
 import object.Scan;
 import GUI.Connect;
 
 import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import javax.swing.SwingConstants;
+import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class gui {
 
@@ -159,10 +167,6 @@ public class gui {
 		txtpnAlgo_1.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnAlgo_1);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		springLayout.putConstraint(SpringLayout.NORTH, dateChooser_1, 6, SpringLayout.SOUTH, txtEnterMaxTime);
-		frame.getContentPane().add(dateChooser_1);
-		
 		JTextPane txtpnMin = new JTextPane();
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMaxTime, 6, SpringLayout.SOUTH, txtpnMin);
 		springLayout.putConstraint(SpringLayout.NORTH, txtpnMin, 2, SpringLayout.SOUTH, txtpnTime);
@@ -174,6 +178,10 @@ public class gui {
 		txtpnMin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnMin.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnMin);
+		
+		JDateChooser dateChooser_1 = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.NORTH, dateChooser_1, 6, SpringLayout.SOUTH, txtEnterMaxTime);
+		frame.getContentPane().add(dateChooser_1);
 		
 		txtEnterPathTo = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterPathTo, 6, SpringLayout.SOUTH, txtpnAlgo_1);
@@ -201,17 +209,7 @@ public class gui {
 		txtpnDatabase.setFont(new Font("Tahoma", Font.BOLD, 17));
 		txtpnDatabase.setBackground(new Color(255, 255, 255));
 		frame.getContentPane().add(txtpnDatabase);
-		
-		JTextPane txtpnFilters_1 = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, txtpnFilters_1, 234, SpringLayout.EAST, txtpnDatabase);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnFilters_1, -349, SpringLayout.WEST, txtpnDatabase);
-		springLayout.putConstraint(SpringLayout.NORTH, txtpnTime, 6, SpringLayout.SOUTH, txtpnFilters_1);
-		springLayout.putConstraint(SpringLayout.NORTH, txtpnFilters_1, 40, SpringLayout.NORTH, frame.getContentPane());
-		txtpnFilters_1.setText("     Filters");
-		txtpnFilters_1.setForeground(Color.BLACK);
-		txtpnFilters_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		txtpnFilters_1.setBackground(Color.WHITE);
-		frame.getContentPane().add(txtpnFilters_1);
+
 		
 		JTextPane txtpnAlgorithms = new JTextPane();
 		springLayout.putConstraint(SpringLayout.WEST, txtpnAlgorithms, 605, SpringLayout.EAST, txtpnDatabase);
@@ -261,7 +259,8 @@ public class gui {
 			public void actionPerformed(ActionEvent arg0) {
 				Connect con=new Connect();
 			    String mac=txtEnterMac_3.getText();
-				con.algoritem1(mac);
+			    Cordinate temp=con.algoritem1(mac);
+				JOptionPane.showMessageDialog(null, temp.toString());
 			}
 		});
 		btnStartAlgo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -307,9 +306,9 @@ public class gui {
 		frame.getContentPane().add(txtpnLat);
 		
 		JTextPane txtpnLon = new JTextPane();
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, -29, SpringLayout.WEST, txtpnLon);
 		springLayout.putConstraint(SpringLayout.NORTH, txtpnLon, 9, SpringLayout.SOUTH, txtpnLat);
 		springLayout.putConstraint(SpringLayout.WEST, textField_1, 26, SpringLayout.EAST, txtpnLon);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, -29, SpringLayout.WEST, txtpnLon);
 		springLayout.putConstraint(SpringLayout.WEST, txtpnLon, 0, SpringLayout.WEST, txtpnRadius);
 		txtpnLon.setText("Lon:");
 		txtpnLon.setForeground(Color.BLACK);
@@ -328,9 +327,9 @@ public class gui {
 		frame.getContentPane().add(txtpnTime_1);
 		
 		JTextPane txtpnDate = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnDate, 0, SpringLayout.SOUTH, dateChooser_1);
 		springLayout.putConstraint(SpringLayout.WEST, dateChooser_1, 6, SpringLayout.EAST, txtpnDate);
 		springLayout.putConstraint(SpringLayout.WEST, txtpnDate, 358, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnDate, 0, SpringLayout.SOUTH, dateChooser_1);
 		txtpnDate.setText("Date:");
 		txtpnDate.setForeground(Color.BLACK);
 		txtpnDate.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -365,11 +364,11 @@ public class gui {
 		frame.getContentPane().add(textField_2);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, dateChooser_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, textField_2, -2, SpringLayout.NORTH, dateChooser);
 		springLayout.putConstraint(SpringLayout.NORTH, txtpnId, 23, SpringLayout.SOUTH, dateChooser);
 		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, txtEnterMaxTime);
 		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser, 0, SpringLayout.SOUTH, textPane_1);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, dateChooser_1);
 		frame.getContentPane().add(dateChooser);
 		
 		JTextPane txtpnId_1 = new JTextPane();
@@ -536,7 +535,8 @@ public class gui {
 				sig3=textField_13.getText();
 				Connect con=new Connect();
 				String path=txtEnterPathTo.getText();
-				con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
+				Cordinate temp=con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
+				JOptionPane.showMessageDialog(null, temp.toString());
 				
 			}
 		});
@@ -545,5 +545,16 @@ public class gui {
 		button.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button.setBackground(SystemColor.menu);
 		frame.getContentPane().add(button);
+		
+		JTextPane txtpnFilters = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, txtpnFilters, 0, SpringLayout.NORTH, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.WEST, txtpnFilters, -14, SpringLayout.WEST, txtpnId_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnFilters, 0, SpringLayout.SOUTH, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnFilters, 0, SpringLayout.EAST, txtpnId);
+		txtpnFilters.setText("   Filters");
+		txtpnFilters.setForeground(Color.BLACK);
+		txtpnFilters.setFont(new Font("Tahoma", Font.BOLD, 17));
+		txtpnFilters.setBackground(Color.WHITE);
+		frame.getContentPane().add(txtpnFilters);
 	}
 }
