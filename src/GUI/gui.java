@@ -138,7 +138,6 @@ public class gui {
 		frame.getContentPane().add(txtpnPlace);
 
 		txtEnterRadius = new JTextField();
-		txtEnterRadius.setText("enter radius");
 		txtEnterRadius.setToolTipText("enter radis");
 		txtEnterRadius.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterRadius.setColumns(10);
@@ -516,7 +515,6 @@ public class gui {
 		frame.getContentPane().add(dateChooser_1);
 
 		txtLat = new JTextField();
-		txtLat.setText("enter Lat");
 		springLayout.putConstraint(SpringLayout.WEST, txtLat, -61, SpringLayout.EAST, txtEnterRadius);
 		springLayout.putConstraint(SpringLayout.EAST, txtLat, 0, SpringLayout.EAST, txtEnterRadius);
 		txtLat.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -524,7 +522,6 @@ public class gui {
 		frame.getContentPane().add(txtLat);
 
 		txtEnterLon = new JTextField();
-		txtEnterLon.setText("enter lon");
 		springLayout.putConstraint(SpringLayout.WEST, txtpnPath, 148, SpringLayout.EAST, txtEnterLon);
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterLon, 204, SpringLayout.NORTH, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, txtLat, -6, SpringLayout.NORTH, txtEnterLon);
@@ -619,8 +616,8 @@ public class gui {
 		frame.getContentPane().add(chckbxNewCheckBox_4);
 
 		JLabel num_of_Scan = new JLabel("number of Scan");
-		num_of_Scan.setFont(new Font("Tahoma", Font.BOLD, 13));
 		springLayout.putConstraint(SpringLayout.WEST, num_of_Scan, 51, SpringLayout.WEST, frame.getContentPane());
+		num_of_Scan.setFont(new Font("Tahoma", Font.BOLD, 13));
 		springLayout.putConstraint(SpringLayout.SOUTH, num_of_Scan, -62, SpringLayout.SOUTH, frame.getContentPane());
 		frame.getContentPane().add(num_of_Scan);
 
@@ -632,20 +629,23 @@ public class gui {
 		frame.getContentPane().add(num_of_mac);
 
 		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("choose not filter");
-		springLayout.putConstraint(SpringLayout.EAST, chckbxNewCheckBox_5, -243, SpringLayout.WEST, label);
+		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox_5, 488, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, num_of_Scan, -255, SpringLayout.WEST, chckbxNewCheckBox_5);
 		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox_4, -6, SpringLayout.NORTH, chckbxNewCheckBox_5);
-		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox_5, -6, SpringLayout.NORTH, btnCancelFilters);
+		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox_5, -6, SpringLayout.NORTH, btnStartFilter);
 		frame.getContentPane().add(chckbxNewCheckBox_5);
 
 		enterfile = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, num_of_Scan, 0, SpringLayout.EAST, enterfile);
-		springLayout.putConstraint(SpringLayout.NORTH, enterfile, -1, SpringLayout.NORTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.WEST, enterfile, 147, SpringLayout.WEST, frame.getContentPane());
-		enterfile.setText("enter path to file");
+		springLayout.putConstraint(SpringLayout.WEST, enterfile, 0, SpringLayout.WEST, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.SOUTH, enterfile, 0, SpringLayout.SOUTH, txtpnTime);
+		springLayout.putConstraint(SpringLayout.EAST, enterfile, 299, SpringLayout.WEST, frame.getContentPane());
+		enterfile.setText("path to folder");
 		frame.getContentPane().add(enterfile);
 		enterfile.setColumns(10);
 
 		enterpath_csv = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, enterpath_csv, 0, SpringLayout.NORTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.EAST, enterpath_csv, -118, SpringLayout.WEST, txtpnTime_1);
 		enterpath_csv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -657,13 +657,14 @@ public class gui {
 				
 			}
 		});
-		enterpath_csv.setText("enter path to csv");
-		springLayout.putConstraint(SpringLayout.WEST, enterpath_csv, 10, SpringLayout.WEST, enterfile);
-		springLayout.putConstraint(SpringLayout.SOUTH, enterpath_csv, 0, SpringLayout.SOUTH, txtpnLat);
+		enterpath_csv.setText("Format of CSV File");
 		frame.getContentPane().add(enterpath_csv);
 		enterpath_csv.setColumns(10);
 
 		JButton btninsertDatabase = new JButton("insert database");
+		springLayout.putConstraint(SpringLayout.WEST, btninsertDatabase, 68, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btninsertDatabase, 0, SpringLayout.SOUTH, txtpnAlgo);
+		btninsertDatabase.setBackground(UIManager.getColor("Button.background"));
 		btninsertDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -672,57 +673,65 @@ public class gui {
 				Database data=c.enterdatabase(path);
 				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
 				num_of_mac.setText("number of macs: "+data.getHash_map().size());
+				
 
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btninsertDatabase, -2, SpringLayout.NORTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.EAST, btninsertDatabase, -6, SpringLayout.WEST, enterfile);
 		frame.getContentPane().add(btninsertDatabase);
 		JButton btnNewButton = new JButton("insert CSV");
+		springLayout.putConstraint(SpringLayout.EAST, btninsertDatabase, 33, SpringLayout.EAST, btnNewButton);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -9, SpringLayout.NORTH, enterpath_csv);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -58, SpringLayout.EAST, num_of_Scan);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String path=enterpath_csv.getText();
 				Connect c= new Connect();
-				c.readCSv(path);
+				Database data=c.readCSv(path);
+				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
+				num_of_mac.setText("number of macs: "+data.getHash_map().size());
+			
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, txtpnLat);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -13, SpringLayout.WEST, enterpath_csv);
 		frame.getContentPane().add(btnNewButton);
 		
 		
 		
 		JButton btnClearDatabase = new JButton("clear database");
+		springLayout.putConstraint(SpringLayout.WEST, btnClearDatabase, 72, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 0, SpringLayout.WEST, btnClearDatabase);
+		springLayout.putConstraint(SpringLayout.NORTH, btnClearDatabase, 0, SpringLayout.NORTH, txtEnterPathTo);
 		btnClearDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connect c= new Connect();
-				c.clear();
+				Database data=c.clear();
+				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
+				num_of_mac.setText("number of macs: "+data.getHash_map().size());
 			}
 		});
-		springLayout.putConstraint(SpringLayout.SOUTH, btnClearDatabase, 0, SpringLayout.SOUTH, txtEnterPathTo);
-		springLayout.putConstraint(SpringLayout.EAST, btnClearDatabase, 0, SpringLayout.EAST, btninsertDatabase);
 		frame.getContentPane().add(btnClearDatabase);
 		
 		JButton btnCsvDataIn = new JButton("save data in CSV");
-		springLayout.putConstraint(SpringLayout.NORTH, btnCsvDataIn, 8, SpringLayout.SOUTH, btnClearDatabase);
+		springLayout.putConstraint(SpringLayout.NORTH, btnCsvDataIn, 0, SpringLayout.NORTH, chckbxNewCheckBox_1);
+		springLayout.putConstraint(SpringLayout.WEST, btnCsvDataIn, 0, SpringLayout.WEST, btnNewButton);
 		btnCsvDataIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connect c = new Connect();
 			
 			}
 		});
-		springLayout.putConstraint(SpringLayout.EAST, btnCsvDataIn, 0, SpringLayout.EAST, btnNewButton);
 		frame.getContentPane().add(btnCsvDataIn);
 		
 		txtEnterName = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 0, SpringLayout.WEST, txtpnDatabase);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterName, 0, SpringLayout.SOUTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, 0, SpringLayout.EAST, enterfile);
 		txtEnterName.setText("enter name");
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 0, SpringLayout.WEST, enterpath_csv);
 		frame.getContentPane().add(txtEnterName);
 		txtEnterName.setColumns(10);
 		
 		JButton btnSaveInKml = new JButton("save in kml");
-		springLayout.putConstraint(SpringLayout.WEST, btnSaveInKml, 0, SpringLayout.WEST, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSaveInKml, 0, SpringLayout.SOUTH, txtpnMac_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnSaveInKml, 0, SpringLayout.NORTH, textField_9);
+		springLayout.putConstraint(SpringLayout.WEST, btnSaveInKml, 0, SpringLayout.WEST, btninsertDatabase);
 		btnSaveInKml.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name=namekml.getText(); 
@@ -733,9 +742,9 @@ public class gui {
 		frame.getContentPane().add(btnSaveInKml);
 		
 		namekml = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterName, -25, SpringLayout.NORTH, namekml);
-		springLayout.putConstraint(SpringLayout.WEST, namekml, 0, SpringLayout.WEST, enterpath_csv);
-		springLayout.putConstraint(SpringLayout.SOUTH, namekml, 0, SpringLayout.SOUTH, txtpnMac_1);
+		springLayout.putConstraint(SpringLayout.NORTH, namekml, 50, SpringLayout.SOUTH, txtEnterName);
+		springLayout.putConstraint(SpringLayout.WEST, namekml, 131, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, namekml, 288, SpringLayout.WEST, frame.getContentPane());
 		namekml.setText("enter name ");
 		frame.getContentPane().add(namekml);
 		namekml.setColumns(10);
@@ -761,6 +770,43 @@ public class gui {
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_2.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(button_2);
+		
+		JTextPane textPane_3 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_3, 0, SpringLayout.NORTH, txtpnTime);
+		springLayout.putConstraint(SpringLayout.WEST, textPane_3, 82, SpringLayout.WEST, frame.getContentPane());
+		textPane_3.setText("Path:");
+		textPane_3.setForeground(Color.BLACK);
+		textPane_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane_3.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane_3);
+		
+		JTextPane textPane_4 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, enterpath_csv, 6, SpringLayout.EAST, textPane_4);
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_4, 0, SpringLayout.NORTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.WEST, textPane_4, 0, SpringLayout.WEST, btnClearDatabase);
+		textPane_4.setText("Path:");
+		textPane_4.setForeground(Color.BLACK);
+		textPane_4.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane_4.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane_4);
+		
+		JTextPane textPane_5 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_5, 0, SpringLayout.NORTH, txtpnMac_2);
+		springLayout.putConstraint(SpringLayout.WEST, textPane_5, 0, SpringLayout.WEST, btnNewButton);
+		textPane_5.setText("Path:");
+		textPane_5.setForeground(Color.BLACK);
+		textPane_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane_5.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane_5);
+		
+		JTextPane textPane_6 = new JTextPane();
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_6, 12, SpringLayout.SOUTH, btnSaveInKml);
+		springLayout.putConstraint(SpringLayout.WEST, textPane_6, 0, SpringLayout.WEST, btninsertDatabase);
+		textPane_6.setText("Path:");
+		textPane_6.setForeground(Color.BLACK);
+		textPane_6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textPane_6.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(textPane_6);
 		
 		
 

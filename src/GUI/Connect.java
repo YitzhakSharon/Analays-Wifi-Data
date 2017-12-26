@@ -86,8 +86,10 @@ public Database readCSv(String path) {
 	return this.data;
 }
 
-public void clear () {
+public Database clear () {
 	this.data.getDatabase().clear();
+	this.data.getHash_map().clear();
+	return this.data;
 }
 
 public void writeCSV(String name) {
