@@ -1,6 +1,10 @@
 package GUI;
 
 
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,16 +72,45 @@ public boolean check_user_Signal(String sig) {
 
 }
 
-public void enterdatabase (String path) {
+public Database enterdatabase (String path) {
 	FileCsv c = new FileCsv();
 	this.data.addArrayList(c.readForCsv(path).getDatabase());
+	return this.data;
 }
 
-public void readCSv(String path) {
-	
+public Database readCSv(String path) {
 	if(!path.substring(path.length()-3, path.length()).equals("csv"))
 		path=path+".csv";
 	FileKml k = new FileKml();
 	this.data.addArrayList(k.readFromCsv(path));
+	return this.data;
+}
+
+public void clear () {
+	this.data.getDatabase().clear();
+}
+
+public void writeCSV(String name) {
+	if (name.length()==0) 
+	name=	"database.csv";
+	
+	else if(!name.substring(name.length()-3, name.length()).equals("csv"))
+		name=name+".csv";
+FileCsv t = new FileCsv();
+try {
+	t.writecsv(this.data.getDatabase(), name);
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+	
+}
+public void saveinkml (String name) {
+	if(name.substring(name.length()-3, name.length()).equals("kml")) {
+		name=name+".kml";
+		FileKml k = new FileKml();
+		k.TurnToKML(this.data.getDatabase(), name);
+	}
+	
 }
 }
