@@ -27,7 +27,7 @@ import com.toedter.calendar.JDateChooser;
 import Algoritem.Algoritem;
 import Files.FileCsv;
 import Files.FileKml;
-import Filter.Filter;
+import Filter.*;
 import object.Cordinate;
 import object.Database;
 import object.Scan;
@@ -176,6 +176,7 @@ public class gui {
 		
 		txtEnterPathTo = new JTextField();
 		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterPathTo, -319, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, -13, SpringLayout.EAST, frame.getContentPane());
 		txtEnterPathTo.setText("Format of CSV File");
 		txtEnterPathTo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterPathTo.setColumns(10);
@@ -217,20 +218,6 @@ public class gui {
 		btnStartFilter.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnStartFilter.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnStartFilter);
-		
-		JButton btnStartAlgo = new JButton("Start algo 2");
-		springLayout.putConstraint(SpringLayout.NORTH, btnStartAlgo, 6, SpringLayout.SOUTH, txtEnterPathTo);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, 0, SpringLayout.EAST, btnStartAlgo);
-		btnStartAlgo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Connect con=new Connect();
-				String path=txtEnterPathTo.getText();
-				con.algoritem2a(path);
-			}
-		});
-		btnStartAlgo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnStartAlgo.setBackground(UIManager.getColor("Button.background"));
-		frame.getContentPane().add(btnStartAlgo);
 		
 	
 		
@@ -351,9 +338,9 @@ public class gui {
 		frame.getContentPane().add(txtpnEnd);
 		
 		JTextPane txtpnPath = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterPathTo, 16, SpringLayout.EAST, txtpnPath);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgo_1, -5, SpringLayout.NORTH, txtpnPath);
 		springLayout.putConstraint(SpringLayout.EAST, txtpnEnd, -417, SpringLayout.WEST, txtpnPath);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterPathTo, 16, SpringLayout.EAST, txtpnPath);
 		txtpnPath.setText("Path:");
 		txtpnPath.setForeground(Color.BLACK);
 		txtpnPath.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -361,8 +348,8 @@ public class gui {
 		frame.getContentPane().add(txtpnPath);
 		
 		JTextPane txtpnOr = new JTextPane();
+		springLayout.putConstraint(SpringLayout.EAST, txtpnOr, -259, SpringLayout.EAST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnPath, -25, SpringLayout.NORTH, txtpnOr);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnOr, -137, SpringLayout.WEST, btnStartAlgo);
 		txtpnOr.setText("OR");
 		txtpnOr.setForeground(Color.BLACK);
 		txtpnOr.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -445,7 +432,6 @@ public class gui {
 		frame.getContentPane().add(txtpnSignal_1);
 		
 		textField_10 = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, btnStartAlgo, 0, SpringLayout.EAST, textField_10);
 		springLayout.putConstraint(SpringLayout.WEST, textField_10, 1114, SpringLayout.WEST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, txtpnSig, -6, SpringLayout.WEST, textField_10);
 		springLayout.putConstraint(SpringLayout.EAST, textField_10, -13, SpringLayout.EAST, frame.getContentPane());
@@ -594,6 +580,28 @@ public class gui {
 		button.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(button);
+		
+		JLabel lblNewLabel = new JLabel("");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 6, SpringLayout.SOUTH, label);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, txtpnAlgo);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 31, SpringLayout.SOUTH, label);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, txtEnterPathTo);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton button_2 = new JButton("Start algo 2");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					Connect con=new Connect();
+					String path=txtEnterPathTo.getText();
+					con.algoritem2a(path);
+					lblNewLabel.setText("result_for_algo_2.csv was created check Workspace");
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, button_2, 10, SpringLayout.SOUTH, txtEnterPathTo);
+		springLayout.putConstraint(SpringLayout.EAST, button_2, 0, SpringLayout.EAST, txtEnterPathTo);
+		button_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button_2.setBackground(UIManager.getColor("Button.background"));
+		frame.getContentPane().add(button_2);
 
 	}
 }

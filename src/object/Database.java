@@ -26,9 +26,6 @@ public class Database {
 		this.database.clear();
 		this.database.addAll(scan);
 		this.hash_map = new HashMap<String, ArrayList<Scan>>();
-//		for (int i = 0; i < scan.size(); i++) {
-//			insertHash(scan.get(i));
-//		}
 		this.hash_map=hashmap();
 	}
 
