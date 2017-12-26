@@ -30,7 +30,6 @@ public class Database {
 //			insertHash(scan.get(i));
 //		}
 		this.hash_map=hashmap();
-		System.out.println(this.hash_map.size());
 	}
 
 	/**
