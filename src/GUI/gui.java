@@ -232,22 +232,6 @@ public class gui {
 		btnStartAlgo.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnStartAlgo);
 		
-		JButton btnStartAlgo_1 = new JButton("Start algo 1");
-		springLayout.putConstraint(SpringLayout.NORTH, btnStartAlgo_1, -2, SpringLayout.NORTH, txtEnterRadius);
-		btnStartAlgo_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Connect con=new Connect();
-			    String mac=txtEnterMac_3.getText();
-			    Cordinate temp=con.algoritem1(mac);
-				JOptionPane.showMessageDialog(null, temp.toString());
-				
-			    }
-		
-		});
-		btnStartAlgo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnStartAlgo_1.setBackground(UIManager.getColor("Button.background"));
-		frame.getContentPane().add(btnStartAlgo_1);
-		
 	
 		
 		JTextPane txtpnRadius = new JTextPane();
@@ -350,7 +334,6 @@ public class gui {
 		frame.getContentPane().add(textField_3);
 		
 		JTextPane txtpnMac = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, btnStartAlgo_1, 0, SpringLayout.WEST, txtpnMac);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnMac, 0, SpringLayout.SOUTH, txtpnTime);
 		springLayout.putConstraint(SpringLayout.EAST, txtpnMac, -6, SpringLayout.WEST, txtEnterMac_3);
 		txtpnMac.setText("Mac:");
@@ -489,34 +472,6 @@ public class gui {
 		textField_13.setColumns(10);
 		frame.getContentPane().add(textField_13);
 		
-		JButton button = new JButton("Start algo 2");
-		springLayout.putConstraint(SpringLayout.NORTH, button, 27, SpringLayout.SOUTH, textField_9);
-		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, txtpnMac_1);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Connect con=new Connect();
-				String mac1=null;
-				String mac2=null;
-				String mac3=null;
-				String sig1=null;
-				String sig2=null;
-				String sig3=null;
-			    mac1=textField_7.getText();
-				mac2=textField_8.getText();
-				mac3=textField_9.getText();
-			    sig1=textField_10.getText();
-                sig2=textField_12.getText();
-                sig3=textField_13.getText(); 
-				String path=txtEnterPathTo.getText();
-				Cordinate temp=con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
-				JOptionPane.showMessageDialog(null, temp.toString());
-				
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 13));
-		button.setBackground(UIManager.getColor("Button.background"));
-		frame.getContentPane().add(button);
-		
 		JTextPane txtpnFilters = new JTextPane();
 		springLayout.putConstraint(SpringLayout.NORTH, txtpnFilters, 0, SpringLayout.NORTH, txtpnAlgorithms);
 		springLayout.putConstraint(SpringLayout.WEST, txtpnFilters, 293, SpringLayout.EAST, txtpnDatabase);
@@ -582,11 +537,63 @@ public class gui {
 		frame.getContentPane().add(textField_14);
 		
 		JLabel lblCord = new JLabel("cord:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblCord, 0, SpringLayout.NORTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.WEST, lblCord, 6, SpringLayout.EAST, btnStartAlgo_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblCord, 0, SpringLayout.SOUTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.EAST, lblCord, 0, SpringLayout.EAST, btnStartAlgo);
+		springLayout.putConstraint(SpringLayout.NORTH, lblCord, -1, SpringLayout.NORTH, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.WEST, lblCord, 118, SpringLayout.EAST, txtEnterRadius);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblCord, -22, SpringLayout.NORTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.EAST, lblCord, -10, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(lblCord);	
+		
+		JButton button_1 = new JButton("Start algo 1");
+		springLayout.putConstraint(SpringLayout.WEST, button_1, 13, SpringLayout.EAST, txtEnterMac_3);
+		springLayout.putConstraint(SpringLayout.SOUTH, button_1, 0, SpringLayout.SOUTH, txtpnTime);
+		button_1.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			Connect con=new Connect();
+		    String mac=txtEnterMac_3.getText();
+		    Cordinate temp=con.algoritem1(mac);
+		    lblCord.setText("core: Lat:"+temp.getLat()+" Lon:"+temp.getLon()+" Alt:"+temp.getAlt());
+			
+		    }
+		
+		});
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button_1.setBackground(UIManager.getColor("Button.background"));
+		frame.getContentPane().add(button_1);
+		
+		JLabel label = new JLabel("cord:");
+		springLayout.putConstraint(SpringLayout.WEST, label, 0, SpringLayout.WEST, txtpnAlgo);
+		springLayout.putConstraint(SpringLayout.SOUTH, label, -76, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, label, 0, SpringLayout.EAST, txtEnterPathTo);
+		frame.getContentPane().add(label);
+		
+		JButton button = new JButton("Start algo 2");
+		springLayout.putConstraint(SpringLayout.NORTH, label, 27, SpringLayout.SOUTH, button);
+		springLayout.putConstraint(SpringLayout.NORTH, button, 28, SpringLayout.SOUTH, textField_9);
+		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, txtpnOr);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connect con=new Connect();
+				String mac1=null;
+				String mac2=null;
+				String mac3=null;
+				String sig1=null;
+				String sig2=null;
+				String sig3=null;
+			    mac1=textField_7.getText();
+				mac2=textField_8.getText();
+				mac3=textField_9.getText();
+			    sig1=textField_10.getText();
+                sig2=textField_12.getText();
+                sig3=textField_13.getText(); 
+				String path=txtEnterPathTo.getText();
+				Cordinate temp=con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
+				label.setText("core: Lat:"+temp.getLat()+" Lon:"+temp.getLon()+" Alt:"+temp.getAlt());
+				
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button.setBackground(UIManager.getColor("Button.background"));
+		frame.getContentPane().add(button);
 
 	}
 }
