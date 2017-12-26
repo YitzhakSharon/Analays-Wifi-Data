@@ -75,7 +75,7 @@ public class Algoritem {
 			}
 
 		}
-		writetocsv(write, "result_for_algo_1.csv");
+		writetocsv(write, "resutlt_algo1.csv");
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class Algoritem {
 		}
 		FileCsv fe = new FileCsv();
 		try {
-			fe.writecsv(sample, "result_for_algo_2.csv");
+			fe.writecsv(sample, "resutlt_algo2.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -250,4 +250,3 @@ public class Algoritem {
 	}
 
 }
-

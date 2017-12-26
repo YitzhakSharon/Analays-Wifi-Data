@@ -11,7 +11,6 @@ import Files.FileKml;
 import object.Scan;
 
 
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -23,6 +22,7 @@ public class Main {
 
 		FileCsv fe = new FileCsv();
 		Database data = new Database(fe.readForCsv("database"));
+		System.out.println("num of object = "+data.getDatabase().size());
 		try {
 			fe.writecsv(data.getDatabase(), "Table.csv");
 		} catch (IOException e) {
@@ -32,22 +32,22 @@ public class Main {
 		/**
 		 * enter Database
 		 */
-		//FileKml fl = new FileKml();
+		FileKml fl = new FileKml();
 		//data.addArrayList( fl.readFromCsv("Table.csv"));
 		/**
 		 *   turn on the kml with filters
 		 */
-		//Filter k = new Filter();
+		ChooseFilter k = new ChooseFilter();
 		//	k.ChekFilterForKml(data);
 
 		/**
 		 * turn on the Algoritem for calculate approximate location, and the csv files we want to check
 		 */
-		//ArrayList<Scan> sample = fl.readFromCsv("C:\\Users\\merav\\Desktop\\a.csv");
-		//Algoritem temp1 = new Algoritem();
+	//	ArrayList<Scan> sample = fl.readFromCsv("C:\\Users\\yitzhak\\Desktop\\_comb_no_gps_ts1.csv");
+		Algoritem temp1 = new Algoritem();
 		//temp1.algo2tocsv(data, sample);
-		//temp1.algo1tocsv(data.getDatabase());
-
+		temp1.algo1tocsv(data.getDatabase());
+		System.out.println(temp1.algo1Hash(data.getDatabase()).size());
 
 		long b= System.currentTimeMillis();
 		System.out.println(b-a);

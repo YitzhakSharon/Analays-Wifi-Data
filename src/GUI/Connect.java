@@ -1,13 +1,12 @@
 package GUI;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import Algoritem.Algoritem;
+import Files.FileCsv;
 import Files.FileKml;
 import object.Database;
 import object.MacData;
@@ -67,5 +66,18 @@ public boolean check_user_Signal(String sig) {
 	}
 	return true;
 
+}
+
+public void enterdatabase (String path) {
+	FileCsv c = new FileCsv();
+	this.data.addArrayList(c.readForCsv(path).getDatabase());
+}
+
+public void readCSv(String path) {
+	
+	if(!path.substring(path.length()-3, path.length()).equals("csv"))
+		path=path+".csv";
+	FileKml k = new FileKml();
+	this.data.addArrayList(k.readFromCsv(path));
 }
 }

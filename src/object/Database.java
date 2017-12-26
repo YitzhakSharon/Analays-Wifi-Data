@@ -27,6 +27,7 @@ public class Database {
 		this.database.addAll(scan);
 		this.hash_map = new HashMap<String, ArrayList<Scan>>();
 		this.hash_map=hashmap();
+
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class Database {
 	 * @param other
 	 */
 	public Database(Database other) {
-		this.database.clear();
+		//this.database.clear();
 		this.database = new ArrayList<Scan>();
 		this.database.addAll(other.database);
 		this.hash_map = hashmap();
