@@ -43,6 +43,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class gui {
 
@@ -64,7 +66,6 @@ public class gui {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
-	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_14;
@@ -175,8 +176,6 @@ public class gui {
 		
 		txtEnterPathTo = new JTextField();
 		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterPathTo, -319, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgo_1, -6, SpringLayout.NORTH, txtEnterPathTo);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, -112, SpringLayout.EAST, frame.getContentPane());
 		txtEnterPathTo.setText("Format of CSV File");
 		txtEnterPathTo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterPathTo.setColumns(10);
@@ -219,16 +218,9 @@ public class gui {
 		btnStartFilter.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnStartFilter);
 		
-		JTextPane txtpnEnd = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, txtpnEnd, 406, SpringLayout.WEST, frame.getContentPane());
-		txtpnEnd.setText(" End");
-		txtpnEnd.setForeground(Color.BLACK);
-		txtpnEnd.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtpnEnd.setBackground(new Color(255, 250, 250));
-		frame.getContentPane().add(txtpnEnd);
-		
 		JButton btnStartAlgo = new JButton("Start algo 2");
 		springLayout.putConstraint(SpringLayout.NORTH, btnStartAlgo, 6, SpringLayout.SOUTH, txtEnterPathTo);
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, 0, SpringLayout.EAST, btnStartAlgo);
 		btnStartAlgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Connect con=new Connect();
@@ -367,10 +359,18 @@ public class gui {
 		txtpnMac.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(txtpnMac);
 		
+		JTextPane txtpnEnd = new JTextPane();
+		springLayout.putConstraint(SpringLayout.WEST, txtpnEnd, 406, SpringLayout.WEST, frame.getContentPane());
+		txtpnEnd.setText(" End");
+		txtpnEnd.setForeground(Color.BLACK);
+		txtpnEnd.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnEnd.setBackground(new Color(255, 250, 250));
+		frame.getContentPane().add(txtpnEnd);
+		
 		JTextPane txtpnPath = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgo_1, -5, SpringLayout.NORTH, txtpnPath);
 		springLayout.putConstraint(SpringLayout.EAST, txtpnEnd, -417, SpringLayout.WEST, txtpnPath);
 		springLayout.putConstraint(SpringLayout.WEST, txtEnterPathTo, 16, SpringLayout.EAST, txtpnPath);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtpnPath, 0, SpringLayout.SOUTH, txtEnterPathTo);
 		txtpnPath.setText("Path:");
 		txtpnPath.setForeground(Color.BLACK);
 		txtpnPath.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -378,6 +378,7 @@ public class gui {
 		frame.getContentPane().add(txtpnPath);
 		
 		JTextPane txtpnOr = new JTextPane();
+		springLayout.putConstraint(SpringLayout.SOUTH, txtpnPath, -25, SpringLayout.NORTH, txtpnOr);
 		springLayout.putConstraint(SpringLayout.EAST, txtpnOr, -137, SpringLayout.WEST, btnStartAlgo);
 		txtpnOr.setText("OR");
 		txtpnOr.setForeground(Color.BLACK);
@@ -527,12 +528,6 @@ public class gui {
 		txtpnFilters.setBackground(Color.WHITE);
 		frame.getContentPane().add(txtpnFilters);
 		
-		textField_4 = new JTextField();
-		textField_4.setText(" hh:mm:ss");
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		frame.getContentPane().add(textField_4);
-		
 		JTextPane textPane = new JTextPane();
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnOr, 0, SpringLayout.SOUTH, textPane);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnEnd, -9, SpringLayout.NORTH, textPane);
@@ -588,9 +583,10 @@ public class gui {
 		
 		JLabel lblCord = new JLabel("cord:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblCord, 0, SpringLayout.NORTH, txtEnterRadius);
-		springLayout.putConstraint(SpringLayout.WEST, lblCord, 16, SpringLayout.EAST, btnStartAlgo_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblCord, 6, SpringLayout.EAST, btnStartAlgo_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblCord, 0, SpringLayout.SOUTH, txtEnterRadius);
 		springLayout.putConstraint(SpringLayout.EAST, lblCord, 0, SpringLayout.EAST, btnStartAlgo);
-		frame.getContentPane().add(lblCord);
+		frame.getContentPane().add(lblCord);	
+
 	}
 }
