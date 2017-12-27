@@ -54,6 +54,7 @@ import java.awt.event.MouseEvent;
 public class gui {
 
 	protected static final String Connect = null;
+	Connect c = new Connect();
 	private JFrame frame;
 	private JTextField txtEnterPathTo;
 	private JTextField txtEnterSignal_2;
@@ -101,6 +102,7 @@ public class gui {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setForeground(Color.BLACK);
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
 		frame.setFont(new Font("Engravers MT", Font.BOLD, 16));
@@ -110,8 +112,10 @@ public class gui {
 		frame.getContentPane().setLayout(springLayout);
 
 		JButton btnCancelFilters = new JButton("Cancel filters");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelFilters, -31, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnCancelFilters, -458, SpringLayout.EAST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelFilters, -31, SpringLayout.SOUTH,
+				frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnCancelFilters, -458, SpringLayout.EAST,
+				frame.getContentPane());
 		btnCancelFilters.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnCancelFilters.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnCancelFilters);
@@ -136,13 +140,13 @@ public class gui {
 		frame.getContentPane().add(txtpnAlgo_1);
 
 		txtEnterPathTo = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterPathTo, -319, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterPathTo, -319, SpringLayout.SOUTH,
+				frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, txtEnterPathTo, -13, SpringLayout.EAST, frame.getContentPane());
 		txtEnterPathTo.setText("Format of CSV File");
 		txtEnterPathTo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEnterPathTo.setColumns(10);
 		frame.getContentPane().add(txtEnterPathTo);
-
 
 		txtEnterMac_3 = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterMac_3, 4, SpringLayout.SOUTH, txtpnAlgo);
@@ -161,7 +165,6 @@ public class gui {
 		txtpnDatabase.setBackground(new Color(255, 255, 255));
 		frame.getContentPane().add(txtpnDatabase);
 
-
 		JTextPane txtpnAlgorithms = new JTextPane();
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnAlgorithms, -43, SpringLayout.NORTH, txtEnterMac_3);
 		springLayout.putConstraint(SpringLayout.EAST, txtpnAlgorithms, -145, SpringLayout.EAST, frame.getContentPane());
@@ -172,7 +175,6 @@ public class gui {
 		txtpnAlgorithms.setFont(new Font("Tahoma", Font.BOLD, 17));
 		txtpnAlgorithms.setBackground(Color.WHITE);
 		frame.getContentPane().add(txtpnAlgorithms);
-
 
 		textField = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, textField, 141, SpringLayout.NORTH, frame.getContentPane());
@@ -335,17 +337,17 @@ public class gui {
 		springLayout.putConstraint(SpringLayout.EAST, textField, -18, SpringLayout.WEST, lblCord);
 		springLayout.putConstraint(SpringLayout.WEST, lblCord, 844, SpringLayout.WEST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblCord, -10, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(lblCord);	
+		frame.getContentPane().add(lblCord);
 
 		JButton button_1 = new JButton("Start algo 1");
 		springLayout.putConstraint(SpringLayout.WEST, button_1, 13, SpringLayout.EAST, txtEnterMac_3);
 		springLayout.putConstraint(SpringLayout.SOUTH, button_1, -9, SpringLayout.NORTH, lblCord);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Connect con=new Connect();
-				String mac=txtEnterMac_3.getText();
-				Cordinate temp=con.algoritem1(mac);
-				lblCord.setText("core: Lat:"+temp.getLat()+" Lon:"+temp.getLon()+" Alt:"+temp.getAlt());
+
+				String mac = txtEnterMac_3.getText();
+				Cordinate temp = c.algoritem1(mac);
+				lblCord.setText("core: Lat:" + temp.getLat() + " Lon:" + temp.getLon() + " Alt:" + temp.getAlt());
 
 			}
 
@@ -366,22 +368,22 @@ public class gui {
 		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, txtpnOr);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Connect con=new Connect();
-				String mac1=null;
-				String mac2=null;
-				String mac3=null;
-				String sig1=null;
-				String sig2=null;
-				String sig3=null;
-				mac1=textField_7.getText();
-				mac2=textField_8.getText();
-				mac3=textField_9.getText();
-				sig1=textField_10.getText();
-				sig2=textField_12.getText();
-				sig3=textField_13.getText(); 
-				String path=txtEnterPathTo.getText();
-				Cordinate temp=con.algoritem2b(mac1,mac2,mac3,sig1,sig2,sig2);
-				label.setText("core: Lat:"+temp.getLat()+" Lon:"+temp.getLon()+" Alt:"+temp.getAlt());
+
+				String mac1 = null;
+				String mac2 = null;
+				String mac3 = null;
+				String sig1 = null;
+				String sig2 = null;
+				String sig3 = null;
+				mac1 = textField_7.getText();
+				mac2 = textField_8.getText();
+				mac3 = textField_9.getText();
+				sig1 = textField_10.getText();
+				sig2 = textField_12.getText();
+				sig3 = textField_13.getText();
+				String path = txtEnterPathTo.getText();
+				Cordinate temp = c.algoritem2b(mac1, mac2, mac3, sig1, sig2, sig2);
+				label.setText("core: Lat:" + temp.getLat() + " Lon:" + temp.getLon() + " Alt:" + temp.getAlt());
 
 			}
 		});
@@ -416,12 +418,11 @@ public class gui {
 		enterpath_csv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Connect c =new  Connect ();
 				String path = txtEnterPathTo.getText();
-				Database data =c.readCSv(path);
-				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
-				num_of_mac.setText("number of macs: "+data.getHash_map().size());
-				
+				Database data = c.readCSv(path);
+				num_of_Scan.setText("number of Scan: " + data.getDatabase().size());
+				num_of_mac.setText("number of macs: " + data.getHash_map().size());
+
 			}
 		});
 		enterpath_csv.setText("Format of CSV File");
@@ -435,13 +436,10 @@ public class gui {
 		btninsertDatabase.setBackground(UIManager.getColor("Button.background"));
 		btninsertDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				String path =enterfile.getText();
-				Connect c= new Connect();
-				Database data=c.enterdatabase(path);
-				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
-				num_of_mac.setText("number of macs: "+data.getHash_map().size());
-				
+				String path = enterfile.getText();
+				Database data = c.enterdatabase(path);
+				num_of_Scan.setText("number of Scan: " + data.getDatabase().size());
+				num_of_mac.setText("number of macs: " + data.getHash_map().size());
 
 			}
 		});
@@ -453,18 +451,16 @@ public class gui {
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -58, SpringLayout.EAST, num_of_Scan);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path=enterpath_csv.getText();
-				Connect c= new Connect();
-				Database data=c.readCSv(path);
-				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
-				num_of_mac.setText("number of macs: "+data.getHash_map().size());
-			
+				String path = enterpath_csv.getText();
+
+				Database data = c.readCSv(path);
+				num_of_Scan.setText("number of Scan: " + data.getDatabase().size());
+				num_of_mac.setText("number of macs: " + data.getHash_map().size());
+
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
-		
-		
-		
+
 		JButton btnClearDatabase = new JButton("clear database");
 		springLayout.putConstraint(SpringLayout.WEST, txtpnPath, 699, SpringLayout.EAST, btnClearDatabase);
 		springLayout.putConstraint(SpringLayout.WEST, btnClearDatabase, 72, SpringLayout.WEST, frame.getContentPane());
@@ -472,76 +468,51 @@ public class gui {
 		springLayout.putConstraint(SpringLayout.NORTH, btnClearDatabase, 0, SpringLayout.NORTH, txtEnterPathTo);
 		btnClearDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Connect c= new Connect();
-				Database data=c.clear();
-				num_of_Scan.setText("number of Scan: "+data.getDatabase().size());
-				num_of_mac.setText("number of macs: "+data.getHash_map().size());
+
+				Database data = c.clear();
+				num_of_Scan.setText("number of Scan: " + data.getDatabase().size());
+				num_of_mac.setText("number of macs: " + data.getHash_map().size());
 			}
 		});
 		frame.getContentPane().add(btnClearDatabase);
-		
-		JButton btnCsvDataIn = new JButton("save data in CSV");
-		springLayout.putConstraint(SpringLayout.NORTH, btnCsvDataIn, 39, SpringLayout.SOUTH, btnClearDatabase);
-		springLayout.putConstraint(SpringLayout.WEST, btnCsvDataIn, 0, SpringLayout.WEST, btnNewButton);
-		btnCsvDataIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String name =enterpath_csv.getText();
-				Connect c = new Connect();
-			c.writeCSV(name);
-			}
-		});
-		frame.getContentPane().add(btnCsvDataIn);
-		
+
 		txtEnterName = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, txtEnterName, 0, SpringLayout.NORTH, txtpnMac_1);
 		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 0, SpringLayout.WEST, txtpnDatabase);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterName, 0, SpringLayout.SOUTH, txtpnMac_2);
 		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, 0, SpringLayout.EAST, enterfile);
 		txtEnterName.setText("enter name");
 		frame.getContentPane().add(txtEnterName);
 		txtEnterName.setColumns(10);
-		
-		JButton btnSaveInKml = new JButton("save in kml");
-		springLayout.putConstraint(SpringLayout.NORTH, btnSaveInKml, 0, SpringLayout.NORTH, textField_9);
-		springLayout.putConstraint(SpringLayout.WEST, btnSaveInKml, 0, SpringLayout.WEST, btninsertDatabase);
-		btnSaveInKml.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String name=namekml.getText(); 
-				Connect c = new Connect();
-				c.saveinkml(name);
-			}
-		});
-		frame.getContentPane().add(btnSaveInKml);
-		
+
 		namekml = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, namekml, 50, SpringLayout.SOUTH, txtEnterName);
 		springLayout.putConstraint(SpringLayout.WEST, namekml, 131, SpringLayout.WEST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, namekml, 288, SpringLayout.WEST, frame.getContentPane());
 		namekml.setText("enter name ");
 		frame.getContentPane().add(namekml);
 		namekml.setColumns(10);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 6, SpringLayout.SOUTH, label);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, txtpnAlgo);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 31, SpringLayout.SOUTH, label);
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, txtEnterPathTo);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		JButton button_2 = new JButton("Start algo 2");
 		springLayout.putConstraint(SpringLayout.NORTH, button_2, 6, SpringLayout.SOUTH, txtEnterPathTo);
 		springLayout.putConstraint(SpringLayout.EAST, button_2, 0, SpringLayout.EAST, txtEnterPathTo);
 		button_2.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						Connect con=new Connect();
-						String path=txtEnterPathTo.getText();
-						con.algoritem2a(path);
-						lblNewLabel.setText("resutlt_algo2.csv was created check workspace");
-					}
-				});
+			public void actionPerformed(ActionEvent arg0) {
+
+				String path = txtEnterPathTo.getText();
+				c.algoritem2a(path);
+				lblNewLabel.setText("resutlt_algo2.csv was created check workspace");
+			}
+		});
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_2.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(button_2);
-		
+
 		JTextPane textPane_3 = new JTextPane();
 		springLayout.putConstraint(SpringLayout.NORTH, textPane_3, 0, SpringLayout.SOUTH, btninsertDatabase);
 		springLayout.putConstraint(SpringLayout.WEST, textPane_3, 82, SpringLayout.WEST, frame.getContentPane());
@@ -550,7 +521,7 @@ public class gui {
 		textPane_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		textPane_3.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(textPane_3);
-		
+
 		JTextPane textPane_4 = new JTextPane();
 		springLayout.putConstraint(SpringLayout.WEST, enterpath_csv, 6, SpringLayout.EAST, textPane_4);
 		springLayout.putConstraint(SpringLayout.NORTH, textPane_4, 0, SpringLayout.NORTH, txtpnAlgo_1);
@@ -560,25 +531,24 @@ public class gui {
 		textPane_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		textPane_4.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(textPane_4);
-		
+
 		JTextPane textPane_5 = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, textPane_5, 0, SpringLayout.NORTH, txtpnMac_2);
-		springLayout.putConstraint(SpringLayout.WEST, textPane_5, 0, SpringLayout.WEST, btnNewButton);
+		springLayout.putConstraint(SpringLayout.WEST, textPane_5, 0, SpringLayout.WEST, btninsertDatabase);
+		springLayout.putConstraint(SpringLayout.SOUTH, textPane_5, 0, SpringLayout.SOUTH, txtpnMac_1);
 		textPane_5.setText("Path:");
 		textPane_5.setForeground(Color.BLACK);
 		textPane_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		textPane_5.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(textPane_5);
-		
+
 		JTextPane textPane_6 = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, textPane_6, 12, SpringLayout.SOUTH, btnSaveInKml);
 		springLayout.putConstraint(SpringLayout.WEST, textPane_6, 0, SpringLayout.WEST, btninsertDatabase);
 		textPane_6.setText("Path:");
 		textPane_6.setForeground(Color.BLACK);
 		textPane_6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		textPane_6.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(textPane_6);
-		
+
 		JButton time = new JButton("Time");
 		time.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -588,7 +558,7 @@ public class gui {
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, time, 0, SpringLayout.NORTH, textField);
 		frame.getContentPane().add(time);
-		
+
 		JButton Place = new JButton("place");
 		springLayout.putConstraint(SpringLayout.EAST, time, 0, SpringLayout.EAST, Place);
 		Place.addActionListener(new ActionListener() {
@@ -598,7 +568,7 @@ public class gui {
 			}
 		});
 		frame.getContentPane().add(Place);
-		
+
 		JButton Id = new JButton("id");
 		springLayout.putConstraint(SpringLayout.NORTH, Id, 0, SpringLayout.NORTH, txtpnAlgo_1);
 		Id.addActionListener(new ActionListener() {
@@ -608,7 +578,7 @@ public class gui {
 			}
 		});
 		frame.getContentPane().add(Id);
-		
+
 		JButton NotPlace = new JButton("not place");
 		springLayout.putConstraint(SpringLayout.NORTH, Place, 0, SpringLayout.NORTH, NotPlace);
 		springLayout.putConstraint(SpringLayout.WEST, Place, 46, SpringLayout.EAST, NotPlace);
@@ -621,7 +591,7 @@ public class gui {
 			}
 		});
 		frame.getContentPane().add(NotPlace);
-		
+
 		JButton NotTime = new JButton("not time");
 		springLayout.putConstraint(SpringLayout.NORTH, NotTime, 0, SpringLayout.NORTH, textField);
 		springLayout.putConstraint(SpringLayout.EAST, NotTime, 0, SpringLayout.EAST, NotPlace);
@@ -633,14 +603,14 @@ public class gui {
 			}
 		});
 		frame.getContentPane().add(NotTime);
-		
+
 		JButton NotId = new JButton("not id");
 		springLayout.putConstraint(SpringLayout.WEST, Id, 61, SpringLayout.EAST, NotId);
 		springLayout.putConstraint(SpringLayout.NORTH, NotId, 0, SpringLayout.NORTH, txtpnAlgo_1);
 		springLayout.putConstraint(SpringLayout.EAST, NotId, 0, SpringLayout.EAST, NotPlace);
 		NotId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI_not_id window = new  GUI_not_id();
+				GUI_not_id window = new GUI_not_id();
 				window.GUI_not_ID();
 			}
 		});
@@ -648,7 +618,7 @@ public class gui {
 		JButton btnStartFilter = new JButton("Start filter");
 		btnStartFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		springLayout.putConstraint(SpringLayout.EAST, btnStartFilter, -640, SpringLayout.EAST, frame.getContentPane());
@@ -658,7 +628,52 @@ public class gui {
 		btnStartFilter.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnStartFilter);
 
+		JLabel label_1 = new JLabel("");
+		springLayout.putConstraint(SpringLayout.NORTH, textPane_6, 42, SpringLayout.SOUTH, label_1);
+		springLayout.putConstraint(SpringLayout.NORTH, namekml, 44, SpringLayout.SOUTH, label_1);
+		springLayout.putConstraint(SpringLayout.NORTH, label_1, -25, SpringLayout.NORTH, txtpnMac_3);
+		springLayout.putConstraint(SpringLayout.WEST, label_1, 59, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, label_1, 0, SpringLayout.SOUTH, textField_8);
+		springLayout.putConstraint(SpringLayout.EAST, label_1, 0, SpringLayout.EAST, enterfile);
+		frame.getContentPane().add(label_1);
+
+		JButton button_3 = new JButton("save data in CSV");
+		springLayout.putConstraint(SpringLayout.NORTH, button_3, 0, SpringLayout.NORTH, txtpnOr);
+		springLayout.putConstraint(SpringLayout.WEST, button_3, 0, SpringLayout.WEST, btninsertDatabase);
+		springLayout.putConstraint(SpringLayout.EAST, button_3, 50, SpringLayout.EAST, btnNewButton);
+		button_3.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				String name = txtEnterName.getText();
+
+				c.writeCSV(name);
+				label_1.setText("The CSV file wab created");
+
+			}
+		});
+
+		frame.getContentPane().add(button_3);
 		
+		JLabel lblNewLabel_1 = new JLabel("");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 21, SpringLayout.SOUTH, namekml);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 67, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, 46, SpringLayout.SOUTH, namekml);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, 299, SpringLayout.WEST, frame.getContentPane());
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JButton button_4 = new JButton("save in kml");
+		springLayout.putConstraint(SpringLayout.WEST, button_4, 0, SpringLayout.WEST, btninsertDatabase);
+		springLayout.putConstraint(SpringLayout.SOUTH, button_4, -6, SpringLayout.NORTH, namekml);
+		button_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String name = namekml.getText();
+					c.saveinkml(name);
+					lblNewLabel_1.setText("The KML file wab created");
+				}
+			});
+		frame.getContentPane().add(button_4);
 
 	}
+
 }

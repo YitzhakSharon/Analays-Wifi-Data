@@ -31,7 +31,7 @@ public class Connect {
 
 	public Connect(){
 		FileKml s=new FileKml();
-		this.data= new Database(s.readFromCsv("Table.csv"));
+		this.data= new Database();
 	}
 	
 	public Cordinate algoritem1(String mac){
@@ -82,6 +82,7 @@ public class Connect {
 
 	}
 
+
 	public Database enterdatabase (String path) {
 		FileCsv c = new FileCsv();
 		this.data.addArrayList(c.readForCsv(path).getDatabase());
@@ -104,16 +105,19 @@ public class Connect {
 
 	public void writeCSV(String name) {
 		if (name.length()==0) 
-			name=	"database.csv";
+			name="database.csv";
 
 		else if(!name.substring(name.length()-3, name.length()).equals("csv"))
 			name=name+".csv";
 		FileCsv t = new FileCsv();
 		try {
+			System.out.println(this.data.getDatabase().size());
+			System.out.println(name);
 			t.writecsv(this.data.getDatabase(), name);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 
 	}

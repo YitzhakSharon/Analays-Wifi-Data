@@ -38,9 +38,10 @@ public class Database {
 	public void insertHash(Scan other) {
 		// this.database=new ArrayList<Scan>();
 		for (int i = 0; i < other.getWifiNetWork(); i++) {
-			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC()))
+			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC())){
 				if (!this.hash_map.get(other.getWifi().get(i).getMAC()).contains(other))
 					this.hash_map.get(other.getWifi().get(i).getMAC()).add(other);
+		}
 				else {
 					ArrayList<Scan> temp = new ArrayList<Scan>();
 					temp.add(other);
@@ -72,6 +73,7 @@ public class Database {
 		douplicate();
 		for (int i = 0; i < other.size(); i++) {
 			insertHash(other.get(i));
+
 		}
 		// we need to update the hash map and check douplicat in the hash map
 
@@ -161,6 +163,7 @@ public class Database {
 	public void douplicate() {
 		Set<Scan> data = new HashSet<Scan>();
 		data.addAll(this.database);
+		this.database.clear();
 		this.database.addAll(data);
 	}
 }
