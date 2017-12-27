@@ -154,7 +154,8 @@ public class Database {
 	 *            the database to set
 	 */
 	public void setDatabase(ArrayList<Scan> database) {
-		this.database = database;
+		this.database.clear();
+		this.database.addAll(database);
 	}
 
 	public void douplicate() {
