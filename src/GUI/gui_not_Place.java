@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class gui_not_Place {
+public class gui_not_Place extends gui{
 
 	private JFrame frame;
 	private JTextField lat;
@@ -125,8 +125,8 @@ public class gui_not_Place {
 				double lat2 = Double.parseDouble(lat.getText());
 				double rad = Double.parseDouble(radius.getText());
 				Cordinate cor = new Cordinate(lat2,lon2,0);
-				Connect c= new Connect();
 				Filters f = c.notfilterplace(cor, rad);
+				Not_place=true;
 				frame.dispose();
 
 			}

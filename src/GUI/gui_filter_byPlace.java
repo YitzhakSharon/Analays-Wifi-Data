@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class gui_filter_byPlace {
+public class gui_filter_byPlace extends gui{
 
 	private JFrame frame;
 	private JTextField lat;
@@ -123,9 +123,10 @@ public class gui_filter_byPlace {
 				double lat2 = Double.parseDouble(lat.getText());
 				double rad = Double.parseDouble(radius.getText());
 				Cordinate cor = new Cordinate(lat2,lon2,0);
-				Connect c= new Connect();
 				Filters f = c.filterplace(cor, rad);
+				place=true;
 				frame.dispose();
+				
 		
 			}
 		});

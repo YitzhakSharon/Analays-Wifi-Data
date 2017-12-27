@@ -15,7 +15,7 @@ import javax.swing.SpringLayout;
 import Filter.Filters;
 import javax.swing.UIManager;
 
-public class GUI_not_id {
+public class GUI_not_id extends gui{
 
 	private JFrame frame;
 	private JTextField id_txt;
@@ -77,8 +77,9 @@ public class GUI_not_id {
 		id_bouttm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id=id_txt.getText();
-				Connect c = new Connect();
+
 				Filters id1=c.NOtfilterId(id);
+				Not_id=true;
 				frame.dispose();
 			}
 		});

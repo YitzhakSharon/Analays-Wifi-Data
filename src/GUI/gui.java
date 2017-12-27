@@ -73,6 +73,13 @@ public class gui {
 	private JTextField enterpath_csv;
 	private JTextField txtEnterName;
 	private JTextField namekml;
+	boolean Not_id=false;
+	boolean id=false;
+	boolean Not_place=false;
+	boolean place=false;
+	boolean Not_time=false;
+	boolean time=false;
+
 
 	/**
 	 * Launch the application.
@@ -112,8 +119,10 @@ public class gui {
 		frame.getContentPane().setLayout(springLayout);
 
 		JButton btnCancelFilters = new JButton("Cancel filters");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelFilters, -31, SpringLayout.SOUTH,
-				frame.getContentPane());
+		btnCancelFilters.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		springLayout.putConstraint(SpringLayout.EAST, btnCancelFilters, -458, SpringLayout.EAST,
 				frame.getContentPane());
 		btnCancelFilters.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -363,6 +372,7 @@ public class gui {
 		frame.getContentPane().add(label);
 
 		JButton button = new JButton("Start algo 2");
+		springLayout.putConstraint(SpringLayout.NORTH, btnCancelFilters, 0, SpringLayout.NORTH, button);
 		springLayout.putConstraint(SpringLayout.NORTH, label, 27, SpringLayout.SOUTH, button);
 		springLayout.putConstraint(SpringLayout.NORTH, button, 28, SpringLayout.SOUTH, textField_9);
 		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, txtpnOr);
@@ -399,7 +409,7 @@ public class gui {
 		frame.getContentPane().add(num_of_Scan);
 
 		JLabel num_of_mac = new JLabel("number of macs ");
-		springLayout.putConstraint(SpringLayout.NORTH, num_of_mac, 4, SpringLayout.NORTH, btnCancelFilters);
+		springLayout.putConstraint(SpringLayout.NORTH, num_of_mac, 10, SpringLayout.SOUTH, num_of_Scan);
 		springLayout.putConstraint(SpringLayout.WEST, num_of_mac, 51, SpringLayout.WEST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, num_of_mac, 0, SpringLayout.EAST, txtpnDatabase);
 		num_of_mac.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -551,91 +561,14 @@ public class gui {
 		textPane_6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		textPane_6.setBackground(new Color(255, 250, 250));
 		frame.getContentPane().add(textPane_6);
-
-		JButton time = new JButton("Time");
-		time.setFont(new Font("Tahoma", Font.BOLD, 11));
-		time.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui_filter_time window = new gui_filter_time();
-				window.time_filer_Screen();
-			}
-		});
-		springLayout.putConstraint(SpringLayout.NORTH, time, 0, SpringLayout.NORTH, textField);
-		frame.getContentPane().add(time);
-
-		JButton Place = new JButton("place");
-		Place.setFont(new Font("Tahoma", Font.BOLD, 11));
-		springLayout.putConstraint(SpringLayout.EAST, time, 0, SpringLayout.EAST, Place);
-		Place.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui_filter_byPlace window = new gui_filter_byPlace();
-				window.GUI_BY_PLACE();
-			}
-		});
-		frame.getContentPane().add(Place);
-
-		JButton Id = new JButton("id");
-		springLayout.putConstraint(SpringLayout.NORTH, Id, 26, SpringLayout.SOUTH, time);
-		springLayout.putConstraint(SpringLayout.WEST, Id, 0, SpringLayout.WEST, time);
-		springLayout.putConstraint(SpringLayout.EAST, Id, 0, SpringLayout.EAST, time);
-		Id.setFont(new Font("Tahoma", Font.BOLD, 11));
-		Id.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui_filter_byID window = new gui_filter_byID();
-				window.GUI_ID();
-			}
-		});
-		frame.getContentPane().add(Id);
-
-		JButton NotPlace = new JButton("not place");
-		NotPlace.setFont(new Font("Tahoma", Font.BOLD, 11));
-		springLayout.putConstraint(SpringLayout.NORTH, Place, 0, SpringLayout.NORTH, NotPlace);
-		springLayout.putConstraint(SpringLayout.WEST, Place, 46, SpringLayout.EAST, NotPlace);
-		springLayout.putConstraint(SpringLayout.NORTH, NotPlace, 26, SpringLayout.SOUTH, txtpnFilters);
-		springLayout.putConstraint(SpringLayout.WEST, NotPlace, 182, SpringLayout.EAST, enterfile);
-		NotPlace.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui_not_Place window = new gui_not_Place();
-				window.GUI_NotBY_PLACE();
-			}
-		});
-		frame.getContentPane().add(NotPlace);
-
-		JButton NotTime = new JButton("not time");
-		springLayout.putConstraint(SpringLayout.NORTH, NotTime, 21, SpringLayout.SOUTH, NotPlace);
-		springLayout.putConstraint(SpringLayout.WEST, NotTime, 0, SpringLayout.WEST, NotPlace);
-		springLayout.putConstraint(SpringLayout.EAST, NotTime, -52, SpringLayout.WEST, time);
-		NotTime.setFont(new Font("Tahoma", Font.BOLD, 11));
-		NotTime.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui_filter_NOttime window = new gui_filter_NOttime();
-				window.NOTtime_filer_Screen();
-				NotTime.setEnabled(true);
-			}
-		});
-		frame.getContentPane().add(NotTime);
-
-		JButton NotId = new JButton("not id");
-		springLayout.putConstraint(SpringLayout.NORTH, NotId, 26, SpringLayout.SOUTH, NotTime);
-		springLayout.putConstraint(SpringLayout.WEST, NotId, 0, SpringLayout.WEST, NotPlace);
-		springLayout.putConstraint(SpringLayout.EAST, NotId, 0, SpringLayout.EAST, NotPlace);
-		NotId.setFont(new Font("Tahoma", Font.BOLD, 11));
-		NotId.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GUI_not_id window = new GUI_not_id();
-				window.GUI_not_ID();
-			}
-		});
-		frame.getContentPane().add(NotId);
 		JButton btnStartFilter = new JButton("Start filter");
+		springLayout.putConstraint(SpringLayout.NORTH, btnStartFilter, 0, SpringLayout.NORTH, btnCancelFilters);
+		springLayout.putConstraint(SpringLayout.EAST, btnStartFilter, 0, SpringLayout.EAST, textField_1);
 		btnStartFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		springLayout.putConstraint(SpringLayout.EAST, btnStartFilter, -640, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnCancelFilters, 54, SpringLayout.EAST, btnStartFilter);
-		springLayout.putConstraint(SpringLayout.NORTH, btnStartFilter, 0, SpringLayout.NORTH, btnCancelFilters);
 		btnStartFilter.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnStartFilter.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(btnStartFilter);
@@ -688,20 +621,101 @@ public class gui {
 		frame.getContentPane().add(button_4);
 		
 		JButton btnAnd = new JButton("AND");
+		btnAnd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAnd.setEnabled(false);
 		btnAnd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		springLayout.putConstraint(SpringLayout.WEST, btnAnd, 284, SpringLayout.EAST, button_3);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnAnd, 0, SpringLayout.SOUTH, txtpnOr);
 		frame.getContentPane().add(btnAnd);
 		
 		JButton btnOr = new JButton("OR");
+		btnOr.setEnabled(false);
+		springLayout.putConstraint(SpringLayout.WEST, btnOr, 34, SpringLayout.EAST, btnAnd);
+		springLayout.putConstraint(SpringLayout.WEST, btnCancelFilters, 0, SpringLayout.WEST, btnOr);
 		btnOr.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnOr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnOr, 0, SpringLayout.NORTH, txtpnOr);
-		springLayout.putConstraint(SpringLayout.WEST, btnOr, 0, SpringLayout.WEST, btnCancelFilters);
 		frame.getContentPane().add(btnOr);
+		
+		JButton button_5 = new JButton("not place");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui_not_Place window = new gui_not_Place();
+				window.GUI_NotBY_PLACE();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, button_5, 26, SpringLayout.SOUTH, txtpnFilters);
+		springLayout.putConstraint(SpringLayout.WEST, button_5, 182, SpringLayout.EAST, enterfile);
+		button_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("place");
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui_filter_byPlace window = new gui_filter_byPlace();
+				window.GUI_BY_PLACE();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, button_6, 46, SpringLayout.EAST, button_5);
+		springLayout.putConstraint(SpringLayout.NORTH, button_6, 0, SpringLayout.NORTH, button_5);
+		button_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("not time");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui_filter_NOttime window = new gui_filter_NOttime();
+				window.NOTtime_filer_Screen();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, button_7, 306, SpringLayout.EAST, btnNewButton);
+		springLayout.putConstraint(SpringLayout.SOUTH, button_7, 0, SpringLayout.SOUTH, textField);
+		button_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("Time");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui_filter_time window = new gui_filter_time();
+				window.time_filer_Screen();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, button_8, 52, SpringLayout.EAST, button_7);
+		springLayout.putConstraint(SpringLayout.SOUTH, button_8, 0, SpringLayout.SOUTH, textField);
+		button_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("not id");
+		button_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI_not_id window = new GUI_not_id();
+				window.GUI_not_ID();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, button_9, 0, SpringLayout.WEST, button_5);
+		springLayout.putConstraint(SpringLayout.SOUTH, button_9, 0, SpringLayout.SOUTH, enterpath_csv);
+		springLayout.putConstraint(SpringLayout.EAST, button_9, 81, SpringLayout.WEST, button_5);
+		button_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_9);
+		
+		JButton button_10 = new JButton("id");
+		button_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui_filter_byID window = new gui_filter_byID();
+				window.GUI_ID();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, button_10, 0, SpringLayout.NORTH, txtpnAlgo_1);
+		springLayout.putConstraint(SpringLayout.WEST, button_10, 0, SpringLayout.WEST, button_6);
+		springLayout.putConstraint(SpringLayout.EAST, button_10, 0, SpringLayout.EAST, button_6);
+		button_10.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(button_10);
 
 	}
 

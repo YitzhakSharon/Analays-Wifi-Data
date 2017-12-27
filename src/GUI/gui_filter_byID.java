@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class gui_filter_byID {
+public class gui_filter_byID extends gui{
 
 	private JFrame frame;
 	private JTextField id_txt;
@@ -80,9 +80,9 @@ public class gui_filter_byID {
 		id_bouttm.setEnabled(true);
 		id_bouttm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String id=id_txt.getText();
-				Connect c = new Connect();
-				Filters id1=c.filterId(id);
+				String id2=id_txt.getText();
+				Filters id1=c.filterId(id2);
+				id=true;
 				frame.dispose();
 			}
 		});

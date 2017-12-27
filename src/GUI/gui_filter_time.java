@@ -19,7 +19,7 @@ import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class gui_filter_time {
+public class gui_filter_time extends gui{
 
 	private JFrame frame;
 	private JTextField time_min;
@@ -152,8 +152,8 @@ public class gui_filter_time {
 				String max_time=time_max.getText();
 				String min = date_min +" "+min_time;
 				String max = date_max+ " "+max_time;
-				Connect c= new Connect();
 				Filters one=c.filtertime(min, max);
+				time=true;
 				frame.dispose();
 				
 			}
