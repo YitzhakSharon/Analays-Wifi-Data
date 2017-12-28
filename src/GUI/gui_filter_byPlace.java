@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class gui_filter_byPlace extends gui{
 
@@ -23,7 +25,57 @@ public class gui_filter_byPlace extends gui{
 	private JTextField lat;
 	private JTextField radius;
 	private JTextField lon;
+	private double lon1;
+	private double lat1;
+	private double radius1;
+	
+	public double getLon1() {
+		return lon1;
+	}
 
+	public void setLon1(double lon1) {
+		this.lon1 = lon1;
+	}
+
+	public double getLat1() {
+		return lat1;
+	}
+
+	public void setLat1(double lat1) {
+		this.lat1 = lat1;
+	}
+
+	public double getRadius1() {
+		return radius1;
+	}
+
+	public void setRadius1(double radius1) {
+		this.radius1 = radius1;
+	}
+
+	public JTextField getLat() {
+		return lat;
+	}
+
+	public void setLat(JTextField lat) {
+		this.lat = lat;
+	}
+
+	public JTextField getRadius() {
+		return radius;
+	}
+
+	public void setRadius(JTextField radius) {
+		this.radius = radius;
+	}
+
+	public JTextField getLon() {
+		return lon;
+	}
+
+	public void setLon(JTextField lon) {
+		this.lon = lon;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -119,15 +171,10 @@ public class gui_filter_byPlace extends gui{
 		apply.setBackground(UIManager.getColor("Button.background"));
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double lon2 = Double.parseDouble(lon.getText());
-				double lat2 = Double.parseDouble(lat.getText());
-				double rad = Double.parseDouble(radius.getText());
-				Cordinate cor = new Cordinate(lat2,lon2,0);
-				Filters f = c.filterplace(cor, rad);
-				place=true;
+				lon1= Double.parseDouble(lon.getText());
+				lat1 = Double.parseDouble(lat.getText());
+				radius1 = Double.parseDouble(radius.getText());
 				frame.dispose();
-				
-		
 			}
 		});
 

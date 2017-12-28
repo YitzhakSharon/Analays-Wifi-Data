@@ -19,7 +19,28 @@ import javax.swing.UIManager;
 public class gui_filter_byID extends gui{
 
 	private JFrame frame;
-	private JTextField id_txt;
+	private JTextField id_txt;	
+	private String id;
+	
+
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public JTextField getId_txt() {
+		return id_txt;
+	}
+
+	public void setId_txt(JTextField id_txt) {
+		this.id_txt = id_txt;
+	}
+
+
 
 	/**
 	 * Launch the application.
@@ -80,9 +101,7 @@ public class gui_filter_byID extends gui{
 		id_bouttm.setEnabled(true);
 		id_bouttm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String id2=id_txt.getText();
-				Filters id1=c.filterId(id2);
-				id=true;
+				id=id_txt.getText();
 				frame.dispose();
 			}
 		});

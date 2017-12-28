@@ -1,4 +1,4 @@
-package GUI;
+ package GUI;
 
 import java.awt.EventQueue;
 
@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import Filter.FilterByTime;
 import Filter.Filters;
 
 import javax.swing.JButton;
@@ -24,6 +25,9 @@ public class gui_filter_time extends gui{
 	private JFrame frame;
 	private JTextField time_min;
 	private JTextField time_max;
+	private String min;
+	private String max;
+
 
 	/**
 	 * Launch the application.
@@ -39,6 +43,62 @@ public class gui_filter_time extends gui{
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the time_min
+	 */
+	public JTextField getTime_min() {
+		return time_min;
+	}
+
+	/**
+	 * @param time_min the time_min to set
+	 */
+	public void setTime_min(JTextField time_min) {
+		this.time_min = time_min;
+	}
+
+	/**
+	 * @return the time_max
+	 */
+	public JTextField getTime_max() {
+		return time_max;
+	}
+
+	/**
+	 * @param time_max the time_max to set
+	 */
+	public void setTime_max(JTextField time_max) {
+		this.time_max = time_max;
+	}
+
+	/**
+	 * @return the min
+	 */
+	public String getMin() {
+		return min;
+	}
+
+	/**
+	 * @param min the min to set
+	 */
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+	/**
+	 * @return the max
+	 */
+	public String getMax() {
+		return max;
+	}
+
+	/**
+	 * @param max the max to set
+	 */
+	public void setMax(String max) {
+		this.max = max;
 	}
 
 	/**
@@ -145,15 +205,15 @@ public class gui_filter_time extends gui{
 			public void actionPerformed(ActionEvent e) {
 				String date_mintest=dateMin.getDate().toLocaleString();
 				String date_min=date_mintest.substring(9, date_mintest.length());
-				System.out.println(date_min);
 				String date_maxt =dataMax.getDate().toLocaleString();
 				String date_max=date_maxt.substring(9, date_maxt.length());
 				String min_time=time_min.getText();
 				String max_time=time_max.getText();
-				String min = date_min +" "+min_time;
-				String max = date_max+ " "+max_time;
+				 min = date_min +" "+min_time;
+				max = date_max+ " "+max_time;
+				min=	FilterByTime.CheckTime(min);
+				max=FilterByTime.CheckTime(max);
 				Filters one=c.filtertime(min, max);
-				time=true;
 				frame.dispose();
 				
 			}

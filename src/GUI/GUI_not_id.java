@@ -19,6 +19,26 @@ public class GUI_not_id extends gui{
 
 	private JFrame frame;
 	private JTextField id_txt;
+	private String not_id;
+	
+
+
+	public String getnot_Id() {
+		return not_id;
+	}
+
+	public void setnot_Id(String not_id) {
+		this.not_id = not_id;
+	}
+
+
+	public JTextField getId_txt() {
+		return id_txt;
+	}
+
+	public void setId_txt(JTextField id_txt) {
+		this.id_txt = id_txt;
+	}
 
 	/**
 	 * Launch the application.
@@ -76,10 +96,8 @@ public class GUI_not_id extends gui{
 		id_bouttm.setBackground(UIManager.getColor("Button.background"));
 		id_bouttm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String id=id_txt.getText();
+		
 
-				Filters id1=c.NOtfilterId(id);
-				Not_id=true;
 				frame.dispose();
 			}
 		});
@@ -95,6 +113,7 @@ public class GUI_not_id extends gui{
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				not_id=id_txt.getText();
 				frame.dispose();
 			}
 		});

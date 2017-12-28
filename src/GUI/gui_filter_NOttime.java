@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import Filter.FilterByTime;
 import Filter.Filters;
 
 import javax.swing.JButton;
@@ -24,6 +25,37 @@ public class gui_filter_NOttime extends gui{
 	private JFrame frame;
 	private JTextField time_min;
 	private JTextField time_max;
+	private String min;
+	private String max;
+
+
+	/**
+	 * @return the min
+	 */
+	public String getMin() {
+		return min;
+	}
+
+	/**
+	 * @param min the min to set
+	 */
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+	/**
+	 * @return the max
+	 */
+	public String getMax() {
+		return max;
+	}
+
+	/**
+	 * @param max the max to set
+	 */
+	public void setMax(String max) {
+		this.max = max;
+	}
 
 	/**
 	 * Launch the application.
@@ -151,10 +183,13 @@ public class gui_filter_NOttime extends gui{
 				String date_max=date_maxt.substring(9, date_maxt.length());
 				String min_time=time_min.getText();
 				String max_time=time_max.getText();
-				String min = date_min +" "+min_time;
-				String max = date_max+ " "+max_time;
+				 min = date_min +" "+min_time;
+				 max = date_max+ " "+max_time;
+				min=	FilterByTime.CheckTime(min);
+				max=FilterByTime.CheckTime(max);
+	
 				Filters one=c.notfiltertime(min, max);
-				Not_time=true;
+
 				frame.dispose();
 				
 			}
