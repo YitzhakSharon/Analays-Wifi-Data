@@ -29,10 +29,19 @@ import object.Cordinate;
 public class Connect {
 	Database data;
 
+	public Database getData() {
+		return data;
+	}
+
+	public void setData(Database data) {
+		this.data = data;
+	}
+
 	public Connect(){
-		FileKml s=new FileKml();
 		this.data= new Database();
 	}
+	
+
 	
 	public Cordinate algoritem1(String mac){
 		Algoritem  l=new Algoritem();
