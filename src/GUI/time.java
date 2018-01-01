@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,8 +29,6 @@ import java.awt.Color;
 public class time extends JPanel {
 	private String min;
 	private String max;
-	private JTextField txt_max_hour;
-	private JTextField txt_min_hour;
 
 	/**
 	 * Create the panel.
@@ -44,38 +43,77 @@ public class time extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, txt_max_year, 120, SpringLayout.WEST, this);
 		add(txt_max_year);
 
-		txt_max_hour = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, txt_max_hour, 0, SpringLayout.WEST, txt_max_year);
-		txt_max_hour.setText("hh:mm:ss");
-		springLayout.putConstraint(SpringLayout.NORTH, txt_max_hour, 6, SpringLayout.SOUTH, txt_max_year);
-		springLayout.putConstraint(SpringLayout.EAST, txt_max_hour, 0, SpringLayout.EAST, txt_max_year);
-		add(txt_max_hour);
-		txt_max_hour.setColumns(10);
-
 		JDateChooser txt_min_year = new JDateChooser();
 		springLayout.putConstraint(SpringLayout.WEST, txt_min_year, 0, SpringLayout.WEST, txt_max_year);
 		add(txt_min_year);
 
-		txt_min_hour = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txt_min_hour, 6, SpringLayout.SOUTH, txt_min_year);
-		springLayout.putConstraint(SpringLayout.EAST, txt_min_hour, 0, SpringLayout.EAST, txt_max_year);
-		txt_min_hour.setText("hh:mm:ss");
-		add(txt_min_hour);
-		txt_min_hour.setColumns(10);
+		JLabel lblFilterByTime = new JLabel("Filter by Time");
+		springLayout.putConstraint(SpringLayout.WEST, lblFilterByTime, 180, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblFilterByTime, -31, SpringLayout.NORTH, txt_max_year);
+		lblFilterByTime.setFont(new Font("Tahoma", Font.BOLD, 14));
+		add(lblFilterByTime);
 
-		JButton btnApply = new JButton("apply");
-		springLayout.putConstraint(SpringLayout.NORTH, btnApply, 6, SpringLayout.SOUTH, txt_min_hour);
-		springLayout.putConstraint(SpringLayout.WEST, btnApply, 91, SpringLayout.WEST, this);
-		btnApply.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnApply.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblStart = new JLabel("Start:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblStart, 0, SpringLayout.NORTH, txt_max_year);
+		lblStart.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		add(lblStart);
 
+		JLabel lblEnd_1 = new JLabel("End:");
+		springLayout.putConstraint(SpringLayout.SOUTH, lblEnd_1, -107, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, txt_min_year, 0, SpringLayout.NORTH, lblEnd_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblStart, 0, SpringLayout.WEST, lblEnd_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblEnd_1, 66, SpringLayout.WEST, this);
+		lblEnd_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		add(lblEnd_1);
+		
+		   String m [] = new String [60];
+					for (int i = 0; i < m.length; i++) {
+						m[i]=""+i;
+					}
+					
+		String h [] = {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"};
+
+					
+		
+		JComboBox min1 = new JComboBox(m);
+		springLayout.putConstraint(SpringLayout.NORTH, min1, 6, SpringLayout.SOUTH, txt_max_year);
+		springLayout.putConstraint(SpringLayout.WEST, min1, 0, SpringLayout.WEST, txt_max_year);
+		add(min1);
+		
+		JComboBox sec1 = new JComboBox(m);
+		springLayout.putConstraint(SpringLayout.NORTH, sec1, 0, SpringLayout.NORTH, min1);
+		springLayout.putConstraint(SpringLayout.WEST, sec1, 3, SpringLayout.EAST, min1);
+		add(sec1);
+		
+		JComboBox hur1= new JComboBox(h);
+		springLayout.putConstraint(SpringLayout.NORTH, hur1, 6, SpringLayout.SOUTH, txt_max_year);
+		springLayout.putConstraint(SpringLayout.WEST, hur1, 6, SpringLayout.EAST, sec1);
+		add(hur1);
+		
+		JComboBox min2 = new JComboBox(m);
+		springLayout.putConstraint(SpringLayout.NORTH, min2, 6, SpringLayout.SOUTH, txt_min_year);
+		springLayout.putConstraint(SpringLayout.WEST, min2, 0, SpringLayout.WEST, txt_max_year);
+		add(min2);
+		
+		JComboBox sec2 = new JComboBox(m);
+		springLayout.putConstraint(SpringLayout.NORTH, sec2, 6, SpringLayout.SOUTH, txt_min_year);
+		springLayout.putConstraint(SpringLayout.WEST, sec2, 0, SpringLayout.WEST, sec1);
+		add(sec2);
+		
+		JComboBox hur2 = new JComboBox(h);
+		springLayout.putConstraint(SpringLayout.NORTH, hur2, 6, SpringLayout.SOUTH, txt_min_year);
+		springLayout.putConstraint(SpringLayout.EAST, hur2, 0, SpringLayout.EAST, hur1);
+		add(hur2);
+		
+		JButton button = new JButton("apply");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				String date_mintest=txt_max_year.getDate().toLocaleString();
 				String date_min=date_mintest.substring(9, date_mintest.length());
 				String date_maxt =txt_min_year.getDate().toLocaleString();
 				String date_max=date_maxt.substring(9, date_maxt.length());
-				String min_time=txt_min_hour.getText();
-				String max_time=txt_max_hour.getText();
+				String min_time=hur1.getActionCommand()+":"+min1.getActionCommand()+":"+sec1.getActionCommand();
+				String max_time=hur2.getActionCommand()+":"+min2.getActionCommand()+":"+sec2.getActionCommand();
 				min = date_min +" "+min_time;
 				max = date_max+ " "+max_time;
 				min=FilterByTime.CheckTime(min);
@@ -97,20 +135,20 @@ public class time extends JPanel {
 			}
 
 		});
-		add(btnApply);
-
-		JButton btnApply_1 = new JButton("! apply");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnApply_1, -44, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnApply_1, -130, SpringLayout.EAST, this);
-		btnApply_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnApply_1.addActionListener(new ActionListener() {
+		springLayout.putConstraint(SpringLayout.WEST, button, 93, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, button, -44, SpringLayout.SOUTH, this);
+		button.setFont(new Font("Tahoma", Font.BOLD, 11));
+		add(button);
+		
+		JButton button_1 = new JButton("! apply");
+		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date_mintest=txt_max_year.getDate().toLocaleString();
+		        String date_mintest=txt_max_year.getDate().toLocaleString();
 				String date_min=date_mintest.substring(9, date_mintest.length());
 				String date_maxt =txt_min_year.getDate().toLocaleString();
 				String date_max=date_maxt.substring(9, date_maxt.length());
-				String min_time=txt_min_hour.getText();
-				String max_time=txt_max_hour.getText();
+				String min_time=hur1.getActionCommand()+":"+min1.getActionCommand()+":"+sec1.getActionCommand();
+				String max_time=hur2.getActionCommand()+":"+min2.getActionCommand()+":"+sec2.getActionCommand();
 				min = date_min +" "+min_time;
 				max = date_max+ " "+max_time;
 				min=FilterByTime.CheckTime(min);
@@ -132,27 +170,12 @@ public class time extends JPanel {
 			}
 
 		});
-		add(btnApply_1);
-
-		JLabel lblFilterByTime = new JLabel("Filter by Time");
-		springLayout.putConstraint(SpringLayout.WEST, lblFilterByTime, 180, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblFilterByTime, -31, SpringLayout.NORTH, txt_max_year);
-		lblFilterByTime.setFont(new Font("Tahoma", Font.BOLD, 14));
-		add(lblFilterByTime);
-
-		JLabel lblStart = new JLabel("Start:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblStart, 0, SpringLayout.NORTH, txt_max_year);
-		lblStart.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		add(lblStart);
-
-		JLabel lblEnd_1 = new JLabel("End:");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblEnd_1, -107, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, txt_min_year, 0, SpringLayout.NORTH, lblEnd_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblStart, 0, SpringLayout.WEST, lblEnd_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblEnd_1, 66, SpringLayout.WEST, this);
-		lblEnd_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		add(lblEnd_1);
-
+		springLayout.putConstraint(SpringLayout.NORTH, button_1, 0, SpringLayout.NORTH, button);
+		springLayout.putConstraint(SpringLayout.WEST, button_1, 80, SpringLayout.EAST, button);
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		add(button_1);
+		
+    
 	}
 }
 

@@ -10,12 +10,14 @@ import javax.swing.JTextField;
 import object.Database;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
 public class csvpath extends JPanel {
-	private JTextField textField;
 	
 	Connect c;
 	
@@ -43,15 +45,10 @@ public class csvpath extends JPanel {
 		lblReadDatabaseFrom.setBounds(34, 54, 249, 27);
 		add(lblReadDatabaseFrom);
 		
-		JLabel label = new JLabel("Path:");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label.setBounds(47, 125, 37, 27);
-		add(label);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(104, 129, 207, 20);
-		add(textField);
+		JLabel lblClikOnThe = new JLabel("clik on the \"Insert DataBase\" to choose path");
+		lblClikOnThe.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblClikOnThe.setBounds(47, 125, 306, 27);
+		add(lblClikOnThe);
 		
 		JLabel label_1 = new JLabel("Number of Scan: " + c.data.getDatabase().size());
 		label_1.setBounds(58, 216, 295, 27);
@@ -64,7 +61,16 @@ public class csvpath extends JPanel {
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path = textField.getText();
+				JFileChooser choose= new JFileChooser();
+				choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int name = choose.showOpenDialog(null);
+				String path="";
+				if(name==JFileChooser.APPROVE_OPTION) {
+					File f= choose.getCurrentDirectory();
+					 path = f.getAbsolutePath();
+				}
+				path=path.replace("\\", "/");
+				
 				Database data = c.readCSv(path);
 				label_1 .setText("Number of Scan: " + data.getDatabase().size());
 				label_2.setText("Number of Macs: " + data.getHash_map().size());

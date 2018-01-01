@@ -10,12 +10,14 @@ import javax.swing.JTextField;
 import object.Database;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
 public class folderpath extends JPanel{
-	private JTextField textField;
 	
 	Connect c;
 	
@@ -37,16 +39,6 @@ public class folderpath extends JPanel{
 		lblReadDatabaseFrom.setBounds(48, 54, 249, 27);
 		add(lblReadDatabaseFrom);
 		
-		JLabel lblPath = new JLabel("Path:");
-		lblPath.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPath.setBounds(55, 119, 37, 27);
-		add(lblPath);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(102, 123, 207, 20);
-		add(textField);
-		
 		JLabel lblScans = new JLabel("Number of Scan: " + c.data.getDatabase().size());
 		lblScans.setBounds(48, 207, 295, 27);
 		add(lblScans);
@@ -58,7 +50,16 @@ public class folderpath extends JPanel{
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path =textField.getText();
+				JFileChooser choose= new JFileChooser();
+				choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int name = choose.showOpenDialog(null);
+				String path="";
+				if(name==JFileChooser.APPROVE_OPTION) {
+					File f= choose.getCurrentDirectory();
+					 path = f.getAbsolutePath();
+				}
+				path=path.replace("\\", "/");
+
 				Database data = c.enterdatabase(path);
 				lblScans.setText("Number of Scan: " + data.getDatabase().size());
 				lblNumberOfMacs.setText("Number of Macs: " + data.getHash_map().size());
@@ -69,10 +70,14 @@ public class folderpath extends JPanel{
 		btnInsert.setBounds(234, 173, 158, 23);
 		add(btnInsert);
 		
+		JLabel label = new JLabel("clik on the \"Insert DataBase\" to choose path");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label.setBounds(72, 118, 306, 27);
+		add(label);
+		
 	
 		
 		
 
 	}
-
 }
