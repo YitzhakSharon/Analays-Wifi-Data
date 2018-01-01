@@ -67,7 +67,19 @@ public class time extends JPanel {
 		add(lblEnd_1);
 		
 		   String m [] = new String [60];
-					for (int i = 0; i < m.length; i++) {
+		   m[0]="00";
+		   m[1]="01";
+		   m[2]="02";
+		   m[3]="03";
+		   m[4]="04";
+		   m[5]="05";
+		   m[6]="06";
+		   m[7]="07";
+		   m[8]="08";
+		   m[9]="09";
+		   
+					for (int i = 10; i < m.length; i++) {
+						
 						m[i]=""+i;
 					}
 					
@@ -76,18 +88,18 @@ public class time extends JPanel {
 					
 		
 		JComboBox min1 = new JComboBox(m);
-		springLayout.putConstraint(SpringLayout.NORTH, min1, 6, SpringLayout.SOUTH, txt_max_year);
 		springLayout.putConstraint(SpringLayout.WEST, min1, 0, SpringLayout.WEST, txt_max_year);
 		add(min1);
 		
 		JComboBox sec1 = new JComboBox(m);
-		springLayout.putConstraint(SpringLayout.NORTH, sec1, 0, SpringLayout.NORTH, min1);
-		springLayout.putConstraint(SpringLayout.WEST, sec1, 3, SpringLayout.EAST, min1);
+		springLayout.putConstraint(SpringLayout.NORTH, sec1, 6, SpringLayout.SOUTH, txt_max_year);
+		springLayout.putConstraint(SpringLayout.WEST, sec1, 16, SpringLayout.EAST, min1);
+		springLayout.putConstraint(SpringLayout.NORTH, min1, 0, SpringLayout.NORTH, sec1);
 		add(sec1);
 		
 		JComboBox hur1= new JComboBox(h);
-		springLayout.putConstraint(SpringLayout.NORTH, hur1, 6, SpringLayout.SOUTH, txt_max_year);
-		springLayout.putConstraint(SpringLayout.WEST, hur1, 6, SpringLayout.EAST, sec1);
+		springLayout.putConstraint(SpringLayout.NORTH, hur1, 10, SpringLayout.SOUTH, lblStart);
+		springLayout.putConstraint(SpringLayout.WEST, hur1, 10, SpringLayout.WEST, lblStart);
 		add(hur1);
 		
 		JComboBox min2 = new JComboBox(m);
@@ -97,25 +109,26 @@ public class time extends JPanel {
 		
 		JComboBox sec2 = new JComboBox(m);
 		springLayout.putConstraint(SpringLayout.NORTH, sec2, 6, SpringLayout.SOUTH, txt_min_year);
-		springLayout.putConstraint(SpringLayout.WEST, sec2, 0, SpringLayout.WEST, sec1);
+		springLayout.putConstraint(SpringLayout.WEST, sec2, 18, SpringLayout.EAST, min2);
 		add(sec2);
 		
 		JComboBox hur2 = new JComboBox(h);
-		springLayout.putConstraint(SpringLayout.NORTH, hur2, 6, SpringLayout.SOUTH, txt_min_year);
-		springLayout.putConstraint(SpringLayout.EAST, hur2, 0, SpringLayout.EAST, hur1);
+		springLayout.putConstraint(SpringLayout.WEST, hur2, 10, SpringLayout.WEST, lblEnd_1);
 		add(hur2);
 		
 		JButton button = new JButton("apply");
+		springLayout.putConstraint(SpringLayout.SOUTH, hur2, -10, SpringLayout.NORTH, button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String date_mintest=txt_max_year.getDate().toLocaleString();
 				String date_min=date_mintest.substring(9, date_mintest.length());
 				String date_maxt =txt_min_year.getDate().toLocaleString();
 				String date_max=date_maxt.substring(9, date_maxt.length());
-				String min_time=hur1.getActionCommand()+":"+min1.getActionCommand()+":"+sec1.getActionCommand();
-				String max_time=hur2.getActionCommand()+":"+min2.getActionCommand()+":"+sec2.getActionCommand();
+				String min_time=""+hur1.getSelectedItem()+":"+""+min1.getSelectedItem()+":"+""+sec1.getSelectedItem();
+				String max_time=hur2.getSelectedItem()+":"+""+min2.getSelectedItem()+":"+""+sec2.getSelectedItem();
 				min = date_min +" "+min_time;
 				max = date_max+ " "+max_time;
+				System.out.println(min + "          "+ max);
 				min=FilterByTime.CheckTime(min);
 				max=FilterByTime.CheckTime(max);
 				Date mindate = FilterByTime.stringToDate(min);

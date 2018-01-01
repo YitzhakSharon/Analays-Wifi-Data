@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class csvpath extends JPanel {
 	
@@ -62,14 +63,15 @@ public class csvpath extends JPanel {
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser choose= new JFileChooser();
-				choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int name = choose.showOpenDialog(null);
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						"csv", "csv");
 				String path="";
-				if(name==JFileChooser.APPROVE_OPTION) {
-					File f= choose.getCurrentDirectory();
-					 path = f.getAbsolutePath();
+				chooser.setFileFilter(filter);
+				chooser.setDialogTitle("Choose Csv File");
+				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				path=chooser.getSelectedFile().getAbsolutePath();
 				}
-				path=path.replace("\\", "/");
 				
 				Database data = c.readCSv(path);
 				label_1 .setText("Number of Scan: " + data.getDatabase().size());
