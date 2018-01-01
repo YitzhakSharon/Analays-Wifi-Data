@@ -12,6 +12,10 @@ public class OrFilter implements Filters {
 		this.filter_2=null;
 		
 	}
+	@Override
+	public String toString() {
+		return "OrFilter [filter_1=" + filter_1 + ", filter_2=" + filter_2 + "]";
+	}
 	public OrFilter(Filters f1 , Filters  f2) {
 		this.filter_1=f1;
 		this.filter_2=f2;

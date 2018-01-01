@@ -103,6 +103,7 @@ public class Connect {
 			path=path+".csv";
 		FileKml k = new FileKml();
 		this.data.addArrayList(k.readFromCsv(path));
+		this.data.douplicate();
 		return this.data;
 	}
 
@@ -120,8 +121,6 @@ public class Connect {
 			name=name+".csv";
 		FileCsv t = new FileCsv();
 		try {
-			System.out.println(this.data.getDatabase().size());
-			System.out.println(name);
 			t.writecsv(this.data.getDatabase(), name);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -102,7 +102,7 @@ public class algo2b extends JPanel {
 		add(textField_5);
 		
 		JLabel label = new JLabel("Core:");
-		label.setBounds(64, 261, 295, 27);
+		label.setBounds(10, 261, 414, 27);
 		add(label);
 
 		

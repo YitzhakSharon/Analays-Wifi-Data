@@ -3,6 +3,7 @@ package object;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -26,7 +27,7 @@ public class Database {
 		this.database.clear();
 		this.database.addAll(scan);
 		this.hash_map = new HashMap<String, ArrayList<Scan>>();
-		this.hash_map=hashmap();
+		this.hash_map = hashmap();
 
 	}
 
@@ -38,15 +39,14 @@ public class Database {
 	public void insertHash(Scan other) {
 		// this.database=new ArrayList<Scan>();
 		for (int i = 0; i < other.getWifiNetWork(); i++) {
-			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC())){
+			if (this.hash_map.containsKey(other.getWifi().get(i).getMAC())) {
 				if (!this.hash_map.get(other.getWifi().get(i).getMAC()).contains(other))
 					this.hash_map.get(other.getWifi().get(i).getMAC()).add(other);
-		}
-				else {
-					ArrayList<Scan> temp = new ArrayList<Scan>();
-					temp.add(other);
-					this.hash_map.put(other.getWifi().get(i).getMAC(), temp);
-				}
+			} else {
+				ArrayList<Scan> temp = new ArrayList<Scan>();
+				temp.add(other);
+				this.hash_map.put(other.getWifi().get(i).getMAC(), temp);
+			}
 
 		}
 	}
@@ -57,7 +57,7 @@ public class Database {
 	 * @param other
 	 */
 	public Database(Database other) {
-		//this.database.clear();
+		// this.database.clear();
 		this.database = new ArrayList<Scan>();
 		this.database.addAll(other.database);
 		this.hash_map = hashmap();
@@ -158,12 +158,20 @@ public class Database {
 	public void setDatabase(ArrayList<Scan> database) {
 		this.database.clear();
 		this.database.addAll(database);
+		this.hash_map = hashmap();
+
 	}
 
 	public void douplicate() {
-		Set<Scan> data = new HashSet<Scan>();
-		data.addAll(this.database);
+
+		List<Scan> temp = new ArrayList<Scan>();
+		for (int i = 0; i < this.database.size(); i++) {
+			if (!temp.contains(this.database.get(i)))
+				temp.add(this.database.get(i));
+		}
 		this.database.clear();
-		this.database.addAll(data);
+		this.database.addAll(temp);
 	}
+
+
 }

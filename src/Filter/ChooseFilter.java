@@ -30,7 +30,7 @@ public class ChooseFilter extends FileKml {
 	 * @param data
 	 * @throws IOException
 	 */
-	public static int ChekFilterForKml(Database data)  {
+	public static Database ChekFilterForKml(Database data)  {
 		FileKml fe = new FileKml();
 		//ScanPredecate pe= new ScanPredecate();
 		Filters pe ;
@@ -88,8 +88,11 @@ public class ChooseFilter extends FileKml {
 			System.out.println(min.toString());
 			pe= new FilterByTime(min,max);
 			fil= new Makefilter(pe);
+			ArrayList<Scan> temp = new ArrayList<Scan>(); 
+			temp.addAll(fil.filtering(data.getDatabase() ));
 			fe.TurnToKML(oneMac(fil.filtering(data.getDatabase() )  ), "KmlByTimeWithTimeLine.kml");
-			//fe.TurnToKML(oneMac(pe.filters(arryOfscan.getDatabase(),pe.SelectByTime(min, max))), "KmlByTimeWithTimeLine.kml");
+			data.setDatabase(temp);
+
 		}
 		if (select == 2) {
 			System.out.println("Enter Radus, CenterLat and CenterLon");
@@ -101,20 +104,28 @@ public class ChooseFilter extends FileKml {
 			cord.setLat(centerLat);
 			pe= new FilterByPlace(cord,radus);
 			fil= new Makefilter(pe);
+			ArrayList<Scan> temp = new ArrayList<Scan>(); 
 			fe.TurnToKML(oneMac(fil.filtering(data.getDatabase() )  ), "KmlByPlaceWithTimeLine.kml");
+			temp.addAll(fil.filtering(data.getDatabase()));
+			data.setDatabase(temp);
+
 
 		}
 		if (select == 3) {
+			System.out.println(data.getDatabase().size());
 			System.out.println("Enter Id");
 			String id = sc.next();
 			pe= new FilterByID(id);
 			fil= new Makefilter(pe);
+			ArrayList<Scan> temp = new ArrayList<Scan>(); 
+			temp.addAll(fil.filtering(data.getDatabase() ));
 			fe.TurnToKML(oneMac(fil.filtering(data.getDatabase() )  ), "KmlByIdWithTimeLine.kml");
-
+			data.setDatabase(temp);
+			System.out.println(data.getDatabase().size());
 		}
 
 		sc.close();
-		return 0;
+		return data;
 	}
 
 /**

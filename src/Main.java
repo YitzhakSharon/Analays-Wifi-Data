@@ -33,11 +33,20 @@ public class Main {
 		 * enter Database
 		 */
 		FileKml fl = new FileKml();
+		ChooseFilter r = new ChooseFilter();
+		//r.ChekFilterForKml(data);
+		System.out.println("size befor filter "+data.getDatabase().size());
+		Filters f1 = new FilterByID("OnePlus3T");
+		Filters f2 = new FilterByID("dreamlte");
+		Filters fi = new OrFilter(f1,f2);
+		Makefilter tt = new Makefilter(fi);
+		ArrayList <Scan> te = new ArrayList<Scan>();
+		te.addAll(tt.filtering(data.getDatabase()));
+		System.out.println("size after filter "+te.size());
 		//data.addArrayList( fl.readFromCsv("Table.csv"));
 		/**
 		 *   turn on the kml with filters
 		 */
-		ChooseFilter k = new ChooseFilter();
 		//	k.ChekFilterForKml(data);
 
 		/**
@@ -51,6 +60,17 @@ public class Main {
 
 		long b= System.currentTimeMillis();
 		System.out.println(b-a);
+		
+		Scan aa = new Scan (data.getDatabase().get(0));
+		Scan aabb = new Scan (data.getDatabase().get(0));
+		if(aa.equals(aabb)){
+			System.out.println("ok");
+			
+		}
+
+		
+		
+		
 
 	}
 

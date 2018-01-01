@@ -48,7 +48,7 @@ public class algo1 extends JPanel{
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Core:");
-		lblNewLabel_1.setBounds(61, 189, 295, 27);
+		lblNewLabel_1.setBounds(20, 190, 420, 27);
 		add(lblNewLabel_1);
 		
 		JButton btnSrart = new JButton("Srart");

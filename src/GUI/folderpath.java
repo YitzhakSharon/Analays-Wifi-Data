@@ -47,11 +47,11 @@ public class folderpath extends JPanel{
 		textField.setBounds(102, 123, 207, 20);
 		add(textField);
 		
-		JLabel lblScans = new JLabel("Number of Scans:");
+		JLabel lblScans = new JLabel("Number of Scan: " + c.data.getDatabase().size());
 		lblScans.setBounds(48, 207, 295, 27);
 		add(lblScans);
 		
-		JLabel lblNumberOfMacs = new JLabel("Number of Macs:");
+		JLabel lblNumberOfMacs = new JLabel("Number of Macs: " + c.data.getHash_map().size());
 		lblNumberOfMacs.setBounds(48, 244, 295, 27);
 		add(lblNumberOfMacs);
 		

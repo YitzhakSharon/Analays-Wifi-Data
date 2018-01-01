@@ -8,11 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import Filter.Filter;
+import Filter.Filters;
 import object.Cordinate;
+import object.Database;
 
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -20,8 +24,8 @@ import javax.swing.JMenu;
 public class gui {
 
 	Connect c;
+	Filters[] f=new Filters[3];
 	private JFrame frame;
-	private JPanel openpage=new openpage();
 	private JPanel algo1;
 	private JPanel algo2;
 	private JPanel algo2b;
@@ -31,6 +35,13 @@ public class gui {
 	private JPanel tocsv;
 	private JPanel  tokml;
 	private JPanel current;
+	private JPanel time;
+	private JPanel place;
+	private JPanel id;
+	private JPanel or_and;
+	private JPanel filteropen;
+	ArrayList<Database> all_database=new ArrayList<Database>();
+	
 
 
 	/**
@@ -66,8 +77,9 @@ public class gui {
 		frame.setBounds(100, 100, 575, 344);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.getContentPane().add(openpage);
-		current=openpage;
+		csvpath=new csvpath(c);
+		frame.getContentPane().add(csvpath);
+		current=csvpath;
 		
 	
 		
@@ -162,9 +174,6 @@ public class gui {
 		});
 		mnNewMenu_2.add(btnAlgomacsig);
 		
-		JMenu mnNewMenu_3 = new JMenu("Filters");
-		menuBar.add(mnNewMenu_3);
-		
 		JMenu mnClear = new JMenu("clear");
 		menuBar.add(mnClear);
 		
@@ -178,6 +187,64 @@ public class gui {
 			}
 		});
 		mnClear.add(btnClearDatabase);
+		
+		JMenu mnFilters = new JMenu("Filters");
+		menuBar.add(mnFilters);
+		
+		JButton btnTime = new JButton("Time    ");
+		btnTime.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				current.setVisible(false);
+				time=new time(f,c);
+				frame.getContentPane().add(time);
+				current=time;
+			}
+		});
+		
+		JButton btnFilter = new JButton("Filter   ");
+		btnFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				filteropen=new filteropen(f,c, all_database);
+				frame.getContentPane().add(filteropen);
+				current=filteropen;
+			}
+		});
+		mnFilters.add(btnFilter);
+		mnFilters.add(btnTime);
+		
+		JButton btnPlace = new JButton("Place   ");
+		btnPlace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				place=new place(f,c);
+				frame.getContentPane().add(place);
+				current=place;
+			}
+		});
+		mnFilters.add(btnPlace);
+		
+		JButton btnId = new JButton(" Id        ");
+		btnId.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				id=new id(f,c);
+				frame.getContentPane().add(id);
+				current=id;
+			}
+		});
+		mnFilters.add(btnId);
+		
+		JButton btnAndor = new JButton("And/Or");
+		btnAndor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				current.setVisible(false);
+				or_and=new or_and(f,c);
+				frame.getContentPane().add(or_and);
+				current=or_and;
+			}
+		});
+		mnFilters.add(btnAndor);
 		
 		JMenuBar menuBar_1 = new JMenuBar();
 		menuBar.add(menuBar_1);

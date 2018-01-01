@@ -53,11 +53,11 @@ public class csvpath extends JPanel {
 		textField.setBounds(104, 129, 207, 20);
 		add(textField);
 		
-		JLabel label_1 = new JLabel("Number of Scans:");
+		JLabel label_1 = new JLabel("Number of Scan: " + c.data.getDatabase().size());
 		label_1.setBounds(58, 216, 295, 27);
 		add(label_1);
 		
-		JLabel label_2 = new JLabel("Number of Macs:");
+		JLabel label_2 = new JLabel("Number of Macs: " + c.data.getHash_map().size());
 		label_2.setBounds(58, 254, 295, 27);
 		add(label_2);
 		

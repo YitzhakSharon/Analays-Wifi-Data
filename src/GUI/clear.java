@@ -36,11 +36,11 @@ public class clear extends JPanel {
 		lblClearDatabase.setBounds(49, 68, 249, 27);
 		add(lblClearDatabase);
 		
-		JLabel label = new JLabel("Number of Scans:");
+		JLabel label = new JLabel("Number of Scan: " + c.data.getDatabase().size());
 		label.setBounds(42, 201, 295, 27);
 		add(label);
 		
-		JLabel label_1 = new JLabel("Number of Macs:");
+		JLabel label_1 = new JLabel("Number of Macs: " + c.data.getHash_map().size());
 		label_1.setBounds(42, 239, 295, 27);
 		add(label_1);
 		

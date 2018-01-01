@@ -22,9 +22,9 @@ public class Makefilter {
 //		return (ArrayList<Scan>) arrayOfScan.stream().filter(pre).collect(Collectors.<Scan>toList());
 //	}
 
-	
+
 	public Set<Scan> filtering( ArrayList<Scan> data) {
-		return data.stream().filter(s ->this. f.comper(s)).collect(Collectors.<Scan>toSet());
+		return data.stream().filter(scan ->this.f.comper(scan)).collect(Collectors.<Scan>toSet());
 	}
 	
 }
