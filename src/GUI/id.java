@@ -59,38 +59,8 @@ public class id extends JPanel {
 							filter[2] = ft;
 						else
 							filter[0] = ft;
-						JOptionPane.showMessageDialog(new JFrame(), "The Filter by Id is Apply, "
-								+ "please choose the Oprator fot the filter");
+						JOptionPane.showMessageDialog(new JFrame(), "The Filter by Id is Apply ");
 
-//						if (filter[filter.length - 1] != null) {
-//							Operator And = new Operator("And");
-//							Operator Or = new Operator("Or");
-//							if (filter[1].equals(And) || filter[1].equals(Or)) {
-//								Filters f1;
-//								if (filter[1].equals(And)) {
-//									f1 = new AndFilter(filter[0], filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									filter[0] = null;
-//									filter[1] = null;
-//									filter[2] = null;
-//									JOptionPane.showMessageDialog(new JFrame(), "do filter as you wish");
-//
-//								} else if (filter[1].equals(Or)) {
-//									f1 = new OrFilter(filter[0], filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									JOptionPane.showMessageDialog(new JFrame(), "do filter as you wish");
-//
-//									filter[0] = null;
-//									filter[1] = null;
-//									filter[2] = null;
-//
-//								}
-//
-//							}
-//
-//						}
 					}
 				}
 			}
@@ -120,33 +90,7 @@ public class id extends JPanel {
 							filter[0] = new NotFilter(f);
 
 						}
-//						if (filter[filter.length - 1] != null) {
-//							Operator And = new Operator("And");
-//							Operator Or = new Operator("Or");
-//							if (filter[1].equals(And) || filter[1].equals(Or)) {
-//								Filters f1;
-//								if (filter[1].equals(And)) {
-//									f1 = new AndFilter(filter[0], filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									filter[0] = null;
-//									filter[1] = null;
-//									filter[2] = null;
-//
-//								} else if (filter[1].equals(Or)) {
-//									f1 = new OrFilter(filter[0], filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									filter[0] = null;
-//									filter[1] = null;
-//									filter[2] = null;
-//
-//								}
-//
-//							}
-//
-//						}
-//
+						JOptionPane.showMessageDialog(new JFrame(), "The Filter by not Id is Apply ");
 					}
 				}
 			}

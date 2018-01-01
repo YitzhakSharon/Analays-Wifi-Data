@@ -40,7 +40,7 @@ public class gui {
 	private JPanel id;
 	private JPanel or_and;
 	private JPanel filteropen;
-	ArrayList<Database> all_database=new ArrayList<Database>();
+
 	
 
 
@@ -205,7 +205,7 @@ public class gui {
 		btnFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				filteropen=new filteropen(f,c, all_database);
+				filteropen=new filteropen(f,c);
 				frame.getContentPane().add(filteropen);
 				current=filteropen;
 			}

@@ -165,8 +165,8 @@ public class FileKml {
 					.withDescription("Wifi num: " + j + " Mac: " + arrayOfscan.get(i).getWifi().get(j).getMAC()
 							+ " Frequency: " + arrayOfscan.get(i).getWifi().get(j).getFrequncy() + " Signal: "
 							+ arrayOfscan.get(i).getWifi().get(j).getSignal())
-					.createAndSetPoint().addToCoordinates(arrayOfscan.get(i).getCore().getLat(),
-							arrayOfscan.get(i).getCore().getLon(), arrayOfscan.get(i).getCore().getAlt());
+					.createAndSetPoint().addToCoordinates(arrayOfscan.get(i).getCore().getLon(),
+							arrayOfscan.get(i).getCore().getLat(), arrayOfscan.get(i).getCore().getAlt());
 				}
 				catch (Exception e) {
 					// TODO: handle exception

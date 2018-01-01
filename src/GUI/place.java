@@ -87,37 +87,7 @@ public class place extends JPanel {
 					else 
 						filter[0]= ft;
 					
-					JOptionPane.showMessageDialog(new JFrame(), "The Filter by Place is Apply, "
-							+ "please choose the Oprator fot the filter");
-
-//					if(filter[filter.length-1]!=null) {
-//							Operator And = new Operator("And");
-//							Operator Or = new Operator("Or");
-//							if(filter[1].equals(And) || filter[1].equals(Or)) {
-//								Filters f1;
-//								if(filter[1].equals(And)) {
-//									f1=new AndFilter(filter[0],filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									filter[0]=null;
-//									filter[1]=null;
-//									filter[2]=null;
-//
-//
-//								}
-//								else if(filter[1].equals(Or)) {
-//									f1=new OrFilter(filter[0],filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									filter[0]=null;
-//									filter[1]=null;
-//									filter[2]=null;
-//
-//								}
-//
-//							}
-//					
-//				}
+					JOptionPane.showMessageDialog(new JFrame(), "The Filter by Place is Apply ");
 				}
 			});
 			add(btnApply);
@@ -142,8 +112,7 @@ public class place extends JPanel {
 						rad=Double.parseDouble(txt_rad.getText());
 
 					}
-//					lat=Double.parseDouble(txt_lat.getText());
-//					rad=Double.parseDouble(txt_rad.getText());
+
 					Cordinate core = new Cordinate(lat,lon,0);
 					Filters s= new FilterByPlace(core, rad);
 					if(filter[1]!=null)
@@ -152,43 +121,7 @@ public class place extends JPanel {
 					else 
 						filter[0]=new NotFilter(s);
 
-					JOptionPane.showMessageDialog(new JFrame(), "The Filter Not by Place is Apply, "
-							+ "please choose the Oprator fot the filter");
-
-
-//					if(filter[filter.length-1]!=null) {
-//							Operator And = new Operator("And");
-//							Operator Or = new Operator("Or");
-//							if(filter[1].equals(And) || filter[1].equals(Or)) {
-//								Filters f1;
-//								if(filter[1].equals(And)) {
-//									f1=new AndFilter(filter[0],filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									JOptionPane.showMessageDialog(new JFrame(), "do filter as you wish");
-//
-//									filter[0]=null;
-//									filter[1]=null;
-//									filter[2]=null;
-//
-//
-//								}
-//								else if(filter[1].equals(Or)) {
-//									f1=new OrFilter(filter[0],filter[2]);
-//									Makefilter t = new Makefilter(f1);
-//									t.filtering(c.data.getDatabase());
-//									JOptionPane.showMessageDialog(new JFrame(), "do filter as you wish");
-//									filter[0]=null;
-//									filter[1]=null;
-//									filter[2]=null;
-//
-//								}
-//
-//							
-//					
-//	}
-//				}
-
+					JOptionPane.showMessageDialog(new JFrame(), "The Filter Not by Place is Apply");
 					
 				}
 			});
