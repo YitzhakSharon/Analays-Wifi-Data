@@ -22,12 +22,12 @@ import java.awt.SystemColor;
 
 public class filteropen extends JPanel {
 	
-	Database prev;
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public filteropen(Filters[] filter, Connect c) {
+	public filteropen(Filters[] filter, Connect c,Database prev) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 		
@@ -52,7 +52,7 @@ public class filteropen extends JPanel {
 		JButton btnStartFiltering = new JButton("Start filtering");
 		btnStartFiltering.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				prev=new Database(c.data.getDatabase());
+				
 				lblChooseFiltersAnd.setText("");
 				
 				if(filter[1]==null){

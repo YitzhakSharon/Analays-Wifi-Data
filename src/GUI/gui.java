@@ -40,6 +40,9 @@ public class gui {
 	private JPanel id;
 	private JPanel or_and;
 	private JPanel filteropen;
+	Threads th=new Threads();
+	Database prev;
+
 
 	
 
@@ -72,12 +75,13 @@ public class gui {
 	 */
 	private void initialize() {
 		c=new Connect();
+		prev=new Database(c.data.getDatabase());
 		frame = new JFrame();
 		frame.setBackground(new Color(250, 235, 215));
 		frame.setBounds(100, 100, 575, 344);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		csvpath=new csvpath(c);
+		csvpath=new csvpath(c,prev);
 		frame.getContentPane().add(csvpath);
 		current=csvpath;
 		
@@ -93,7 +97,7 @@ public class gui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			current.setVisible(false);
-			csvpath=new csvpath(c);
+			csvpath=new csvpath(c,prev);
 			frame.getContentPane().add(csvpath);
 			current=csvpath;
 			}
@@ -104,7 +108,7 @@ public class gui {
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				folderpath=new folderpath(c);
+				folderpath=new folderpath(c,prev);
 				frame.getContentPane().add(folderpath);
 				current=folderpath;
 			}
@@ -181,7 +185,7 @@ public class gui {
 		btnClearDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				clear=new clear(c);
+				clear=new clear(c,prev);
 				frame.getContentPane().add(clear);
 				current=clear;
 			}
@@ -205,7 +209,7 @@ public class gui {
 		btnFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				filteropen=new filteropen(f,c);
+				filteropen=new filteropen(f,c,prev);
 				frame.getContentPane().add(filteropen);
 				current=filteropen;
 			}
@@ -249,10 +253,18 @@ public class gui {
 		JMenuBar menuBar_1 = new JMenuBar();
 		menuBar.add(menuBar_1);
 	
-//		frame.getContentPane().add(csvpath);
-//		frame.getContentPane().add(clear);
-//		frame.getContentPane().add(tocsv);
-//		frame.getContentPane().add(tokml);
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while(true)
+				{
+					
+				
+				}
+
+			}
+		}).start();
 		
 
 	    

@@ -28,7 +28,7 @@ public class folderpath extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public folderpath(Connect con) {
+	public folderpath(Connect con,Database prev){
 		Connect c=new Connect();
 		c.setData(con.data);
 		setBackground(new Color(250, 235, 215));
@@ -61,6 +61,7 @@ public class folderpath extends JPanel{
 				path=path.replace("\\", "/");
 
 				Database data = c.enterdatabase(path);
+				prev.setDatabase(data.getDatabase());
 				lblScans.setText("Number of Scan: " + data.getDatabase().size());
 				lblNumberOfMacs.setText("Number of Macs: " + data.getHash_map().size());
 			}

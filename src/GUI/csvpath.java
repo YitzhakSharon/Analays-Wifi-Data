@@ -35,7 +35,7 @@ public class csvpath extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public csvpath(Connect con) {
+	public csvpath(Connect con,Database prev) {
 		Connect c=new Connect();
 		c.setData(con.data);
 		setBackground(new Color(250, 235, 215));
@@ -74,6 +74,7 @@ public class csvpath extends JPanel {
 				}
 				
 				Database data = c.readCSv(path);
+				prev.setDatabase(data.getDatabase());
 				label_1 .setText("Number of Scan: " + data.getDatabase().size());
 				label_2.setText("Number of Macs: " + data.getHash_map().size());
 			}

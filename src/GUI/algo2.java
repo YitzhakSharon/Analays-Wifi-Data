@@ -6,12 +6,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class algo2 extends JPanel {
-	private JTextField txtCsvFormat;
 	
 	Connect c;
 	
@@ -33,17 +35,6 @@ public class algo2 extends JPanel {
 		lblAlgorithem.setBounds(38, 56, 336, 27);
 		add(lblAlgorithem);
 		
-		JLabel lblPath = new JLabel("Path:");
-		lblPath.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPath.setBounds(58, 123, 37, 27);
-		add(lblPath);
-		
-		txtCsvFormat = new JTextField();
-		txtCsvFormat.setText("csv format");
-		txtCsvFormat.setColumns(10);
-		txtCsvFormat.setBounds(105, 127, 187, 20);
-		add(txtCsvFormat);
-		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(38, 231, 356, 27);
 		add(lblNewLabel);
@@ -51,8 +42,16 @@ public class algo2 extends JPanel {
 		JButton button = new JButton("Srart");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String path = txtCsvFormat.getText();
+				JFileChooser choose= new JFileChooser();
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						"csv", "csv");
+				String path="";
+				chooser.setFileFilter(filter);
+				chooser.setDialogTitle("Choose Csv File");
+				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				path=chooser.getSelectedFile().getAbsolutePath();
+				}
 				c.algoritem2a(path);
 				lblNewLabel.setText("resutlt_algo2.csv was created check workspace");
 			}
@@ -62,8 +61,12 @@ public class algo2 extends JPanel {
 		button.setBounds(262, 185, 89, 23);
 		add(button);
 		
+		JLabel lblClikOnThe = new JLabel("clik on the \"Start\" to  choose path");
+		lblClikOnThe.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblClikOnThe.setBounds(45, 122, 306, 27);
+		add(lblClikOnThe);
+		
 
 
 	}
-
 }

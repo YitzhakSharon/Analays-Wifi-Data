@@ -96,6 +96,7 @@ public class Database {
 	 */
 	public void cleardatabase() {
 		this.database.clear();
+		this.hash_map.clear();
 	}
 
 	/**
