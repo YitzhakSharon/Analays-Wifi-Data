@@ -35,9 +35,7 @@ public class csvpath extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public csvpath(Connect con,Database prev) {
-		Connect c=new Connect();
-		c.setData(con.data);
+	public csvpath(Connect con,Database prev,Threads th ) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 		
@@ -51,13 +49,34 @@ public class csvpath extends JPanel {
 		lblClikOnThe.setBounds(47, 125, 306, 27);
 		add(lblClikOnThe);
 		
-		JLabel label_1 = new JLabel("Number of Scan: " + c.data.getDatabase().size());
+		JLabel label_1 = new JLabel("Number of Scan: " + con.data.getDatabase().size());
 		label_1.setBounds(58, 216, 295, 27);
 		add(label_1);
 		
-		JLabel label_2 = new JLabel("Number of Macs: " + c.data.getHash_map().size());
+		JLabel label_2 = new JLabel("Number of Macs: " + con.data.getHash_map().size());
 		label_2.setBounds(58, 254, 295, 27);
 		add(label_2);
+		
+		Thread t=new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				synchronized (con.data) {
+				while(true){
+					label_1.setText("Number of Scan: " + con.data.getDatabase().size());
+					label_2.setText("Number of Macs: " + con.data.getHash_map().size());
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				}
+			}
+			
+		});
 		
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
@@ -73,7 +92,8 @@ public class csvpath extends JPanel {
 				path=chooser.getSelectedFile().getAbsolutePath();
 				}
 				
-				Database data = c.readCSv(path);
+				th.folow_csv(path, con);
+				Database data = con.readCSv(path);
 				prev.setDatabase(data.getDatabase());
 				label_1 .setText("Number of Scan: " + data.getDatabase().size());
 				label_2.setText("Number of Macs: " + data.getHash_map().size());

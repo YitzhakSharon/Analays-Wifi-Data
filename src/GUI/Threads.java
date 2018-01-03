@@ -4,6 +4,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -52,7 +53,12 @@ public class Threads {
 			@Override
 			public void run() {
 				synchronized (c.data) {
-					changeFolder(c);
+					try {
+						changeFolder(c);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 				}
 
@@ -62,16 +68,11 @@ public class Threads {
 	}
 
 	// https://github.com/ruckc/filewatcher/blob/master/src/main/java/io/ruck/filewatcher/Watcher.java
-	public void changeFolder(Connect c) {
+	public void changeFolder(Connect c) throws IOException {
 		ExecutorService servise = Executors.newCachedThreadPool();
 		final FileSystem fs = FileSystems.getDefault();
-		WatchService watcher=null;
-		try {
-			watcher = fs.newWatchService();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	 final WatchService watcher= fs.newWatchService();;
+		int size = folder_paths.size();
 		Map<WatchKey, String> keys = new HashMap<>();
 		for (int i = 0; i < this.folder_paths.size(); i++) {
 			if (!keys.containsValue(folder_paths.get(i))) {
@@ -89,21 +90,92 @@ public class Threads {
 			
 			}
 		}
-		while(Thread.interrupted()==false){
-			WatchKey t=null;
-			try {
-				 t = watcher.poll(20, TimeUnit.MILLISECONDS);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				break;
+		servise.submit(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(Thread.interrupted()==false){
+					WatchKey t=null;
+					try {
+						 t = watcher.poll(20, TimeUnit.MILLISECONDS);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						break;
+					}
+					// if there is a change then the watchkey is change
+					if(t!=null){
+						database(c); // restart to the database
+						servise.shutdownNow();
+						Thread.currentThread().interrupt();
+						try {
+							changeFolder(c);
+						}
+						catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+					}
+					
+					else	if(size!=folder_paths.size()) {
+						try {
+							watcher.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						servise.shutdown();
+						Thread.currentThread().interrupt();
+						try {
+							changeFolder(c);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+
 			}
-			// if there is a change then the watchkey is change
-			if(t!=null){
-				database(c);
-				
-			}
+			
+		});
+	}
+	//https://stackoverflow.com/questions/2064694/how-do-i-find-the-last-modified-file-in-a-directory-in-java
+	public void changeFiles(Connect c) {
+		int size= csv_paths.size();
+		ExecutorService servise = Executors.newCachedThreadPool();
+		ArrayList<Long> lastmodify = new ArrayList<Long>();
+		for (int i = 0; i < this.csv_paths.size(); i++) {
+			lastmodify.add(new File(csv_paths.get(i)). lastModified());
 		}
+		servise.submit(new Runnable () {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+				while(Thread.currentThread().isInterrupted()==false) {
+					for (int i = 0; i < lastmodify.size(); i++) {
+						if(lastmodify.get(i)!= new File(csv_paths.get(i)).lastModified() ) {
+							database(c);
+							servise.shutdownNow();
+							Thread.currentThread().interrupt();
+							changeFiles(c);
+						}
+					}
+					if(size!=csv_paths.size()) {
+						database(c);
+						servise.shutdownNow();
+						Thread.currentThread().interrupt();
+						changeFiles(c);
+					}
+				}
+			}
+			
+			
+			
+		});
+		
+
 	}
 public void database(Connect c){
 	c.data.cleardatabase();

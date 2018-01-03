@@ -30,9 +30,7 @@ public class folderpath extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public folderpath(Connect con, Database prev) {
-		Connect c = new Connect();
-		c.setData(con.data);
+	public folderpath(Connect con, Database prev,Threads th) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 
@@ -40,14 +38,37 @@ public class folderpath extends JPanel {
 		lblReadDatabaseFrom.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblReadDatabaseFrom.setBounds(48, 54, 249, 27);
 		add(lblReadDatabaseFrom);
+		
 
-		JLabel lblScans = new JLabel("Number of Scan: " + c.data.getDatabase().size());
+
+		JLabel lblScans = new JLabel("Number of Scan: " + con.data.getDatabase().size());
 		lblScans.setBounds(48, 207, 295, 27);
 		add(lblScans);
 
-		JLabel lblNumberOfMacs = new JLabel("Number of Macs: " + c.data.getHash_map().size());
+		JLabel lblNumberOfMacs = new JLabel("Number of Macs: " + con.data.getHash_map().size());
 		lblNumberOfMacs.setBounds(48, 244, 295, 27);
 		add(lblNumberOfMacs);
+		
+		Thread t=new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				synchronized (con.data) {
+				while(true){
+				lblScans.setText("Number of Scan: " + con.data.getDatabase().size());
+				lblNumberOfMacs.setText("Number of Macs: " +con.data.getHash_map().size());
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
+				}
+			}
+			
+		});
 
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
@@ -63,7 +84,8 @@ public class folderpath extends JPanel {
 					}
 					path = path.replace("\\", "/");
 
-				Database data = c.enterdatabase(path);
+				th.folow_folder(path, con);
+				Database data = con.enterdatabase(path);
 				prev.setDatabase(data.getDatabase());
 				lblScans.setText("Number of Scan: " + data.getDatabase().size());
 				lblNumberOfMacs.setText("Number of Macs: " + data.getHash_map().size());

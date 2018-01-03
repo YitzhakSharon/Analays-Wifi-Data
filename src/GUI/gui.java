@@ -81,7 +81,7 @@ public class gui {
 		frame.setBounds(100, 100, 575, 344);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		csvpath=new csvpath(c,prev);
+		csvpath=new csvpath(c,prev,th);
 		frame.getContentPane().add(csvpath);
 		current=csvpath;
 		
@@ -97,7 +97,7 @@ public class gui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			current.setVisible(false);
-			csvpath=new csvpath(c,prev);
+			csvpath=new csvpath(c,prev,th);
 			frame.getContentPane().add(csvpath);
 			current=csvpath;
 			}
@@ -108,7 +108,7 @@ public class gui {
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				folderpath=new folderpath(c,prev);
+				folderpath=new folderpath(c,prev,th);
 				frame.getContentPane().add(folderpath);
 				current=folderpath;
 			}
