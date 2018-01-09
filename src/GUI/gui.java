@@ -40,8 +40,6 @@ public class gui {
 	private JPanel id;
 	private JPanel or_and;
 	private JPanel filteropen;
-	Threads th=new Threads();
-	Database prev;
 
 
 	
@@ -75,13 +73,13 @@ public class gui {
 	 */
 	private void initialize() {
 		c=new Connect();
-		prev=new Database(c.data.getDatabase());
+		//prev=new Database(c.data.getDatabase());
 		frame = new JFrame();
 		frame.setBackground(new Color(250, 235, 215));
 		frame.setBounds(100, 100, 575, 344);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		csvpath=new csvpath(c,prev,th);
+		csvpath=new csvpath(c);
 		frame.getContentPane().add(csvpath);
 		current=csvpath;
 		
@@ -97,7 +95,7 @@ public class gui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			current.setVisible(false);
-			csvpath=new csvpath(c,prev,th);
+			csvpath=new csvpath(c);
 			frame.getContentPane().add(csvpath);
 			current=csvpath;
 			}
@@ -108,9 +106,12 @@ public class gui {
 		btnFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				folderpath=new folderpath(c,prev,th);
+				folderpath=new folderpath(c);
+			
 				frame.getContentPane().add(folderpath);
 				current=folderpath;
+			//	prev.setDatabase(c.getData().getDatabase());
+				//System.out.println("c.data"+prev.getDatabase().size());
 			}
 		});
 		mnNewMenu.add(btnFolder);
@@ -185,7 +186,7 @@ public class gui {
 		btnClearDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				clear=new clear(c,prev);
+				clear=new clear(c);
 				frame.getContentPane().add(clear);
 				current=clear;
 			}
@@ -209,7 +210,7 @@ public class gui {
 		btnFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				current.setVisible(false);
-				filteropen=new filteropen(f,c,prev);
+				filteropen=new filteropen(f,c);
 				frame.getContentPane().add(filteropen);
 				current=filteropen;
 			}
@@ -253,18 +254,6 @@ public class gui {
 		JMenuBar menuBar_1 = new JMenuBar();
 		menuBar.add(menuBar_1);
 	
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while(true)
-				{
-					
-				
-				}
-
-			}
-		}).start();
 		
 
 	    

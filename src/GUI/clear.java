@@ -24,7 +24,7 @@ public class clear extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public clear(Connect con, Database prev) {
+	public clear(Connect con) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 
@@ -67,7 +67,6 @@ public class clear extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				Database data = con.clear();
-				prev.setDatabase(data.getDatabase());
 				label.setText("Number of Scan: " + data.getDatabase().size());
 				label_1.setText("Number of Macs: " + data.getHash_map().size());
 			}

@@ -48,12 +48,12 @@ public class FilterByTime implements Filters {
 		String month = "" + time.charAt(5) + time.charAt(6);
 		String hour, minute, second;
 		hour = "" + time.charAt(11) + time.charAt(12);
+		System.out.println(hour);
 		minute = "" + time.charAt(14) + time.charAt(15);
 		if (time.length() <= 16)
 			second = "00";
 		else
 			second = "" + time.charAt(17) + time.charAt(18);
-
 		Date date=new Date();
 		date.setYear(Integer.parseInt(year));
 		date.setMonth(Integer.parseInt(month));
@@ -83,6 +83,14 @@ public class FilterByTime implements Filters {
 		else
 			time += Date[2] + "/" + Date[1] + "/" + Date[0] + " " + Time[1];
 		return time;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FilterByTime [ After min=" + min + ", before max=" + max + "]";
 	}
 
 

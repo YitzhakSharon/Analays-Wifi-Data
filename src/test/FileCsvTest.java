@@ -178,7 +178,7 @@ public class FileCsvTest {
 		e.writecsv(num, "C:\\Users\\yitzhak\\Desktop\\test.csv");
 		ArrayList<Scan> km=l.readFromCsv("C:\\Users\\yitzhak\\Desktop\\test.csv");
 		for (int i = 0; i < km.size(); i++) {
-			if(num.get(i).equals(km.get(i))!=1) {
+			if(!num.get(i).equals(km.get(i))) {
 				 fail("there is problem with the method writecsv");
 
 			}

@@ -19,9 +19,12 @@ public class AndFilter implements Filters {
 	public boolean comper(Scan scan) {
 		return this.filter_1.comper(scan) && this.filter_2.comper(scan);
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "AndFilter [filter_1=" + filter_1 + ", filter_2=" + filter_2 + "]";
+		return "AndFilter [ " + filter_1 + " AND " + filter_2 + "]";
 	}
 	
 

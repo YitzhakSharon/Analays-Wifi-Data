@@ -20,11 +20,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class csvpath extends JPanel {
 	
-	Connect c;
-	
-	public Connect getC() {
-		return c;
-	}
 
 
 
@@ -35,7 +30,7 @@ public class csvpath extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public csvpath(Connect con,Database prev,Threads th ) {
+	public csvpath(Connect con ) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 		
@@ -62,7 +57,6 @@ public class csvpath extends JPanel {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				synchronized (con.data) {
 				while(true){
 					label_1.setText("Number of Scan: " + con.data.getDatabase().size());
 					label_2.setText("Number of Macs: " + con.data.getHash_map().size());
@@ -73,10 +67,10 @@ public class csvpath extends JPanel {
 						e.printStackTrace();
 					}
 				}
-				}
 			}
 			
 		});
+		t.start();
 		
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
@@ -92,11 +86,12 @@ public class csvpath extends JPanel {
 				path=chooser.getSelectedFile().getAbsolutePath();
 				}
 				
-				th.folow_csv(path, con);
-				Database data = con.readCSv(path);
-				prev.setDatabase(data.getDatabase());
-				label_1 .setText("Number of Scan: " + data.getDatabase().size());
-				label_2.setText("Number of Macs: " + data.getHash_map().size());
+				con.readCSv(path);
+			
+				con.folow_csv(path);
+				label_1 .setText("Number of Scan: " + con.getData().getDatabase().size());
+				label_2.setText("Number of Macs: " + con.getData().getHash_map().size());
+				con.prev.set_prev(con.data);
 			}
 		});
 		btnInsert.setFont(new Font("Tahoma", Font.BOLD, 11));

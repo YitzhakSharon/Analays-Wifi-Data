@@ -21,4 +21,12 @@ public class FilterByPlace implements Filters {
 	public boolean comper(Scan scan) {
  		return  cord.distance(this.cord, scan.getCore())<=this.radius;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FilterByPlace [cord=" + cord.getLat()+","+cord.getLon() + ", radius=" + radius + "]";
+	}
+	
 }

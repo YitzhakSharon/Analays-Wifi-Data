@@ -16,4 +16,14 @@ public class FilterByID implements Filters {
 		return scan.getId().equals(this.id);
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FilterByID [id=" + id + "]";
+	}
+
+	
 }

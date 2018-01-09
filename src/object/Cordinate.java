@@ -1,6 +1,8 @@
 package object;
 
-public class Cordinate  {
+import java.io.Serializable;
+
+public class Cordinate implements Serializable  {
 	private double lat;
 	private double lon;
 	private double alt;

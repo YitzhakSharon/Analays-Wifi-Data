@@ -69,17 +69,20 @@ public class place extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if(txt_lon.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lon");
-						lon=Double.parseDouble(txt_lon.getText());
 					}
+					lon=Double.parseDouble(txt_lon.getText());
+
 					if(txt_lat.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lat");
-						lat=Double.parseDouble(txt_lat.getText());
 					}
+					lat=Double.parseDouble(txt_lat.getText());
+
 					if(txt_rad.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lat");
-						rad=Double.parseDouble(txt_rad.getText());
 
 					}
+					rad=Double.parseDouble(txt_rad.getText());
+
 					Cordinate core = new Cordinate(lat,lon,0);
 					Filters ft= new FilterByPlace(core, rad);
 					if(filter[1]!=null)
@@ -101,20 +104,24 @@ public class place extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if(txt_lon.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lon");
-						lon=Double.parseDouble(txt_lon.getText());
 					}
+					lon=Double.parseDouble(txt_lon.getText());
+
 					if(txt_lat.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lat");
-						lat=Double.parseDouble(txt_lat.getText());
 					}
+					lat=Double.parseDouble(txt_lat.getText());
+
 					if(txt_rad.getText().equals("")){
 						JOptionPane.showMessageDialog(new JFrame(), "Please enter correct lat");
-						rad=Double.parseDouble(txt_rad.getText());
 
 					}
-
+					rad=Double.parseDouble(txt_rad.getText());
+					
 					Cordinate core = new Cordinate(lat,lon,0);
 					Filters s= new FilterByPlace(core, rad);
+					System.out.println(core.toString());
+					System.out.println(s.toString());
 					if(filter[1]!=null)
 					filter[2]= new NotFilter(s);
 

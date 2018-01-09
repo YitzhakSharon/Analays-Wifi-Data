@@ -174,5 +174,12 @@ public class Database {
 		this.database.addAll(temp);
 	}
 
+	public Database set_prev(Database other) {
+		Database t= new Database();
+		other.database.clear();
+		t.database.addAll(other.getDatabase());
+		t.hash_map=other.hashmap();
+		return t;
+	}
 
 }

@@ -126,6 +126,7 @@ public class time extends JPanel {
 				String date_max=date_maxt.substring(9, date_maxt.length());
 				String min_time=""+hur1.getSelectedItem()+":"+""+min1.getSelectedItem()+":"+""+sec1.getSelectedItem();
 				String max_time=hur2.getSelectedItem()+":"+""+min2.getSelectedItem()+":"+""+sec2.getSelectedItem();
+				System.out.println("date min"+ date_min);
 				min = date_min +" "+min_time;
 				max = date_max+ " "+max_time;
 				System.out.println(min + "          "+ max);
@@ -133,9 +134,12 @@ public class time extends JPanel {
 				max=FilterByTime.CheckTime(max);
 				Date mindate = FilterByTime.stringToDate(min);
 				Date maxdate = FilterByTime.stringToDate(max);
-
 				if(!mindate.before(maxdate)) {
 					JOptionPane.showMessageDialog(new JFrame(), "Please enter correct time");
+				}
+				else if(min.equals(min_time) || max.equals(max_time)) {
+					JOptionPane.showMessageDialog(new JFrame(), "Please enter correct time");
+
 				}
 				Filters ft= new FilterByTime(mindate, maxdate);
 				if(filter[1]!=null)
@@ -156,29 +160,32 @@ public class time extends JPanel {
 		JButton button_1 = new JButton("! apply");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        String date_mintest=txt_max_year.getDate().toLocaleString();
+				String date_mintest=txt_max_year.getDate().toLocaleString();
 				String date_min=date_mintest.substring(9, date_mintest.length());
 				String date_maxt =txt_min_year.getDate().toLocaleString();
 				String date_max=date_maxt.substring(9, date_maxt.length());
-				String min_time=hur1.getActionCommand()+":"+min1.getActionCommand()+":"+sec1.getActionCommand();
-				String max_time=hur2.getActionCommand()+":"+min2.getActionCommand()+":"+sec2.getActionCommand();
+				String min_time=""+hur1.getSelectedItem()+":"+""+min1.getSelectedItem()+":"+""+sec1.getSelectedItem();
+				String max_time=hur2.getSelectedItem()+":"+""+min2.getSelectedItem()+":"+""+sec2.getSelectedItem();
+				System.out.println("date min"+ date_min);
 				min = date_min +" "+min_time;
 				max = date_max+ " "+max_time;
+				System.out.println(min + "          "+ max);
 				min=FilterByTime.CheckTime(min);
 				max=FilterByTime.CheckTime(max);
 				Date mindate = FilterByTime.stringToDate(min);
 				Date maxdate = FilterByTime.stringToDate(max);
-
 				if(!mindate.before(maxdate)) {
 					JOptionPane.showMessageDialog(new JFrame(), "Please enter correct time");
 				}
-				Filters s=new FilterByTime(min,max);
-				Filters ft=new NotFilter(s);
+				else if(min.equals(min_time) || max.equals(max_time)) {
+					JOptionPane.showMessageDialog(new JFrame(), "Please enter correct time");
+
+				}
+				Filters ft= new FilterByTime(mindate, maxdate);
 				if(filter[1]!=null)
 					filter[2]= ft;
 				else 
 					filter[0]= ft;
-
 				JOptionPane.showMessageDialog(new JFrame(), "The Filter not by Time is Apply ");
 			}
 

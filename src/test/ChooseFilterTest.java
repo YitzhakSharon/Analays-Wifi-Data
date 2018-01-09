@@ -29,8 +29,8 @@ public class ChooseFilterTest {
 		num.getDatabase().add(temp);
 		num.getDatabase().add(temp);
 		num.getDatabase().add(temp);
-
-			if (f.ChekFilterForKml(num)!=0) 
+		Database d = new Database();
+			if (!f.ChekFilterForKml(num).equals(d)) 
 				fail("there is problem with the method ChekFilterForKml");
 	}
 	@Test

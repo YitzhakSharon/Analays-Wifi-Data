@@ -21,16 +21,10 @@ import de.micromata.opengis.kml.v_2_2_0.Folder;
 
 public class folderpath extends JPanel {
 
-	Connect c;
-
-	public Connect getC() {
-		return c;
-	}
-
 	/**
 	 * Create the panel.
 	 */
-	public folderpath(Connect con, Database prev,Threads th) {
+	public folderpath(Connect con) {
 		setBackground(new Color(250, 235, 215));
 		setLayout(null);
 
@@ -54,7 +48,6 @@ public class folderpath extends JPanel {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				synchronized (con.data) {
 				while(true){
 				lblScans.setText("Number of Scan: " + con.data.getDatabase().size());
 				lblNumberOfMacs.setText("Number of Macs: " +con.data.getHash_map().size());
@@ -65,14 +58,14 @@ public class folderpath extends JPanel {
 					e.printStackTrace();
 				}
 				}
-				}
 			}
 			
 		});
-
+t.start();
 		JButton btnInsert = new JButton("Insert Database");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				JFileChooser choose = new JFileChooser();
 				choose.setCurrentDirectory(new java.io.File("."));
 				choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -83,14 +76,19 @@ public class folderpath extends JPanel {
 						path = f.getAbsolutePath();
 					}
 					path = path.replace("\\", "/");
+					
+					
+					
+				con.enterdatabase(path);
+				con.folow_folder(path);
+				lblScans.setText("Number of Scan: " +con.getData().getDatabase().size());
+				lblNumberOfMacs.setText("Number of Macs: " +con.getData().getHash_map().size());
 
-				th.folow_folder(path, con);
-				Database data = con.enterdatabase(path);
-				prev.setDatabase(data.getDatabase());
-				lblScans.setText("Number of Scan: " + data.getDatabase().size());
-				lblNumberOfMacs.setText("Number of Macs: " + data.getHash_map().size());
 			}
 		});
+	
+
+
 		btnInsert.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnInsert.setBackground(UIManager.getColor("Button.background"));
 		btnInsert.setBounds(234, 173, 158, 23);
@@ -100,6 +98,5 @@ public class folderpath extends JPanel {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		label.setBounds(72, 118, 306, 27);
 		add(label);
-
 	}
 }
