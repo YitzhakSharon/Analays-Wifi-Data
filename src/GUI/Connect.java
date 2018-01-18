@@ -75,9 +75,9 @@ public class Connect {
 	public void insertJDBS (ReadFromSQL m) {
 		this.sql_paths.add(m);
 		this.data.addArrayList(m.test_ex4_db());
-
-		this.flag=true;
+		follow_sql(m);
 	}
+	
 	public void write (Filters f) throws IOException {
 		Write_filter t= new Write_filter();
 		t.WriteFilter(f);
@@ -114,6 +114,22 @@ public class Connect {
 		}).start();
 
 	}
+	
+	public void follow_sql(ReadFromSQL m) {
+		System.out.println("enter folow sql");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("enter run folow folder");
+				checkForChange(m);
+
+			}
+
+		}).start();
+
+	}
+
+
 	/**
 	 * the  shell function check change in the folder
 	 * @param path
@@ -498,15 +514,16 @@ public class Connect {
 		for (int i = 0; i < this.csv_paths.size(); i++) {
 			readCSv(this.csv_paths.get(i));
 		}
-		if (this.flag==true) {
 			for (int i = 0; i < this.sql_paths.size(); i++) {
 				data.addArrayList(sql_paths.get(i).test_ex4_db());
 			}
-		}
+		
 		System.out.println("data     size " + data.numOfScan());
 		System.out.println("data size " + data.getDatabase().size());
 	}
 
+	
+	
 	public void checkForChange (ReadFromSQL a) {
 		//ArrayList<Scan> data = new ArrayList<>();
 		Thread t = new Thread(new Runnable() {
@@ -520,8 +537,11 @@ public class Connect {
 						a.set_con( DriverManager.getConnection(a.get_url(), a.get_user(), a.get_password()));
 						st = a.get_con().createStatement();
 						rs = st.executeUpdate("\"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'\"); ");
-						if (rs!=0) 
+						if (rs!=0) {
 							database();
+							Thread.interrupted();
+							follow_sql(a);
+						}
 						Thread.sleep(2000);
 					}
 				}
